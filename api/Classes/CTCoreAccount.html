@@ -7,7 +7,7 @@
 		<meta name="viewport" content="width=550" />
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
 		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
-		<meta name="generator" content="appledoc 2.0.5 (build 789)" />
+		<meta name="generator" content="appledoc 2.0.6 (build 789)" />
 	</head>
 	<body>
 		<header id="top_header">
@@ -51,19 +51,15 @@
 	
 	<option value="//api/name/allFolders">&nbsp;&nbsp;&nbsp;&nbsp;- allFolders</option>
 	
+	<option value="//api/name/allFoldersExtended">&nbsp;&nbsp;&nbsp;&nbsp;- allFoldersExtended</option>
+	
 	<option value="//api/name/connectToServer:port:connectionType:authType:login:password:">&nbsp;&nbsp;&nbsp;&nbsp;- connectToServer:port:connectionType:authType:login:password:</option>
 	
 	<option value="//api/name/disconnect">&nbsp;&nbsp;&nbsp;&nbsp;- disconnect</option>
 	
-	<option value="//api/name/done">&nbsp;&nbsp;&nbsp;&nbsp;- done</option>
-	
 	<option value="//api/name/folderWithPath:">&nbsp;&nbsp;&nbsp;&nbsp;- folderWithPath:</option>
 	
-	<option value="//api/name/idle">&nbsp;&nbsp;&nbsp;&nbsp;- idle</option>
-	
 	<option value="//api/name/isConnected">&nbsp;&nbsp;&nbsp;&nbsp;- isConnected</option>
-	
-	<option value="//api/name/read">&nbsp;&nbsp;&nbsp;&nbsp;- read</option>
 	
 	<option value="//api/name/subscribedFolders">&nbsp;&nbsp;&nbsp;&nbsp;- subscribedFolders</option>
 	
@@ -103,19 +99,15 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/allFolders">allFolders</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/allFoldersExtended">allFoldersExtended</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/connectToServer:port:connectionType:authType:login:password:">connectToServer:port:connectionType:authType:login:password:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/disconnect">disconnect</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/done">done</a></span></li>
-	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/folderWithPath:">folderWithPath:</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/idle">idle</a></span></li>
-	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isConnected">isConnected</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/read">read</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/subscribedFolders">subscribedFolders</a></span></li>
 	
@@ -190,6 +182,14 @@ all of the folders (I use the term folder instead of mailbox) on the server.</p>
 	
 </li><li>
 	<span class="tooltip">
+		<code><a href="#//api/name/allFoldersExtended">&ndash;&nbsp;allFoldersExtended</a></code>
+		<span class="tooltip"><p>Retrieves the list of all the available folders from the server using the extended list command (XLIST).
+This is only supported by Gmail.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
 		<code><a href="#//api/name/subscribedFolders">&ndash;&nbsp;subscribedFolders</a></code>
 		<span class="tooltip"><p>Retrieves a list of only the subscribed folders from the server.</p></span>
 	</span>
@@ -221,27 +221,6 @@ all of the folders (I use the term folder instead of mailbox) on the server.</p>
 		<code><a href="#//api/name/disconnect">&ndash;&nbsp;disconnect</a></code>
 		<span class="tooltip"><p>Terminates the connection. If you terminate this connection it will also affect the
 connectivity of CTCoreFolders and CTMessages that rely on this account.</p></span>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/idle">&ndash;&nbsp;idle</a></code>
-		<span class="tooltip"><p>Sends the idle command to the server.</p></span>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/read">&ndash;&nbsp;read</a></code>
-		<span class="tooltip"><p>Blocks the connection until data arrives.</p></span>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/done">&ndash;&nbsp;done</a></code>
-		<span class="tooltip"><p>Sends the done command to the server.</p></span>
 	</span>
 	
 	
@@ -339,6 +318,54 @@ connectivity of CTCoreFolders and CTMessages that rely on this account.</p></spa
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
 		<p>Retrieves the list of all the available folders from the server.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">CTCoreAccount.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/allFoldersExtended" title="allFoldersExtended"></a>
+	<h3 class="subsubtitle method-title">allFoldersExtended</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Retrieves the list of all the available folders from the server using the extended list command (XLIST).
+This is only supported by Gmail.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (NSSet *)allFoldersExtended</code></div>
+
+    
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>Returns a NSSet which contains CTXlistResults, nil on error</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Retrieves the list of all the available folders from the server using the extended list command (XLIST).
+This is only supported by Gmail.</p>
 	</div>
 	
 	
@@ -481,52 +508,6 @@ connectivity of CTCoreFolders and CTMessages that rely on this account.</p>
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/done" title="done"></a>
-	<h3 class="subsubtitle method-title">done</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Sends the done command to the server.</p>
-	</div>		
-	
-    
-
-	<div class="method-subsection method-declaration"><code>- (BOOL)done</code></div>
-
-    
-	
-	
-	
-	<div class="method-subsection return">
-		<h4 class="method-subtitle parameter-title">Return Value</h4>
-		<p>Return YES on success, NO on error. Call method <a href="#//api/name/lastError">lastError</a> to get error if one occurred</p>
-	</div>
-	
-	
-	
-	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>Sends the done command to the server.</p>
-	</div>
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">CTCoreAccount.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
 	<a name="//api/name/folderWithPath:" title="folderWithPath:"></a>
 	<h3 class="subsubtitle method-title">folderWithPath:</h3>
 	
@@ -583,52 +564,6 @@ connectivity of CTCoreFolders and CTMessages that rely on this account.</p>
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/idle" title="idle"></a>
-	<h3 class="subsubtitle method-title">idle</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Sends the idle command to the server.</p>
-	</div>		
-	
-    
-
-	<div class="method-subsection method-declaration"><code>- (BOOL)idle</code></div>
-
-    
-	
-	
-	
-	<div class="method-subsection return">
-		<h4 class="method-subtitle parameter-title">Return Value</h4>
-		<p>Return YES on success, NO on error. Call method <a href="#//api/name/lastError">lastError</a> to get error if one occurred</p>
-	</div>
-	
-	
-	
-	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>Sends the idle command to the server.</p>
-	</div>
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">CTCoreAccount.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
 	<a name="//api/name/isConnected" title="isConnected"></a>
 	<h3 class="subsubtitle method-title">isConnected</h3>
 	
@@ -658,52 +593,6 @@ connectivity of CTCoreFolders and CTMessages that rely on this account.</p>
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
 		<p>This method returns the current connection status.</p>
-	</div>
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">CTCoreAccount.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/read" title="read"></a>
-	<h3 class="subsubtitle method-title">read</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Blocks the connection until data arrives.</p>
-	</div>		
-	
-    
-
-	<div class="method-subsection method-declaration"><code>- (NSString *)read</code></div>
-
-    
-	
-	
-	
-	<div class="method-subsection return">
-		<h4 class="method-subtitle parameter-title">Return Value</h4>
-		<p>Returns nil on error</p>
-	</div>
-	
-	
-	
-	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>Blocks the connection until data arrives.</p>
 	</div>
 	
 	
@@ -779,9 +668,9 @@ connectivity of CTCoreFolders and CTMessages that rely on this account.</p>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Central Atomics Inc.. All rights reserved. (Last updated: 2012-07-11)</span><br />
+						<p><span class="copyright">&copy; 2012 Central Atomics Inc.. All rights reserved. (Last updated: 2012-11-24)</span><br />
 						
-						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.6 (build 789)</a>.</span></p>
 						
 					</div>
 				</div>

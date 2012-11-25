@@ -7,7 +7,7 @@
 		<meta name="viewport" content="width=550" />
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
 		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
-		<meta name="generator" content="appledoc 2.0.5 (build 789)" />
+		<meta name="generator" content="appledoc 2.0.6 (build 789)" />
 	</head>
 	<body>
 		<header id="top_header">
@@ -49,11 +49,13 @@
 	
 	<option value="instance_methods">Instance Methods</option>
 	
+	<option value="//api/name/appendMessage:">&nbsp;&nbsp;&nbsp;&nbsp;- appendMessage:</option>
+	
 	<option value="//api/name/check">&nbsp;&nbsp;&nbsp;&nbsp;- check</option>
 	
 	<option value="//api/name/connect">&nbsp;&nbsp;&nbsp;&nbsp;- connect</option>
 	
-	<option value="//api/name/copyMessage:toPath:">&nbsp;&nbsp;&nbsp;&nbsp;- copyMessage:toPath:</option>
+	<option value="//api/name/copyMessageWithUID:toPath:">&nbsp;&nbsp;&nbsp;&nbsp;- copyMessageWithUID:toPath:</option>
 	
 	<option value="//api/name/create">&nbsp;&nbsp;&nbsp;&nbsp;- create</option>
 	
@@ -65,6 +67,8 @@
 	
 	<option value="//api/name/flagsForMessage:flags:">&nbsp;&nbsp;&nbsp;&nbsp;- flagsForMessage:flags:</option>
 	
+	<option value="//api/name/idleWithTimeout:">&nbsp;&nbsp;&nbsp;&nbsp;- idleWithTimeout:</option>
+	
 	<option value="//api/name/initWithPath:inAccount:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithPath:inAccount:</option>
 	
 	<option value="//api/name/messageWithUID:">&nbsp;&nbsp;&nbsp;&nbsp;- messageWithUID:</option>
@@ -73,9 +77,7 @@
 	
 	<option value="//api/name/messagesFromUID:to:withFetchAttributes:">&nbsp;&nbsp;&nbsp;&nbsp;- messagesFromUID:to:withFetchAttributes:</option>
 	
-	<option value="//api/name/moveMessage:toPath:">&nbsp;&nbsp;&nbsp;&nbsp;- moveMessage:toPath:</option>
-	
-	<option value="//api/name/name">&nbsp;&nbsp;&nbsp;&nbsp;- name</option>
+	<option value="//api/name/moveMessageWithUID:toPath:">&nbsp;&nbsp;&nbsp;&nbsp;- moveMessageWithUID:toPath:</option>
 	
 	<option value="//api/name/path">&nbsp;&nbsp;&nbsp;&nbsp;- path</option>
 	
@@ -131,11 +133,13 @@
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/appendMessage:">appendMessage:</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/check">check</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/connect">connect</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/copyMessage:toPath:">copyMessage:toPath:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/copyMessageWithUID:toPath:">copyMessageWithUID:toPath:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/create">create</a></span></li>
 	
@@ -147,6 +151,8 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/flagsForMessage:flags:">flagsForMessage:flags:</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/idleWithTimeout:">idleWithTimeout:</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithPath:inAccount:">initWithPath:inAccount:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/messageWithUID:">messageWithUID:</a></span></li>
@@ -155,9 +161,7 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/messagesFromUID:to:withFetchAttributes:">messagesFromUID:to:withFetchAttributes:</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/moveMessage:toPath:">moveMessage:toPath:</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/name">name</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/moveMessageWithUID:toPath:">moveMessageWithUID:toPath:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/path">path</a></span></li>
 	
@@ -302,15 +306,8 @@ valid per session.</p></span>
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/name">&ndash;&nbsp;name</a></code>
-		<span class="tooltip"><p>The folder name.</p></span>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
 		<code><a href="#//api/name/path">&ndash;&nbsp;path</a></code>
-		<span class="tooltip"><p>The entire path of folder.</p></span>
+		<span class="tooltip"><p>The entire path of the folder.</p></span>
 	</span>
 	
 	
@@ -323,8 +320,15 @@ valid per session.</p></span>
 	
 </li><li>
 	<span class="tooltip">
+		<code><a href="#//api/name/idleWithTimeout:">&ndash;&nbsp;idleWithTimeout:</a></code>
+		<span class="tooltip"><p>Sends the idle command to the server.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
 		<code><a href="#//api/name/create">&ndash;&nbsp;create</a></code>
-		<span class="tooltip"><p>If the folder doesn&rsquo;t exist on the server this method will create it. Make sure the path<a href="#//api/name/name">name</a>
+		<span class="tooltip"><p>If the folder doesn&rsquo;t exist on the server this method will create it. Make sure the pathname
 has been set first.</p></span>
 	</span>
 	
@@ -348,6 +352,13 @@ Be careful when using this method because there is no way to undo.</p></span>
 	<span class="tooltip">
 		<code><a href="#//api/name/unsubscribe">&ndash;&nbsp;unsubscribe</a></code>
 		<span class="tooltip"><p>The folder will be listed as unsubscribed.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/appendMessage:">&ndash;&nbsp;appendMessage:</a></code>
+		<span class="tooltip"><p>Exposes the IMAP APPEND command, see the IMAP RFC 4549.</p></span>
 	</span>
 	
 	
@@ -382,14 +393,14 @@ in, it will be deleted.</p></span>
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/copyMessage:toPath:">&ndash;&nbsp;copyMessage:toPath:</a></code>
+		<code><a href="#//api/name/copyMessageWithUID:toPath:">&ndash;&nbsp;copyMessageWithUID:toPath:</a></code>
 		<span class="tooltip"><p>Copies a message to a folder</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/moveMessage:toPath:">&ndash;&nbsp;moveMessage:toPath:</a></code>
+		<code><a href="#//api/name/moveMessageWithUID:toPath:">&ndash;&nbsp;moveMessageWithUID:toPath:</a></code>
 		<span class="tooltip"><p>Moves a message to a folder</p></span>
 	</span>
 	
@@ -491,6 +502,52 @@ will be assigned a UID greater than or equal to uidNext</p></span>
 						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
 						
 						<div class="section-method">
+	<a name="//api/name/appendMessage:" title="appendMessage:"></a>
+	<h3 class="subsubtitle method-title">appendMessage:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Exposes the IMAP APPEND command, see the IMAP RFC 4549.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (BOOL)appendMessage:(CTCoreMessage *)<em>msg</em></code></div>
+
+    
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>Return YES on success, NO on error. Call method <a href="#//api/name/lastError">lastError</a> to get error if one occurred</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Exposes the IMAP APPEND command, see the IMAP RFC 4549.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">CTCoreFolder.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/check" title="check"></a>
 	<h3 class="subsubtitle method-title">check</h3>
 	
@@ -588,8 +645,8 @@ with the state on its disk) that is not normally executed as part of each comman
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/copyMessage:toPath:" title="copyMessage:toPath:"></a>
-	<h3 class="subsubtitle method-title">copyMessage:toPath:</h3>
+	<a name="//api/name/copyMessageWithUID:toPath:" title="copyMessageWithUID:toPath:"></a>
+	<h3 class="subsubtitle method-title">copyMessageWithUID:toPath:</h3>
 	
 	
 	
@@ -599,7 +656,7 @@ with the state on its disk) that is not normally executed as part of each comman
 	
     
 
-	<div class="method-subsection method-declaration"><code>- (BOOL)copyMessage:(CTCoreMessage *)<em>msg</em> toPath:(NSString *)<em>path</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (BOOL)copyMessageWithUID:(NSUInteger)<em>uid</em> toPath:(NSString *)<em>path</em></code></div>
 
     
 	
@@ -640,7 +697,7 @@ with the state on its disk) that is not normally executed as part of each comman
 	
 	
 	<div class="method-subsection brief-description">
-		<p>If the folder doesn&rsquo;t exist on the server this method will create it. Make sure the path<a href="#//api/name/name">name</a>
+		<p>If the folder doesn&rsquo;t exist on the server this method will create it. Make sure the pathname
 has been set first.</p>
 	</div>		
 	
@@ -663,7 +720,7 @@ has been set first.</p>
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<p>If the folder doesn&rsquo;t exist on the server this method will create it. Make sure the path<a href="#//api/name/name">name</a>
+		<p>If the folder doesn&rsquo;t exist on the server this method will create it. Make sure the pathname
 has been set first.</p>
 	</div>
 	
@@ -862,6 +919,47 @@ CTFlagAnswered, CTFlagForwarded.</p>
 Here is a list of message flags:
 CTFlagNew, CTFlagSeen, CTFlagFlagged, CTFlagDeleted,
 CTFlagAnswered, CTFlagForwarded.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">CTCoreFolder.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/idleWithTimeout:" title="idleWithTimeout:"></a>
+	<h3 class="subsubtitle method-title">idleWithTimeout:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Sends the idle command to the server.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (CTIdleResult)idleWithTimeout:(NSUInteger)<em>timeout</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Sends the idle command to the server.</p>
 	</div>
 	
 	
@@ -1134,8 +1232,8 @@ in CTFetchAttrEnvelope | CTFetchAttrBodyStructure</p>
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/moveMessage:toPath:" title="moveMessage:toPath:"></a>
-	<h3 class="subsubtitle method-title">moveMessage:toPath:</h3>
+	<a name="//api/name/moveMessageWithUID:toPath:" title="moveMessageWithUID:toPath:"></a>
+	<h3 class="subsubtitle method-title">moveMessageWithUID:toPath:</h3>
 	
 	
 	
@@ -1145,7 +1243,7 @@ in CTFetchAttrEnvelope | CTFetchAttrBodyStructure</p>
 	
     
 
-	<div class="method-subsection method-declaration"><code>- (BOOL)moveMessage:(CTCoreMessage *)<em>msg</em> toPath:(NSString *)<em>path</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (BOOL)moveMessageWithUID:(NSUInteger)<em>uid</em> toPath:(NSString *)<em>path</em></code></div>
 
     
 	
@@ -1180,54 +1278,13 @@ in CTFetchAttrEnvelope | CTFetchAttrBodyStructure</p>
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/name" title="name"></a>
-	<h3 class="subsubtitle method-title">name</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>The folder name.</p>
-	</div>		
-	
-    
-
-	<div class="method-subsection method-declaration"><code>- (NSString *)name</code></div>
-
-    
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>The folder name.</p>
-	</div>
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">CTCoreFolder.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
 	<a name="//api/name/path" title="path"></a>
 	<h3 class="subsubtitle method-title">path</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>The entire path of folder.</p>
+		<p>The entire path of the folder.</p>
 	</div>		
 	
     
@@ -1244,7 +1301,7 @@ in CTFetchAttrEnvelope | CTFetchAttrBodyStructure</p>
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<p>The entire path of folder.</p>
+		<p>The entire path of the folder.</p>
 	</div>
 	
 	
@@ -1410,7 +1467,7 @@ documentation for flagsForMessage:</p>
 		<h4 class="method-subtitle">Discussion</h4>
 		<p>This will change the <a href="#//api/name/path">path</a> of the folder.</p>
 
-<p>Use this method to re<a href="#//api/name/name">name</a> the folder on the server or to move the folder on the server.</p>
+<p>Use this method to rename the folder on the server or to move the folder on the server.</p>
 	</div>
 	
 	
@@ -1714,9 +1771,9 @@ the count for each call.</p>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Central Atomics Inc.. All rights reserved. (Last updated: 2012-07-11)</span><br />
+						<p><span class="copyright">&copy; 2012 Central Atomics Inc.. All rights reserved. (Last updated: 2012-11-24)</span><br />
 						
-						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.6 (build 789)</a>.</span></p>
 						
 					</div>
 				</div>

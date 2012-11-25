@@ -7,7 +7,7 @@
 		<meta name="viewport" content="width=550" />
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
 		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
-		<meta name="generator" content="appledoc 2.0.5 (build 789)" />
+		<meta name="generator" content="appledoc 2.0.6 (build 789)" />
 	</head>
 	<body>
 		<header id="top_header">
@@ -42,9 +42,9 @@
 	
 	<option value="class_methods">Class Methods</option>
 	
-	<option value="//api/name/canConnectToServer:username:password:port:useTLS:useAuth:error:">&nbsp;&nbsp;&nbsp;&nbsp;+ canConnectToServer:username:password:port:useTLS:useAuth:error:</option>
+	<option value="//api/name/canConnectToServer:username:password:port:connectionType:useAuth:error:">&nbsp;&nbsp;&nbsp;&nbsp;+ canConnectToServer:username:password:port:connectionType:useAuth:error:</option>
 	
-	<option value="//api/name/sendMessage:server:username:password:port:useTLS:useAuth:error:">&nbsp;&nbsp;&nbsp;&nbsp;+ sendMessage:server:username:password:port:useTLS:useAuth:error:</option>
+	<option value="//api/name/sendMessage:server:username:password:port:connectionType:useAuth:error:">&nbsp;&nbsp;&nbsp;&nbsp;+ sendMessage:server:username:password:port:connectionType:useAuth:error:</option>
 	
 	
 	
@@ -74,9 +74,9 @@
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/canConnectToServer:username:password:port:useTLS:useAuth:error:">canConnectToServer:username:password:port:useTLS:useAuth:error:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/canConnectToServer:username:password:port:connectionType:useAuth:error:">canConnectToServer:username:password:port:connectionType:useAuth:error:</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/sendMessage:server:username:password:port:useTLS:useAuth:error:">sendMessage:server:username:password:port:useTLS:useAuth:error:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/sendMessage:server:username:password:port:connectionType:useAuth:error:">sendMessage:server:username:password:port:connectionType:useAuth:error:</a></span></li>
 	
 </ul></li>
 
@@ -137,14 +137,14 @@ the necessary server settings and CTSMTPConnection will send the message.</p>
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
-		<code><a href="#//api/name/sendMessage:server:username:password:port:useTLS:useAuth:error:">+&nbsp;sendMessage:server:username:password:port:useTLS:useAuth:error:</a></code>
+		<code><a href="#//api/name/sendMessage:server:username:password:port:connectionType:useAuth:error:">+&nbsp;sendMessage:server:username:password:port:connectionType:useAuth:error:</a></code>
 		<span class="tooltip"><p>This method&hellip;it sends e-mail.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/canConnectToServer:username:password:port:useTLS:useAuth:error:">+&nbsp;canConnectToServer:username:password:port:useTLS:useAuth:error:</a></code>
+		<code><a href="#//api/name/canConnectToServer:username:password:port:connectionType:useAuth:error:">+&nbsp;canConnectToServer:username:password:port:connectionType:useAuth:error:</a></code>
 		<span class="tooltip"><p>Use this method to test the user&rsquo;s credentials.</p></span>
 	</span>
 	
@@ -165,8 +165,8 @@ the necessary server settings and CTSMTPConnection will send the message.</p>
 						<h2 class="subtitle subtitle-methods">Class Methods</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/canConnectToServer:username:password:port:useTLS:useAuth:error:" title="canConnectToServer:username:password:port:useTLS:useAuth:error:"></a>
-	<h3 class="subsubtitle method-title">canConnectToServer:username:password:port:useTLS:useAuth:error:</h3>
+	<a name="//api/name/canConnectToServer:username:password:port:connectionType:useAuth:error:" title="canConnectToServer:username:password:port:connectionType:useAuth:error:"></a>
+	<h3 class="subsubtitle method-title">canConnectToServer:username:password:port:connectionType:useAuth:error:</h3>
 	
 	
 	
@@ -176,7 +176,7 @@ the necessary server settings and CTSMTPConnection will send the message.</p>
 	
     
 
-	<div class="method-subsection method-declaration"><code>+ (BOOL)canConnectToServer:(NSString *)<em>server</em> username:(NSString *)<em>username</em> password:(NSString *)<em>password</em> port:(unsigned int)<em>port</em> useTLS:(BOOL)<em>tls</em> useAuth:(BOOL)<em>auth</em> error:(NSError **)<em>error</em></code></div>
+	<div class="method-subsection method-declaration"><code>+ (BOOL)canConnectToServer:(NSString *)<em>server</em> username:(NSString *)<em>username</em> password:(NSString *)<em>password</em> port:(unsigned int)<em>port</em> connectionType:(CTSMTPConnectionType)<em>connectionType</em> useAuth:(BOOL)<em>auth</em> error:(NSError **)<em>error</em></code></div>
 
     
 	
@@ -204,8 +204,8 @@ the necessary server settings and CTSMTPConnection will send the message.</p>
 		</dl>
 		
 		<dl class="argument-def parameter-def">
-			<dt><em>tls</em></dt>
-			<dd><p>Pass in YES, if you want to use SSL/TLS</p></dd>
+			<dt><em>connectionType</em></dt>
+			<dd><p>What kind of connection, either: CTSMTPConnectionTypePlain, CTSMTPConnectionTypeStartTLS, CTSMTPConnectionTypeTLS</p></dd>
 		</dl>
 		
 		<dl class="argument-def parameter-def">
@@ -253,8 +253,8 @@ the necessary server settings and CTSMTPConnection will send the message.</p>
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/sendMessage:server:username:password:port:useTLS:useAuth:error:" title="sendMessage:server:username:password:port:useTLS:useAuth:error:"></a>
-	<h3 class="subsubtitle method-title">sendMessage:server:username:password:port:useTLS:useAuth:error:</h3>
+	<a name="//api/name/sendMessage:server:username:password:port:connectionType:useAuth:error:" title="sendMessage:server:username:password:port:connectionType:useAuth:error:"></a>
+	<h3 class="subsubtitle method-title">sendMessage:server:username:password:port:connectionType:useAuth:error:</h3>
 	
 	
 	
@@ -264,7 +264,7 @@ the necessary server settings and CTSMTPConnection will send the message.</p>
 	
     
 
-	<div class="method-subsection method-declaration"><code>+ (BOOL)sendMessage:(CTCoreMessage *)<em>message</em> server:(NSString *)<em>server</em> username:(NSString *)<em>username</em> password:(NSString *)<em>password</em> port:(unsigned int)<em>port</em> useTLS:(BOOL)<em>tls</em> useAuth:(BOOL)<em>auth</em> error:(NSError **)<em>error</em></code></div>
+	<div class="method-subsection method-declaration"><code>+ (BOOL)sendMessage:(CTCoreMessage *)<em>message</em> server:(NSString *)<em>server</em> username:(NSString *)<em>username</em> password:(NSString *)<em>password</em> port:(unsigned int)<em>port</em> connectionType:(CTSMTPConnectionType)<em>connectionType</em> useAuth:(BOOL)<em>auth</em> error:(NSError **)<em>error</em></code></div>
 
     
 	
@@ -297,8 +297,8 @@ the necessary server settings and CTSMTPConnection will send the message.</p>
 		</dl>
 		
 		<dl class="argument-def parameter-def">
-			<dt><em>tls</em></dt>
-			<dd><p>Pass in YES, if you want to use SSL/TLS</p></dd>
+			<dt><em>connectionType</em></dt>
+			<dd><p>What kind of connection, either: CTSMTPConnectionTypePlain, CTSMTPConnectionTypeStartTLS, CTSMTPConnectionTypeTLS</p></dd>
 		</dl>
 		
 		<dl class="argument-def parameter-def">
@@ -358,9 +358,9 @@ the necessary server settings and CTSMTPConnection will send the message.</p>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Central Atomics Inc.. All rights reserved. (Last updated: 2012-07-11)</span><br />
+						<p><span class="copyright">&copy; 2012 Central Atomics Inc.. All rights reserved. (Last updated: 2012-11-24)</span><br />
 						
-						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.6 (build 789)</a>.</span></p>
 						
 					</div>
 				</div>
