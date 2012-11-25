@@ -6,17 +6,24 @@ This provides a brief overview of the MailCore API and how it is structured.
 
 Sending e-mail with MailCore is very easy, it takes care of all the details like MIME encoding, and the SMTP protocol. First, start by creating a `CTCoreMessage` instance. Then set the subject, body, from, and atleast one to, bcc, or cc recipient. One detail to note is that the to, cc, bcc attributes take an NSSet of `CTCoreAddress` recipients.
   
-      CTCoreMessage *testMsg = [[CTCoreMessage alloc] init];
-      [testMsg setTo:[NSSet setWithObject:[CTCoreAddress addressWithName:@"Monkey" email:@"monkey@monkey.com"]]];
-      [testMsg setFrom:[NSSet setWithObject:[CTCoreAddress addressWithName:@"Someone" email:@"test@someone.com"]]];
-      [testMsg setBody:@"This is a test message!"];
-      [testMsg setSubject:@"This is a subject"];
+    CTCoreMessage *testMsg = [[CTCoreMessage alloc] init];
+    [testMsg setTo:[NSSet setWithObject:[CTCoreAddress addressWithName:@"Monkey" email:@"monkey@monkey.com"]]];
+    [testMsg setFrom:[NSSet setWithObject:[CTCoreAddress addressWithName:@"Someone" email:@"test@someone.com"]]];
+    [testMsg setBody:@"This is a test message!"];
+    [testMsg setSubject:@"This is a subject"];
 
   
 Once the message attributes have been set, all that is left is sending the message using `CTSMTPConnection`:
     
     NSError *error;
-    BOOL success = [CTSMTPConnection sendMessage:testMsg server:@"mail.test.com" username:@"test" password:@"test" port:25 useTLS:YES useAuth:YES error:&error];
+    BOOL success = [CTSMTPConnection sendMessage:testMsg 
+                                          server:@"mail.test.com"
+                                        username:@"test"
+                                        password:@"test"
+                                            port:587
+                                  connectionType:CTSMTPConnectionTypeStartTLS
+                                         useAuth:YES
+                                           error:&error];
     if (!success) {
         // Present the error
     }
@@ -28,7 +35,12 @@ That's all, let me know if you have any problems/suggestions/recommendations
 Working with IMAP through MailCore is quite easy. First you need to instantiate a `CTCoreAccount` object and establish a connection like so:
 
     CTCoreAccount *account = [[CTCoreAccount alloc] init];
-    BOOL success = [account connectToServer:@"mail.theronge.com" port:143 connectionType:CTConnectionTypePlain authType:CTImapAuthTypePlain login:@"test" password:@"none"];
+    BOOL success = [account connectToServer:@"mail.theronge.com"
+                                       port:143
+                             connectionType:CTConnectionTypePlain
+                                   authType:CTImapAuthTypePlain
+                                      login:@"test"
+                                   password:@"none"];
     if (!success) {
         // Display the error contained in account.lastError
     }

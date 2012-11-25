@@ -25,7 +25,6 @@
 <li><a href="#gettingcode">Getting the Code</a></li>
 <li><a href="#iosadding">Adding MailCore to Your iOS Project</a></li>
 <li><a href="#macadding">Adding MailCore to Your Mac Project</a></li>
-<li><a href="#migrating">Migrating to Version 1.0</a></li>
 <li><a href="#docs">Documentation</a></li>
 <li><a href="#mailinglist">Mailing List</a></li>
 <li><a href="#apps">Apps Using MailCore</a></li>
@@ -85,26 +84,11 @@ git submodule update --init</code></pre>
 <li>You are now ready to use MailCore. To use MailCore add <code>#import &lt;MailCore/MailCore.h&gt;</code> to the top of your Objective-C files.</li>
 </ol>
 
-<h2 id="migrating">Migrating to Version 1.0</h2>
-
-<p>The latest version of MailCore is no longer backwards compatible with earlier versions. I tried to keep backwards compatibility, but it became too complex, sorry :( </p>
-
-<p>The biggest change is that exceptions are no longer used. Instead each method either returns a BOOL or an object that can be checked for success. If an error occurs each object has a <code>- (NSError *)lastError</code> method that can be consulted. </p>
-
-<p>Here are a list of major changes:</p>
-
-<ul>
-<li>The method <code>- (int)fetchBody</code> has been renamed to <code>- (BOOL)fetchBodyStructure</code></li>
-<li>The methods <code>messageObjectsFromIndex:toIndex:</code> and <code>messageListWithFetchAttributes:</code> have both been removed. They&#8217;ve been replaced by the new and improved <code>messagesFromSequenceNumber:to:withFetchAttributes:</code> and <code>messagesFromUID:to:withFetchAttributes:</code>. Please see the header file CTCoreFolder.m for details.</li>
-<li>NSException is no longer used, instead NSError is used.</li>
-<li>A CTCoreMessage&#8217;s to, from, sender, bcc, cc, and subject values are nil when they have not been downloaded or message doesn&#8217;t have them</li>
-<li>Message UIDs are now NSUIntegers instead of NSStrings</li>
-<li><code>- (BOOL)isUIDValid:(NSString *)uid</code> has been removed. Instead check your uid validity value manually</li>
-</ul>
-
 <h2 id="docs">Documentation</h2>
 
 <p>Begin with the <a href="gettingstarted.html">Getting Started Guide</a> and then take a look at the <a href="api/index.html">API docs</a>. </p>
+
+<p>For those of you coming from an older version of MailCore, take a look at the<a href="https://github.com/mronge/MailCore/wiki/Migrating-to-1.0">migration guide</a>.</p>
 
 <h2 id="mailinglist">Mailing List</h2>
 
@@ -121,7 +105,6 @@ git submodule update --init</code></pre>
 
 <ul>
 <li>Quicksilver</li>
-
 <li>Fileboard</li>
 <li>CloudPull</li>
 <li>Remail</li>
