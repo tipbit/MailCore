@@ -61,15 +61,16 @@
     }
 
     NSString *filename = [path lastPathComponent];
-    return [self initWithData:data contentType:contentType filename:filename];
+    return [self initWithData:data contentType:contentType contentId:nil filename:filename];
 }
 
-- (id)initWithData:(NSData *)data contentType:(NSString *)contentType 
+- (id)initWithData:(NSData *)data contentType:(NSString *)contentType contentId:(NSString*)contentId
         filename:(NSString *)filename {
     self = [super init];
     if (self) {
         self.data = data;
         self.contentType = contentType;
+        self.contentId = contentId;
         self.filename = filename;
     }
     return self;

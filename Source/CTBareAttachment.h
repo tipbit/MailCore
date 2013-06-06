@@ -44,6 +44,7 @@
 }
 @property(retain) NSString *filename;
 @property(retain) NSString *contentType;
+@property(retain) NSString *contentId;
 @property(readonly) CTMIME_SinglePart *part;
 
 -(NSString*)decodedFilename;
