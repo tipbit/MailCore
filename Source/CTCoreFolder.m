@@ -504,6 +504,18 @@ static const int MAX_PATH_SIZE = 1024;
         }
     }
 
+    // If the connection supports X-GM-MSGID, then fetch it.
+    if ([myAccount.capabilities containsObject:@"X-GM-EXT-1"]) {
+        fetch_att = mailimap_fetch_att_new_xgmmsgid();
+        r = mailimap_fetch_type_new_fetch_att_list_add(fetch_type, fetch_att);
+        if (r != MAILIMAP_NO_ERROR) {
+            mailimap_fetch_att_free(fetch_att);
+            mailimap_fetch_type_free(fetch_type);
+            self.lastError = MailCoreCreateErrorFromIMAPCode(r);
+            return nil;
+        }
+    }
+
     if (uidFetch) {
         r = mailimap_uid_fetch([self imapSession], set, fetch_type, &fetch_result);
     } else {
@@ -926,10 +938,12 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
         struct mailimap_msg_att * msg_att;
         clistiter * item_cur;
         uint32_t uid;
+        uint64_t gm_msgid;
         size_t size;
 
         msg_att = clist_content(cur);
         uid = 0;
+        gm_msgid = 0;
         size = 0;
         for(item_cur = clist_begin(msg_att->att_list); item_cur != NULL; item_cur = clist_next(item_cur)) {
             struct mailimap_msg_att_item * item;
@@ -941,6 +955,10 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
                     case MAILIMAP_MSG_ATT_UID:
                         uid = item->att_data.att_static->att_data.att_uid;
                     break;
+
+                    case MAILIMAP_MSG_ATT_GM_MSGID:
+                        gm_msgid = item->att_data.att_static->att_data.att_gm_msgid;
+                        break;
 
                     case MAILIMAP_MSG_ATT_RFC822_SIZE:
                         size = item->att_data.att_static->att_data.att_rfc822_size;
@@ -961,6 +979,8 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
             res = r;
             goto free_msg;
         }
+
+        msg->msg_gm_msgid = gm_msgid;
 
         r = carray_add(tab, msg, NULL);
         if (r < 0) {

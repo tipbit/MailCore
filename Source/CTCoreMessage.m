@@ -452,6 +452,13 @@
     return 0;
 }
 
+- (uint64_t)gm_msgid {
+    if (myMessage && myMessage->msg_gm_msgid) {
+        return myMessage->msg_gm_msgid;
+    }
+    return 0;
+}
+
 - (NSUInteger)messageSize {
     return [self messageStruct]->msg_size;
 }

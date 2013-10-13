@@ -203,6 +203,11 @@ typedef enum {
 - (NSUInteger)uid;
 
 /**
+ Returns an NSUInteger containing the message's X-GM_MSGID, if set. This number is globally unique and fixed.
+ */
+- (uint64_t)gm_msgid;
+
+/**
  Returns the message sequence number, this number cannot be used across sessions
 */
 - (NSUInteger)sequenceNumber;
