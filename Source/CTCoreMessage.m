@@ -31,7 +31,6 @@
 
 #import <libetpan/libetpan.h>
 #import "CTCoreMessage.h"
-#import "CTCoreFolder.h"
 #import "MailCoreTypes.h"
 #import "CTCoreAddress.h"
 #import "CTMIMEFactory.h"
