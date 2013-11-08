@@ -51,6 +51,16 @@
     BOOL idling;
     int idlePipe[2];
 }
+
+
+/**
+ * This is set to true if we are in the process of disconnecting the folder (i.e. the disconnect has been queued).
+ * Callers who are caching this CTCoreFolder instance should check this flag before using this instance.
+ * This is atomic and so can be used from any thread.
+ */
+@property (atomic, assign) bool invalid;
+
+
 /**
  If an error occurred (nil or return of NO) call this method to get the error
 */
