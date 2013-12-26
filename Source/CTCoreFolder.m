@@ -435,6 +435,8 @@ static const int MAX_PATH_SIZE = 1024;
 
 // We always fetch UID and Flags
 - (NSArray *)messagesForSet:(struct mailimap_set *)set fetchAttributes:(CTFetchAttributes)attrs uidFetch:(BOOL)uidFetch {
+    assert(![NSThread isMainThread]);
+
     BOOL success = [self connect];
     if (!success) {
         return nil;

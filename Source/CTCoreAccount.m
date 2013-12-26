@@ -112,6 +112,8 @@
 }
 
 - (NSSet *)capabilities {
+    assert(![NSThread isMainThread]);
+
     NSMutableSet *capabilitiesSet = [NSMutableSet set];
     
     int r;
