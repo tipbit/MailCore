@@ -434,198 +434,91 @@ static const int MAX_PATH_SIZE = 1024;
 }
 
 // We always fetch UID and Flags
+// Frees the given set before returning (regardless of success or failure).
+// Sets self.lastError and returns nil on failure.
 - (NSArray *)messagesForSet:(struct mailimap_set *)set fetchAttributes:(CTFetchAttributes)attrs uidFetch:(BOOL)uidFetch {
     assert(![NSThread isMainThread]);
 
     BOOL success = [self connect];
     if (!success) {
+        mailimap_set_free(set);
         return nil;
     }
-
-    NSMutableArray *messages = [NSMutableArray array];
 
     int r;
-    struct mailimap_fetch_att * fetch_att;
     struct mailimap_fetch_type * fetch_type;
-    struct mailmessage_list * env_list;
 
+    r = make_fetch_type(attrs, [myAccount.capabilities containsObject:@"X-GM-EXT-1"], &fetch_type);
+    if (r != MAILIMAP_NO_ERROR) {
+        mailimap_set_free(set);
+        self.lastError = MailCoreCreateErrorFromIMAPCode(r);
+        return nil;
+    }
+
+    mailimap* imap_session = [self imapSession];
     clist * fetch_result;
-
-    fetch_type = mailimap_fetch_type_new_fetch_att_list_empty();
-    // Always fetch UID
-    fetch_att = mailimap_fetch_att_new_uid();
-    r = mailimap_fetch_type_new_fetch_att_list_add(fetch_type, fetch_att);
-    if (r != MAILIMAP_NO_ERROR) {
-        mailimap_fetch_att_free(fetch_att);
-        mailimap_fetch_type_free(fetch_type);
-        self.lastError = MailCoreCreateErrorFromIMAPCode(r);
-        return nil;
-    }
-
-    // Always fetch flags
-    fetch_att = mailimap_fetch_att_new_flags();
-    r = mailimap_fetch_type_new_fetch_att_list_add(fetch_type, fetch_att);
-    if (r != MAILIMAP_NO_ERROR) {
-        mailimap_fetch_att_free(fetch_att);
-        mailimap_fetch_type_free(fetch_type);
-        self.lastError = MailCoreCreateErrorFromIMAPCode(r);
-        return nil;
-    }
-
-    // We only fetch RFC822.Size if the envelope is being fetched
-    if (attrs & CTFetchAttrEnvelope) {
-        fetch_att = mailimap_fetch_att_new_rfc822_size();
-        r = mailimap_fetch_type_new_fetch_att_list_add(fetch_type, fetch_att);
-        if (r != MAILIMAP_NO_ERROR) {
-            mailimap_fetch_att_free(fetch_att);
-            mailimap_fetch_type_free(fetch_type);
-            self.lastError = MailCoreCreateErrorFromIMAPCode(r);
-            return nil;
-        }
-    }
-
-    // We only fetch the body structure if requested
-    if (attrs & CTFetchAttrBodyStructure) {
-        fetch_att = mailimap_fetch_att_new_bodystructure();
-        r = mailimap_fetch_type_new_fetch_att_list_add(fetch_type, fetch_att);
-        if (r != MAILIMAP_NO_ERROR) {
-            mailimap_fetch_att_free(fetch_att);
-            mailimap_fetch_type_free(fetch_type);
-            self.lastError = MailCoreCreateErrorFromIMAPCode(r);
-            return nil;
-        }
-    }
-
-    // We only fetch envelope if requested
-    if (attrs & CTFetchAttrEnvelope) {
-        r = imap_add_envelope_fetch_att(fetch_type);
-        if (r != MAIL_NO_ERROR) {
-            mailimap_fetch_type_free(fetch_type);
-            self.lastError = MailCoreCreateErrorFromIMAPCode(r);
-            return nil;
-        }
-    }
-
-    // If the connection supports X-GM-MSGID, then fetch it.
-    if ([myAccount.capabilities containsObject:@"X-GM-EXT-1"]) {
-        fetch_att = mailimap_fetch_att_new_xgmmsgid();
-        r = mailimap_fetch_type_new_fetch_att_list_add(fetch_type, fetch_att);
-        if (r != MAILIMAP_NO_ERROR) {
-            mailimap_fetch_att_free(fetch_att);
-            mailimap_fetch_type_free(fetch_type);
-            self.lastError = MailCoreCreateErrorFromIMAPCode(r);
-            return nil;
-        }
-    }
-
     if (uidFetch) {
-        r = mailimap_uid_fetch([self imapSession], set, fetch_type, &fetch_result);
+        r = mailimap_uid_fetch(imap_session, set, fetch_type, &fetch_result);
     } else {
-        r = mailimap_fetch([self imapSession], set, fetch_type, &fetch_result);
-    }
-    if (r != MAIL_NO_ERROR) {
-        self.lastError = MailCoreCreateErrorFromIMAPCode(r);
-        return nil;
+        r = mailimap_fetch(imap_session, set, fetch_type, &fetch_result);
     }
 
     mailimap_fetch_type_free(fetch_type);
     mailimap_set_free(set);
 
-    env_list = NULL;
+    if (r != MAIL_NO_ERROR) {
+        self.lastError = MailCoreCreateErrorFromIMAPCode(r);
+        return nil;
+    }
+
+    NSArray* result = [self parseFetchResponse:fetch_result fetchAttributes:attrs];
+
+    mailimap_fetch_list_free(fetch_result);
+
+    return result;
+}
+
+
+/**
+ * Sets self.lastError and returns nil on failure.
+ */
+-(NSArray*)parseFetchResponse:(clist*)fetch_result fetchAttributes:(CTFetchAttributes)attrs {
+    int r;
+    struct mailmessage_list * env_list = NULL;
+
     r = uid_list_to_env_list(fetch_result, &env_list, [self folderSession], imap_message_driver);
-    if (r != MAIL_NO_ERROR) {
-        self.lastError = MailCoreCreateErrorFromIMAPCode(r);
-        return nil;
-    }
+    if (r != MAIL_NO_ERROR)
+        goto err;
+
     r = imap_fetch_result_to_envelop_list(fetch_result, env_list);
-    if (r != MAIL_NO_ERROR) {
-        self.lastError = MailCoreCreateErrorFromIMAPCode(r);
-        return nil;
-    }
+    if (r != MAIL_NO_ERROR)
+        goto err;
 
     // Parsing of MIME bodies
+    NSMutableArray *messages = [NSMutableArray array];
     int len = carray_count(env_list->msg_tab);
-
     clistiter *fetchResultIter = clist_begin(fetch_result);
     for(int i=0; i<len; i++) {
-        struct mailimf_fields * fields = NULL;
-        struct mailmime * new_body = NULL;
-        struct mailmime_content * content_message = NULL;
-        struct mailmime * body = NULL;
-
         struct mailmessage * msg = carray_get(env_list->msg_tab, i);
         struct mailimap_msg_att *msg_att = (struct mailimap_msg_att *)clist_content(fetchResultIter);
         if (msg_att == nil) {
-            self.lastError = MailCoreCreateErrorFromIMAPCode(MAIL_ERROR_MEMORY);
-            return nil;
-        }
-
-        uint32_t uid = 0;
-        char * references = NULL;
-        size_t ref_size = 0;
-        struct mailimap_body * imap_body = NULL;
-        struct mailimap_envelope * envelope = NULL;
-
-        if (attrs & CTFetchAttrBodyStructure) {
-            r = imap_get_msg_att_info(msg_att, &uid, &envelope, &references, &ref_size, NULL, &imap_body);
-            if (r != MAIL_NO_ERROR) {
-                mailimap_fetch_list_free(fetch_result);
-                self.lastError = MailCoreCreateErrorFromIMAPCode(r);
-                return nil;
-            }
-
-            if (imap_body != NULL) {
-                r = imap_body_to_body(imap_body, &body);
-                if (r != MAIL_NO_ERROR) {
-                    mailimap_fetch_list_free(fetch_result);
-                    self.lastError = MailCoreCreateErrorFromIMAPCode(r);
-                    return nil;
-                }
-            }
-
-            if (envelope != NULL) {
-                r = imap_env_to_fields(envelope, references, ref_size, &fields);
-                if (r != MAIL_NO_ERROR) {
-                    mailmime_free(body);
-                    mailimap_fetch_list_free(fetch_result);
-                    self.lastError = MailCoreCreateErrorFromIMAPCode(r);
-                    return nil;
-                }
-            }
-
-            content_message = mailmime_get_content_message();
-            if (content_message == NULL) {
-                if (fields != NULL)
-                    mailimf_fields_free(fields);
-                mailmime_free(body);
-                mailimap_fetch_list_free(fetch_result);
-                self.lastError = MailCoreCreateErrorFromIMAPCode(MAIL_ERROR_MEMORY);
-                return nil;
-            }
-
-            new_body = mailmime_new(MAILMIME_MESSAGE, NULL,
-                                    0, NULL, content_message,
-                                    NULL, NULL, NULL, NULL, fields, body);
-
-            if (new_body == NULL) {
-                mailmime_content_free(content_message);
-                if (fields != NULL)
-                    mailimf_fields_free(fields);
-                mailmime_free(body);
-                mailimap_fetch_list_free(fetch_result);
-                self.lastError = MailCoreCreateErrorFromIMAPCode(MAIL_ERROR_MEMORY);
-                return nil;
-            }
+            r = MAIL_ERROR_MEMORY;
+            goto err;
         }
 
         CTCoreMessage* msgObject = [[CTCoreMessage alloc] initWithMessageStruct:msg];
         msgObject.parentFolder = self;
         [msgObject setSequenceNumber:msg_att->att_number];
-        if (fields != NULL) {
-            [msgObject setFields:fields];
-        }
         if (attrs & CTFetchAttrBodyStructure) {
-            [msgObject setBodyStructure:new_body];
+            struct mailmime * body;
+            r = parse_bodystructure(msg_att, &body);
+            if (r != MAIL_NO_ERROR)
+                goto err;
+
+            [msgObject setBodyStructure:body];
+            struct mailimf_fields * fields = body->mm_data.mm_message.mm_fields;
+            if (fields != NULL)
+                [msgObject setFields:fields];
         }
         [messages addObject:msgObject];
         [msgObject release];
@@ -638,10 +531,169 @@ static const int MAX_PATH_SIZE = 1024;
         carray_free(env_list->msg_tab);
         free(env_list);
     }
-    mailimap_fetch_list_free(fetch_result);
 
     return messages;
+err:
+    if (env_list)
+        mailmessage_list_free(env_list);
+    self.lastError = MailCoreCreateErrorFromIMAPCode(r);
+    return nil;
 }
+
+
+/**
+ * @return MAIL_NO_ERROR or a MAIL_ERROR* code on failure.  Sets *body_result on success, which is yours to free with mailmime_free.
+ */
+static int parse_bodystructure(struct mailimap_msg_att* msg_att, struct mailmime** body_result) {
+    int r;
+    uint32_t uid = 0;
+    size_t ref_size = 0;
+
+    // These four are malloc'd, so need to be freed or returned.
+    struct mailimf_fields * fields = NULL;
+    struct mailmime_content * content_message = NULL;
+    struct mailmime * body = NULL;
+    struct mailmime * new_body = NULL;
+
+    // These three are internal references to msg_att, so don't need to be freed.
+    struct mailimap_envelope * envelope = NULL;
+    char * references = NULL;
+    struct mailimap_body * imap_body = NULL;
+
+    r = imap_get_msg_att_info(msg_att, &uid, &envelope, &references, &ref_size, NULL, &imap_body);
+    if (r != MAIL_NO_ERROR)
+        goto done;
+
+    if (imap_body != NULL) {
+        r = imap_body_to_body(imap_body, &body);
+        if (r != MAIL_NO_ERROR)
+            goto done;
+    }
+
+    if (envelope != NULL) {
+        r = imap_env_to_fields(envelope, references, ref_size, &fields);
+        if (r != MAIL_NO_ERROR)
+            goto done;
+    }
+
+    content_message = mailmime_get_content_message();
+    if (content_message == NULL) {
+        r = MAIL_ERROR_MEMORY;
+        goto done;
+    }
+
+    new_body = mailmime_new(MAILMIME_MESSAGE, NULL,
+                            0, NULL, content_message,
+                            NULL, NULL, NULL, NULL, fields, body);
+    if (new_body == NULL) {
+        r = MAIL_ERROR_MEMORY;
+        goto done;
+    }
+    else {
+        // These are owned by new_body now.
+        content_message = NULL;
+        fields = NULL;
+        body = NULL;
+    }
+
+done:
+    if (fields != NULL)
+        mailimf_fields_free(fields);
+    if (content_message != NULL)
+        mailmime_content_free(content_message);
+    if (body != NULL)
+        mailmime_free(body);
+
+    if (r == MAIL_NO_ERROR) {
+        *body_result = new_body;
+    }
+    else {
+        if (new_body != NULL)
+            mailmime_free(new_body);
+        *body_result = NULL;
+    }
+    return r;
+}
+
+
+/**
+ * @return MAILIMAP_NO_ERROR or a MAILIMAP_ERROR* code on failure.  Sets *result on success, which is yours to free.
+ */
+static int make_fetch_type(CTFetchAttributes attrs, bool add_gm_msgid, struct mailimap_fetch_type** result) {
+    struct mailimap_fetch_type * fetch_type = NULL;
+    int r;
+
+    fetch_type = mailimap_fetch_type_new_fetch_att_list_empty();
+    if (fetch_type == NULL) {
+        r = MAILIMAP_ERROR_MEMORY;
+        goto err;
+    }
+
+    // Always fetch UID
+    r = add_fetch_att_to_fetch_type(mailimap_fetch_att_new_uid(), fetch_type);
+    if (r != MAILIMAP_NO_ERROR)
+        goto err;
+
+    // Always fetch flags
+    r = add_fetch_att_to_fetch_type(mailimap_fetch_att_new_flags(), fetch_type);
+    if (r != MAILIMAP_NO_ERROR)
+        goto err;
+
+    // We only fetch RFC822.Size if the envelope is being fetched
+    if (attrs & CTFetchAttrEnvelope) {
+        r = add_fetch_att_to_fetch_type(mailimap_fetch_att_new_rfc822_size(), fetch_type);
+        if (r != MAILIMAP_NO_ERROR)
+            goto err;
+    }
+
+    // We only fetch the body structure if requested
+    if (attrs & CTFetchAttrBodyStructure) {
+        r = add_fetch_att_to_fetch_type(mailimap_fetch_att_new_bodystructure(), fetch_type);
+        if (r != MAILIMAP_NO_ERROR)
+            goto err;
+    }
+
+    // We only fetch envelope if requested
+    if (attrs & CTFetchAttrEnvelope) {
+        r = imap_add_envelope_fetch_att(fetch_type);
+        if (r != MAIL_NO_ERROR)
+            goto err;
+    }
+
+    // If the connection supports X-GM-MSGID, then fetch it.
+    if (add_gm_msgid) {
+        r = add_fetch_att_to_fetch_type(mailimap_fetch_att_new_xgmmsgid(), fetch_type);
+        if (r != MAILIMAP_NO_ERROR)
+            goto err;
+    }
+
+    *result = fetch_type;
+    return MAILIMAP_NO_ERROR;
+
+err:
+    if (fetch_type != NULL)
+        mailimap_fetch_type_free(fetch_type);
+    *result = NULL;
+    return r;
+}
+
+
+/**
+ * Add fetch_att to fetch_type.
+ *
+ * @return MAILIMAP_NO_ERROR if this succeeded, in which case the given fetch_att is now owned by the given fetch_type.
+ * A MAILIMAP_ERROR_* code otherwise, in which case fetch_att has been freed, but fetch_type has not.
+ */
+static int add_fetch_att_to_fetch_type(struct mailimap_fetch_att * fetch_att, struct mailimap_fetch_type * fetch_type) {
+    if (fetch_att == NULL)
+        return MAILIMAP_ERROR_MEMORY;
+
+    int r = mailimap_fetch_type_new_fetch_att_list_add(fetch_type, fetch_att);
+    if (r != MAILIMAP_NO_ERROR)
+        mailimap_fetch_att_free(fetch_att);
+    return r;
+}
+
 
 - (NSArray *)messagesFromSequenceNumber:(NSUInteger)startNum to:(NSUInteger)endNum withFetchAttributes:(CTFetchAttributes)attrs {
     struct mailimap_set *set = mailimap_set_new_interval(startNum, endNum);
