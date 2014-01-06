@@ -508,8 +508,10 @@ static const int MAX_PATH_SIZE = 1024;
         if (attrs & CTFetchAttrBodyStructure) {
             struct mailmime * body;
             r = parse_bodystructure(msg_att, &body);
-            if (r != MAIL_NO_ERROR)
+            if (r != MAIL_NO_ERROR) {
+                [msgObject release];
                 goto err;
+            }
 
             [msgObject setBodyStructure:body];
             struct mailimf_fields * fields = body->mm_data.mm_message.mm_fields;
