@@ -294,7 +294,6 @@ static const int MAX_PATH_SIZE = 1024;
         return NO;
     }
     err =  mailimap_subscribe([myAccount session], path);
-    err =  mailimap_unsubscribe([myAccount session], path);
     if (err != MAILIMAP_NO_ERROR) {
         self.lastError = MailCoreCreateErrorFromIMAPCode(err);
         return NO;
