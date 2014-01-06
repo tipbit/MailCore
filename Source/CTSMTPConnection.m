@@ -115,7 +115,8 @@
     [smtpObj release];
     return YES;
 error:
-    *error = smtpObj.lastError;
+    if (error != NULL)
+        *error = smtpObj.lastError;
     [smtpObj release];
     mailsmtp_free(smtp);
     return NO;
@@ -167,7 +168,8 @@ error:
   [smtpObj release];
   return YES;
 error:
-  *error = smtpObj.lastError;
+  if (error != NULL)
+    *error = smtpObj.lastError;
   [smtpObj release];
   mailsmtp_free(smtp);
   return NO;
