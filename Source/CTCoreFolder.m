@@ -234,11 +234,8 @@ static const int MAX_PATH_SIZE = 1024;
 
 - (void)cancelIdle {
     if (self.idling) {
-        int r;
-        char c;
-        
-        c = 0;
-        r = write(idlePipe[1], &c, 1);
+        char c = 0;
+        (void)write(idlePipe[1], &c, 1);
     }
 }
 
