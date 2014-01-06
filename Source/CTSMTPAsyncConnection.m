@@ -180,6 +180,8 @@ smtpProgress(size_t aCurrent, size_t aTotal) {
         success = [mSMTPObj connectToServer:server port:port];
     } else if (connectionType == CTSMTPConnectionTypeTLS) {
         success = [mSMTPObj connectWithTlsToServer:server port:port];
+    } else {
+        success = NO;
     }
     
     if (!success) {

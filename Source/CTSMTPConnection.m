@@ -52,6 +52,8 @@
         success = [smtpObj connectToServer:server port:port];
     } else if (connectionType == CTSMTPConnectionTypeTLS) {
         success = [smtpObj connectWithTlsToServer:server port:port];
+    } else {
+        success = NO;
     }
     if (!success) {
         goto error;
@@ -131,6 +133,8 @@ error:
      success = [smtpObj connectToServer:server port:port];
   } else if (connectionType == CTSMTPConnectionTypeTLS) {
      success = [smtpObj connectWithTlsToServer:server port:port];
+  } else {
+     success = NO;
   }
   if (!success) {
     goto error;
