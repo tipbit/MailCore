@@ -1061,4 +1061,33 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
 }
 
 
+-(NSArray*)searchUidByHeader:(NSString*)header value:(NSString*)value {
+    const char* header_s = [header UTF8String];
+    const char* value_s = [value UTF8String];
+    char* header_c = strdup(header_s);
+    char* value_c = strdup(value_s);
+    struct mailimap_search_key * key = mailimap_search_key_new_header(header_c, value_c);
+
+    clist * imap_result = NULL;
+    int err = mailimap_uid_search(self.imapSession, "UTF-8", key, &imap_result);
+
+    mailimap_search_key_free(key);
+
+    if (err != MAILIMAP_NO_ERROR) {
+        self.lastError = MailCoreCreateErrorFromIMAPCode(err);
+        return nil;
+    }
+
+    NSMutableArray* result = [NSMutableArray array];
+    for(clistiter* cur = clist_begin(imap_result); cur != NULL; cur = clist_next(cur)) {
+        uint32_t uid = *(uint32_t*)clist_content(cur);
+        [result addObject:@(uid)];
+    }
+
+    mailimap_search_result_free(imap_result);
+
+    return result;
+}
+
+
 @end

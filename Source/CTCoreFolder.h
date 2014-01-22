@@ -324,6 +324,8 @@
 */
 - (NSUInteger)uidNext;
 
+-(NSArray*)searchUidByHeader:(NSString*)header value:(NSString*)value;
+
 /* Intended for advanced use only */
 - (struct mailfolder *)folderStruct;
 - (mailsession *)folderSession;
