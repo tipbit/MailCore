@@ -1062,6 +1062,10 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
 
 
 -(NSArray*)searchUidByHeader:(NSString*)header value:(NSString*)value {
+    BOOL success = [self connect];
+    if (!success)
+        return nil;
+
     const char* header_s = [header UTF8String];
     const char* value_s = [value UTF8String];
     char* header_c = strdup(header_s);
