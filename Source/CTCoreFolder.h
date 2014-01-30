@@ -324,6 +324,11 @@
 */
 - (NSUInteger)uidNext;
 
+/**
+ Perform a UID SEARCH HEADER operation looking for the given header=value pair.
+ @return nil on failure, an empty array if the search succeeds but finds nothing, and an NSNumber array otherwise.
+ The NSNumber is the UID of each matching message (treat it as a uint32_t).
+ */
 -(NSArray*)searchUidByHeader:(NSString*)header value:(NSString*)value;
 
 /* Intended for advanced use only */
