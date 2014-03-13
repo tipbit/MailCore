@@ -727,7 +727,7 @@
 - (NSString *)rfc822 {
     char *result = NULL;
     NSString *nsresult;
-    int r = mailimap_fetch_rfc822([self imapSession], [self sequenceNumber], &result);
+    int r = mailimap_fetch_rfc822([self imapSession], (uint32_t)[self sequenceNumber], &result);
     if (r == MAIL_NO_ERROR) {
         nsresult = [[NSString alloc] initWithCString:result encoding:NSUTF8StringEncoding];
     } else {
@@ -741,7 +741,7 @@
 - (NSString *)rfc822Header {
     char *result = NULL;
     NSString *nsresult;
-    int r = mailimap_fetch_rfc822_header([self imapSession], [self sequenceNumber], &result);
+    int r = mailimap_fetch_rfc822_header([self imapSession], (uint32_t)[self sequenceNumber], &result);
     if (r == MAIL_NO_ERROR) {
         nsresult = [[NSString alloc] initWithCString:result encoding:NSUTF8StringEncoding];
     } else {

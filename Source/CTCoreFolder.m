@@ -395,7 +395,7 @@ static const int MAX_PATH_SIZE = 1024;
     if (!success) {
         return NO;
     }
-    set = mailimap_set_new_single(uid);
+    set = mailimap_set_new_single((uint32_t)uid);
     if (set == NULL) {
         self.lastError = MailCoreCreateErrorFromIMAPCode(MAIL_ERROR_MEMORY);
         return NO;
@@ -694,13 +694,13 @@ static int add_fetch_att_to_fetch_type(struct mailimap_fetch_att * fetch_att, st
 
 
 - (NSArray *)messagesFromSequenceNumber:(NSUInteger)startNum to:(NSUInteger)endNum withFetchAttributes:(CTFetchAttributes)attrs {
-    struct mailimap_set *set = mailimap_set_new_interval(startNum, endNum);
+    struct mailimap_set *set = mailimap_set_new_interval((uint32_t)startNum, (uint32_t)endNum);
     NSArray *results = [self messagesForSet:set fetchAttributes:attrs uidFetch:NO];
     return results;
 }
 
 - (NSArray *)messagesFromUID:(NSUInteger)startUID to:(NSUInteger)endUID withFetchAttributes:(CTFetchAttributes)attrs {
-    struct mailimap_set *set = mailimap_set_new_interval(startUID, endUID);
+    struct mailimap_set *set = mailimap_set_new_interval((uint32_t)startUID, (uint32_t)endUID);
     NSArray *results = [self messagesForSet:set fetchAttributes:attrs uidFetch:YES];
     return results;
 }
@@ -709,7 +709,7 @@ static int add_fetch_att_to_fetch_type(struct mailimap_fetch_att * fetch_att, st
                          fetchAttributes:(CTFetchAttributes)attrs {
   struct mailimap_set *set = mailimap_set_new_empty();
   [sequenceNumbers enumerateRangesUsingBlock:^(NSRange range, BOOL *stop) {
-    mailimap_set_add_interval(set, range.location, range.location + range.length - 1);
+    mailimap_set_add_interval(set, (uint32_t)range.location, (uint32_t)(range.location + range.length - 1));
   }];
   
   return [self messagesForSet:set fetchAttributes:attrs uidFetch:NO];
@@ -720,7 +720,7 @@ static int add_fetch_att_to_fetch_type(struct mailimap_fetch_att * fetch_att, st
               fetchAttributes:(CTFetchAttributes)attrs {
   struct mailimap_set *set = mailimap_set_new_empty();
   [uidNumbers enumerateRangesUsingBlock:^(NSRange range, BOOL *stop) {
-    mailimap_set_add_interval(set, range.location, range.location + range.length - 1);
+    mailimap_set_add_interval(set, (uint32_t)range.location, (uint32_t)(range.location + range.length - 1));
   }];
   
   return [self messagesForSet:set fetchAttributes:attrs uidFetch:YES];
@@ -779,7 +779,7 @@ static int add_fetch_att_to_fetch_type(struct mailimap_fetch_att * fetch_att, st
     }
 
     int err;
-    [msg messageStruct]->msg_flags->fl_flags=flags;
+    [msg messageStruct]->msg_flags->fl_flags = (uint32_t)flags;
     err = mailmessage_check([msg messageStruct]);
     if (err != MAIL_NO_ERROR) {
         self.lastError = MailCoreCreateErrorFromIMAPCode(err);
@@ -855,7 +855,7 @@ static int add_fetch_att_to_fetch_type(struct mailimap_fetch_att * fetch_att, st
     }
     
     int err;
-    [msg messageStruct]->msg_flags->fl_flags = flags;
+    [msg messageStruct]->msg_flags->fl_flags = (uint32_t)flags;
     clist *extensions = MailCoreClistFromStringArray(extensionFlags);
     if ([msg messageStruct]->msg_flags->fl_extension) {
         clist_free([msg messageStruct]->msg_flags->fl_extension);
@@ -897,7 +897,7 @@ static int add_fetch_att_to_fetch_type(struct mailimap_fetch_att * fetch_att, st
 
     char mbPath[MAX_PATH_SIZE];
     [self getUTF7String:mbPath fromString:path];
-    int err = mailsession_copy_message([self folderSession], uid, mbPath);
+    int err = mailsession_copy_message([self folderSession], (uint32_t)uid, mbPath);
     if (err != MAIL_NO_ERROR) {
         self.lastError = MailCoreCreateErrorFromIMAPCode(err);
         return NO;
@@ -913,7 +913,7 @@ static int add_fetch_att_to_fetch_type(struct mailimap_fetch_att * fetch_att, st
 
     char mbPath[MAX_PATH_SIZE];
     [self getUTF7String:mbPath fromString:path];
-    int err = mailsession_move_message([self folderSession], uid, mbPath);
+    int err = mailsession_move_message([self folderSession], (uint32_t)uid, mbPath);
     if (err != MAIL_NO_ERROR) {
         self.lastError = MailCoreCreateErrorFromIMAPCode(err);
         return NO;
