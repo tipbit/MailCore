@@ -91,31 +91,13 @@
 		F88804620B42018500D400E7 /* libsasl2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F88804610B42018500D400E7 /* libsasl2.dylib */; };
 		F88804D70B4243C000D400E7 /* MailCoreUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = F88804D50B4243C000D400E7 /* MailCoreUtilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F88804D80B4243C000D400E7 /* MailCoreUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = F88804D60B4243C000D400E7 /* MailCoreUtilities.m */; };
-		F8886306158101A50088CF38 /* libmailcore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F8618B5710DADB5C00C41188 /* libmailcore.a */; };
-		F88863071581021F0088CF38 /* CTCoreAttachmentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F81E272E0C6EDC6A00B3FBAC /* CTCoreAttachmentTests.m */; };
-		F888630A1581023C0088CF38 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F88863091581023C0088CF38 /* libiconv.dylib */; };
-		F888630B158102550088CF38 /* CTCoreAccountTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F82D7D430F49279400ADA65C /* CTCoreAccountTests.m */; };
-		F888630C158102660088CF38 /* CTCoreAddressTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F8EA76120C1141C1004F85D8 /* CTCoreAddressTests.m */; };
-		F888630D158102680088CF38 /* CTCoreMessageTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F8EADFB40B3BB178000C8371 /* CTCoreMessageTests.m */; };
-		F888630E1581026A0088CF38 /* CTMIMETests.m in Sources */ = {isa = PBXBuildFile; fileRef = F81A8AEC0C03FC58002F780A /* CTMIMETests.m */; };
-		F8886336158103080088CF38 /* libsasl2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F8886333158102F50088CF38 /* libsasl2.a */; };
-		F8886338158103250088CF38 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8886337158103250088CF38 /* CFNetwork.framework */; };
-		F8886345158103500088CF38 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F8886340158103460088CF38 /* libssl.a */; };
-		F8886346158103610088CF38 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F8886342158103460088CF38 /* libcrypto.a */; };
 		F88CA0CE0BF7A7B00055AC29 /* CTSMTP.h in Headers */ = {isa = PBXBuildFile; fileRef = F88CA0CC0BF7A7B00055AC29 /* CTSMTP.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F88CA0CF0BF7A7B00055AC29 /* CTSMTP.m in Sources */ = {isa = PBXBuildFile; fileRef = F88CA0CD0BF7A7B00055AC29 /* CTSMTP.m */; };
 		F88CA0D40BF7AC0B0055AC29 /* CTESMTP.h in Headers */ = {isa = PBXBuildFile; fileRef = F88CA0D20BF7AC0B0055AC29 /* CTESMTP.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F88CA0D50BF7AC0B0055AC29 /* CTESMTP.m in Sources */ = {isa = PBXBuildFile; fileRef = F88CA0D30BF7AC0B0055AC29 /* CTESMTP.m */; };
-		F8DFCF4C15801A5000C01975 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8DFCF4B15801A5000C01975 /* SenTestingKit.framework */; };
-		F8DFCF4E15801A5000C01975 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8DFCF4D15801A5000C01975 /* UIKit.framework */; };
-		F8DFCF5015801A5000C01975 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8DFCF4F15801A5000C01975 /* Foundation.framework */; };
-		F8DFCF5615801A5000C01975 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F8DFCF5415801A5000C01975 /* InfoPlist.strings */; };
 		F8EC5B0314C37F60006AF4D3 /* CTMIME_HtmlPart.h in Headers */ = {isa = PBXBuildFile; fileRef = F8EC5B0114C37F60006AF4D3 /* CTMIME_HtmlPart.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F8EC5B0414C37F60006AF4D3 /* CTMIME_HtmlPart.m in Sources */ = {isa = PBXBuildFile; fileRef = F8EC5B0214C37F60006AF4D3 /* CTMIME_HtmlPart.m */; };
 		F8EC5B0514C37F60006AF4D3 /* CTMIME_HtmlPart.m in Sources */ = {isa = PBXBuildFile; fileRef = F8EC5B0214C37F60006AF4D3 /* CTMIME_HtmlPart.m */; };
-		F8EC5B0514C37F60006AF4D5 /* CTConnectedTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F8EC5B0514C37F60006AF4D4 /* CTConnectedTest.m */; };
-		F8EC5B0514C37F60006AF4D8 /* CTCoreFolderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F8EC5B0514C37F60006AF4D7 /* CTCoreFolderTests.m */; };
-		F9FC3A731683FC07004B2D1E /* TestData in Resources */ = {isa = PBXBuildFile; fileRef = F9FC3A721683FC07004B2D1E /* TestData */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -154,25 +136,11 @@
 			remoteGlobalIDString = A0511C51127770FD00DE46C4;
 			remoteInfo = crypto;
 		};
-		F88863041581019F0088CF38 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = F8618B5610DADB5C00C41188;
-			remoteInfo = "MailCore iOS";
-		};
 		F8886332158102F50088CF38 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F888632D158102F50088CF38 /* Cyrus SASL.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = D2AAC07E0554694100DB518D;
-			remoteInfo = sasl2;
-		};
-		F8886334158102FD0088CF38 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F888632D158102F50088CF38 /* Cyrus SASL.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = D2AAC07D0554694100DB518D;
 			remoteInfo = sasl2;
 		};
 		F888633F158103460088CF38 /* PBXContainerItemProxy */ = {
@@ -187,20 +155,6 @@
 			containerPortal = F8886339158103460088CF38 /* openssl.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = A0511C5A127770FD00DE46C4;
-			remoteInfo = crypto;
-		};
-		F88863431581034C0088CF38 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F8886339158103460088CF38 /* openssl.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = D2AAC07D0554694100DB518D;
-			remoteInfo = ssl;
-		};
-		F8886347158103630088CF38 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F8886339158103460088CF38 /* openssl.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = A0511C51127770FD00DE46C4;
 			remoteInfo = crypto;
 		};
 		F890D39510CEECD50039817C /* PBXContainerItemProxy */ = {
@@ -279,7 +233,6 @@
 		F890D38D10CEECD50039817C /* libetpan.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libetpan.xcodeproj; path = "libetpan/build-mac/libetpan.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		F8D31A3109C524EA00468234 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F8DFAB0410541708003D3CC1 /* libetpan.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = libetpan.framework; path = "OpenSourceProjects/libetpan-0.58/build-mac/build/Release/libetpan.framework"; sourceTree = "<group>"; };
-		F8DFCF4915801A5000C01975 /* Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8DFCF4B15801A5000C01975 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		F8DFCF4D15801A5000C01975 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		F8DFCF4F15801A5000C01975 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
@@ -320,22 +273,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F8DFCF4515801A5000C01975 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F8886346158103610088CF38 /* libcrypto.a in Frameworks */,
-				F8886345158103500088CF38 /* libssl.a in Frameworks */,
-				F8886338158103250088CF38 /* CFNetwork.framework in Frameworks */,
-				F8886336158103080088CF38 /* libsasl2.a in Frameworks */,
-				F888630A1581023C0088CF38 /* libiconv.dylib in Frameworks */,
-				F8886306158101A50088CF38 /* libmailcore.a in Frameworks */,
-				F8DFCF4C15801A5000C01975 /* SenTestingKit.framework in Frameworks */,
-				F8DFCF4E15801A5000C01975 /* UIKit.framework in Frameworks */,
-				F8DFCF5015801A5000C01975 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -344,7 +281,6 @@
 			children = (
 				8DC2EF5B0486A6940098B216 /* MailCore.framework */,
 				F8618B5710DADB5C00C41188 /* libmailcore.a */,
-				F8DFCF4915801A5000C01975 /* Tests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -661,28 +597,6 @@
 			productReference = F8618B5710DADB5C00C41188 /* libmailcore.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		F8DFCF4815801A5000C01975 /* Tests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = F8DFCF5B15801A5000C01975 /* Build configuration list for PBXNativeTarget "Tests" */;
-			buildPhases = (
-				F8DFCF4415801A5000C01975 /* Sources */,
-				F8DFCF4515801A5000C01975 /* Frameworks */,
-				F8DFCF4615801A5000C01975 /* Resources */,
-				F8DFCF4715801A5000C01975 /* ShellScript */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				F8886348158103630088CF38 /* PBXTargetDependency */,
-				F88863441581034C0088CF38 /* PBXTargetDependency */,
-				F8886335158102FD0088CF38 /* PBXTargetDependency */,
-				F88863051581019F0088CF38 /* PBXTargetDependency */,
-			);
-			name = Tests;
-			productName = Tests;
-			productReference = F8DFCF4915801A5000C01975 /* Tests.octest */;
-			productType = "com.apple.product-type.bundle";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -720,7 +634,6 @@
 			targets = (
 				8DC2EF4F0486A6940098B216 /* MailCore */,
 				F8618B5610DADB5C00C41188 /* MailCore iOS */,
-				F8DFCF4815801A5000C01975 /* Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -779,15 +692,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F8DFCF4615801A5000C01975 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F8DFCF5615801A5000C01975 /* InfoPlist.strings in Resources */,
-				F9FC3A731683FC07004B2D1E /* TestData in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -816,19 +720,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "#python Scripts/BuildScripts/buildopensource.py";
-		};
-		F8DFCF4715801A5000C01975 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -887,20 +778,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F8DFCF4415801A5000C01975 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F888630E1581026A0088CF38 /* CTMIMETests.m in Sources */,
-				F888630D158102680088CF38 /* CTCoreMessageTests.m in Sources */,
-				F888630C158102660088CF38 /* CTCoreAddressTests.m in Sources */,
-				F88863071581021F0088CF38 /* CTCoreAttachmentTests.m in Sources */,
-				F888630B158102550088CF38 /* CTCoreAccountTests.m in Sources */,
-				F8EC5B0514C37F60006AF4D5 /* CTConnectedTest.m in Sources */,
-				F8EC5B0514C37F60006AF4D8 /* CTCoreFolderTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -918,26 +795,6 @@
 			isa = PBXTargetDependency;
 			name = crypto;
 			targetProxy = 40F338B817ECF72600900347 /* PBXContainerItemProxy */;
-		};
-		F88863051581019F0088CF38 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = F8618B5610DADB5C00C41188 /* MailCore iOS */;
-			targetProxy = F88863041581019F0088CF38 /* PBXContainerItemProxy */;
-		};
-		F8886335158102FD0088CF38 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = sasl2;
-			targetProxy = F8886334158102FD0088CF38 /* PBXContainerItemProxy */;
-		};
-		F88863441581034C0088CF38 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = ssl;
-			targetProxy = F88863431581034C0088CF38 /* PBXContainerItemProxy */;
-		};
-		F8886348158103630088CF38 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = crypto;
-			targetProxy = F8886347158103630088CF38 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1090,66 +947,6 @@
 			};
 			name = Release;
 		};
-		F8DFCF5C15801A5000C01975 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
-				);
-				GCC_C_LANGUAGE_STANDARD = "compiler-default";
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Tests/Tests-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				INFOPLIST_FILE = "Tests/Tests-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/iOSPorts/ports/security/cyrus-sasl/build/Debug-iphoneos\"",
-				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Debug;
-		};
-		F8DFCF5D15801A5000C01975 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
-				);
-				GCC_C_LANGUAGE_STANDARD = "compiler-default";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Tests/Tests-Prefix.pch";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				INFOPLIST_FILE = "Tests/Tests-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/iOSPorts/ports/security/cyrus-sasl/build/Debug-iphoneos\"",
-				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				VALIDATE_PRODUCT = YES;
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1176,15 +973,6 @@
 			buildConfigurations = (
 				F8618B5810DADB5C00C41188 /* Debug */,
 				F8618B5910DADB5C00C41188 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		F8DFCF5B15801A5000C01975 /* Build configuration list for PBXNativeTarget "Tests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				F8DFCF5C15801A5000C01975 /* Debug */,
-				F8DFCF5D15801A5000C01975 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
