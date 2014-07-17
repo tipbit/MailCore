@@ -420,14 +420,14 @@
 
 - (BOOL)isFlagSet:(NSUInteger)flag withDefault:(BOOL)def {
     struct mail_flags *flags = myMessage ? myMessage->msg_flags : NULL;
-    return flags == NULL ? def : flags->fl_flags & flag;
+    return flags == NULL ? def : ((flags->fl_flags & flag) != 0);
 }
 
 - (BOOL)isNew {
     struct mail_flags *flags = myMessage ? myMessage->msg_flags : NULL;
     if (flags != NULL) {
-        BOOL flag_seen = (flags->fl_flags & MAIL_FLAG_SEEN);
-        BOOL flag_new = (flags->fl_flags & MAIL_FLAG_NEW);
+        BOOL flag_seen = ((flags->fl_flags & MAIL_FLAG_SEEN) != 0);
+        BOOL flag_new = ((flags->fl_flags & MAIL_FLAG_NEW) != 0);
         return !flag_seen && flag_new;
     }
     return NO;
