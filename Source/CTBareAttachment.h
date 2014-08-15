@@ -30,6 +30,7 @@
  */
 
 #import <Foundation/Foundation.h>
+#import "CTMIME_MessagePart.h"
 #import "CTMIME_SinglePart.h"
 
 @class CTCoreAttachment;
@@ -38,16 +39,17 @@
  Represents an attachment before it has been fully fetched.
 */
 @interface CTBareAttachment : NSObject {
-    CTMIME_SinglePart *mMIMEPart;
+    CTMIME *mMIMEPart;
     NSString *mFilename;
     NSString *mContentType;
 }
 @property(retain) NSString *filename;
 @property(retain) NSString *contentType;
 @property(retain) NSString *contentId;
-@property(readonly) CTMIME_SinglePart *part;
+@property(readonly) CTMIME *part;
 
 -(NSString*)decodedFilename;
+- (id)initWithMIMEMessagePart:(CTMIME_MessagePart *)part;
 - (id)initWithMIMESinglePart:(CTMIME_SinglePart *)part;
 /**
  Fetches the full attachment

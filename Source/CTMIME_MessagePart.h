@@ -41,5 +41,7 @@
 - (id)initWithContent:(CTMIME *)messageContent;
 - (void)setContent:(CTMIME *)aContent;
 - (CTMIME *)content;
-- (void)setIMFFields:(struct mailimf_fields *)imfFields;
+
+@property (nonatomic) struct mailimf_fields * IMFFields;
+
 @end

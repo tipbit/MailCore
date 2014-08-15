@@ -83,7 +83,12 @@
     return mime;
 }
 
+-(struct mailimf_fields *)IMFFields {
+    return myFields;
+}
+
 - (void)setIMFFields:(struct mailimf_fields *)imfFields {
     myFields = imfFields;
 }
+
 @end

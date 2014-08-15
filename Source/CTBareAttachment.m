@@ -41,13 +41,26 @@
 @synthesize contentId=mContentId;
 @synthesize filename=mFilename;
 
+-(id)initWithMIMEMessagePart:(CTMIME_MessagePart *)part {
+    self = [super init];
+    if (self) {
+        mMIMEPart = [part retain];
+        self.contentType = part.contentType;
+
+        NSString * subj = getSubject(part);
+        self.filename = subj.length > 0 ? [NSString stringWithFormat:@"%@.eml", subj] : @"email.eml";
+    }
+    return self;
+}
+
+
 - (id)initWithMIMESinglePart:(CTMIME_SinglePart *)part {
     self = [super init];
     if (self) {
         mMIMEPart = [part retain];
-        self.filename = mMIMEPart.filename;
-        self.contentType = mMIMEPart.contentType;
-        self.contentId = mMIMEPart.contentId;
+        self.filename = part.filename;
+        self.contentType = part.contentType;
+        self.contentId = part.contentId;
     }
     return self;
 }
@@ -72,7 +85,7 @@
     return [attach autorelease];
 }
 
-- (CTMIME_SinglePart *)part {
+- (CTMIME *)part {
     return mMIMEPart;
 }
 
@@ -82,4 +95,25 @@
     [mContentType release];
     [super dealloc];
 }
+
+
+static NSString * getSubject(CTMIME_MessagePart * part) {
+    struct mailimf_fields * fields = part.IMFFields;
+
+    if (fields == NULL) {
+        return nil;
+    }
+
+    for (clistiter * cur = clist_begin(fields->fld_list); cur != NULL; cur = clist_next(cur)) {
+        struct mailimf_field * field = clist_content(cur);
+
+        if (field->fld_type == MAILIMF_FIELD_SUBJECT) {
+            return MailCoreDecodeMIMEPhrase(field->fld_data.fld_subject->sbj_value);
+        }
+    }
+
+    return nil;
+}
+
+
 @end

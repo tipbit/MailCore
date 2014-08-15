@@ -32,17 +32,37 @@
 #import <Foundation/Foundation.h>
 #import <libetpan/libetpan.h>
 
+typedef void (^CTProgressBlock)(size_t curr, size_t max);
+
 @class CTMIME_Enumerator;
 
 @interface CTMIME : NSObject {
     NSString *mContentType;
+    BOOL mFetched;
+    struct mailmime *mMime;
+    struct mailmessage *mMessage;
+    NSData *mData;
+    NSError *lastError;
 }
 @property(nonatomic, retain) NSString *contentType;
 @property(nonatomic, readonly) id content;
+@property(nonatomic, retain) NSData *data;
 
-- (id)initWithMIMEStruct:(struct mailmime *)mime 
+@property(nonatomic) BOOL fetched;
+
+/*
+ If an error occurred (nil or return of NO) call this method to get the error
+ */
+@property(nonatomic, retain) NSError *lastError;
+
+
+- (id)initWithData:(NSData *)data;
+- (id)initWithMIMEStruct:(struct mailmime *)mime
         forMessage:(struct mailmessage *)message;
 - (struct mailmime *)buildMIMEStruct;
 - (NSString *)render;
 - (CTMIME_Enumerator *)mimeEnumerator;
+
+- (BOOL)fetchPart;
+- (BOOL)fetchPartWithProgress:(CTProgressBlock)block;
 @end

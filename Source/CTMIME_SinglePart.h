@@ -32,36 +32,19 @@
 #import <Foundation/Foundation.h>
 #import "CTMIME.h"
 
-typedef void (^CTProgressBlock)(size_t curr, size_t max);
-
 @interface CTMIME_SinglePart : CTMIME {
-    struct mailmime *mMime;
-    struct mailmessage *mMessage;
     struct mailmime_single_fields *mMimeFields;
 
-    NSData *mData;
     BOOL mAttached;
-    BOOL mFetched;
     NSString *mFilename;
     NSString *mContentId;
-    NSError *lastError;
 }
 @property(nonatomic) BOOL attached;
-@property(nonatomic) BOOL fetched;
 @property(nonatomic, retain) NSString *filename;
 @property(nonatomic, retain) NSString *contentId;
-@property(nonatomic, retain) NSData *data;
 @property(nonatomic, readonly) size_t size;
 
-/*
- If an error occurred (nil or return of NO) call this method to get the error
-*/
-@property(nonatomic, retain) NSError *lastError;
-
 + (id)mimeSinglePartWithData:(NSData *)data;
-- (id)initWithData:(NSData *)data;
-- (BOOL)fetchPart;
-- (BOOL)fetchPartWithProgress:(CTProgressBlock)block;
 
 // Advanced use only
 - (struct mailmime_single_fields *)mimeFields;

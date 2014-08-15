@@ -298,6 +298,7 @@
 - (NSArray *)attachments {
     NSMutableArray *attachments = [NSMutableArray array];
 
+    BOOL haveSeenOuterMessage = NO;
     CTMIME_Enumerator *enumerator = [myParsedMIME mimeEnumerator];
     CTMIME *mime;
     while ((mime = [enumerator nextObject])) {
@@ -308,6 +309,19 @@
                                                 initWithMIMESinglePart:singlePart];
                 [attachments addObject:attach];
                 [attach release];
+            }
+        }
+        else if ([mime isKindOfClass:[CTMIME_MessagePart class]]) {
+            CTMIME_MessagePart * msg = (CTMIME_MessagePart *)mime;
+            if (haveSeenOuterMessage) {
+                // This is not the outermost message part, so it must be an attached message.
+                CTBareAttachment * attach = [[CTBareAttachment alloc] initWithMIMEMessagePart:msg];
+                [attachments addObject:attach];
+                [attach release];
+            }
+            else {
+                // enumerator is recursing across all attachments, so there's no need for us to recurse here.
+                haveSeenOuterMessage = YES;
             }
         }
     }

@@ -31,15 +31,51 @@
 
 #import "CTMIME.h"
 
+#import <libetpan/libetpan.h>
 #import "CTMIME_Enumerator.h"
+#import "MailCoreTypes.h"
+#import "MailCoreUtilities.h"
+
+static inline struct imap_session_state_data *
+get_session_data(mailmessage * msg)
+{
+    return msg->msg_session->sess_data;
+}
+
+static inline mailimap * get_imap_session(mailmessage * msg)
+{
+    return get_session_data(msg)->imap_session;
+}
+
+static void download_progress_callback(size_t current, size_t maximum, void * context) {
+    CTProgressBlock block = context;
+    block(current, maximum);
+}
 
 @implementation CTMIME
 @synthesize contentType=mContentType;
+@synthesize data=mData;
+@synthesize fetched=mFetched;
+@synthesize lastError;
 
-- (id)initWithMIMEStruct:(struct mailmime *)mime 
+- (id)initWithData:(NSData *)data {
+    self = [super init];
+    if (self) {
+        self.data = data;
+        self.fetched = YES;
+    }
+    return self;
+}
+
+- (id)initWithMIMEStruct:(struct mailmime *)mime
         forMessage:(struct mailmessage *)message {
     self = [super init];
     if (self) {
+        self.data = nil;
+        mMime = mime;
+        mMessage = message;
+        self.fetched = NO;
+
         // We couldn't find a content-type, set it to something generic
         NSString *mainType = @"application";
         NSString *subType = @"octet-stream";
@@ -96,6 +132,59 @@
     return mContentType;
 }
 
+- (BOOL)fetchPartWithProgress:(CTProgressBlock)block {
+    if (self.fetched == NO) {
+        struct mailmime_single_fields *mimeFields = NULL;
+
+        int encoding = MAILMIME_MECHANISM_8BIT;
+        mimeFields = mailmime_single_fields_new(mMime->mm_mime_fields, mMime->mm_content_type);
+        if (mimeFields != NULL && mimeFields->fld_encoding != NULL)
+            encoding = mimeFields->fld_encoding->enc_type;
+
+        char *fetchedData = NULL;
+        size_t fetchedDataLen;
+        int r;
+
+        if (mMessage->msg_session != NULL) {
+            mailimap_set_progress_callback(get_imap_session(mMessage), &download_progress_callback, NULL, block);
+        }
+        r = mailmessage_fetch_section(mMessage, mMime, &fetchedData, &fetchedDataLen);
+        if (mMessage->msg_session != NULL) {
+            mailimap_set_progress_callback(get_imap_session(mMessage), NULL, NULL, NULL);
+        }
+        if (r != MAIL_NO_ERROR) {
+            if (fetchedData) {
+                mailmessage_fetch_result_free(mMessage, fetchedData);
+            }
+            self.lastError = MailCoreCreateErrorFromIMAPCode(r);
+            return NO;
+        }
+
+
+        size_t current_index = 0;
+        char * result;
+        size_t result_len;
+        r = mailmime_part_parse(fetchedData, fetchedDataLen, &current_index,
+                                encoding, &result, &result_len);
+        if (r != MAILIMF_NO_ERROR) {
+            mailmime_decoded_part_free(result);
+            self.lastError = MailCoreCreateError(r, @"Error parsing the message");
+            return NO;
+        }
+        NSData *data = [NSData dataWithBytes:result length:result_len];
+        mailmessage_fetch_result_free(mMessage, fetchedData);
+        mailmime_decoded_part_free(result);
+        mailmime_single_fields_free(mimeFields);
+        self.data = data;
+        self.fetched = YES;
+    }
+    return YES;
+}
+
+- (BOOL)fetchPart {
+    return [self fetchPartWithProgress:^(size_t curr, size_t max){}];
+}
+
 - (struct mailmime *)buildMIMEStruct {
     return NULL;
 }
@@ -125,6 +214,9 @@
 
 - (void)dealloc {
     [mContentType release];
+    [mData release];
+    self.lastError = nil;
+    //The structs are held by CTCoreMessage so we don't have to free them
     [super dealloc];
 }
 @end
