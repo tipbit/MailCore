@@ -1010,14 +1010,20 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
                         uid = item->att_data.att_static->att_data.att_uid;
                     break;
 
-                    case MAILIMAP_MSG_ATT_GM_MSGID:
-                        gm_msgid = item->att_data.att_static->att_data.att_gm_msgid;
-                        break;
-
                     case MAILIMAP_MSG_ATT_RFC822_SIZE:
                         size = item->att_data.att_static->att_data.att_rfc822_size;
                     break;
                 }
+
+                case MAILIMAP_MSG_ATT_ITEM_EXTENSION: {
+                    struct mailimap_extension_data * data = item->att_data.att_extension_data;
+                    if (data->ext_extension == &mailimap_extension_xgmmsgid) {
+                        uint64_t * data_msgid = data->ext_data;
+                        gm_msgid = *data_msgid;
+                    }
+                    break;
+                }
+
                 break;
             }
         }
