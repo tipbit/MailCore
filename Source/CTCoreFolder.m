@@ -929,11 +929,13 @@ static int add_fetch_att_to_fetch_type(struct mailimap_fetch_att * fetch_att, st
     if (!success) {
         return NO;
     }
-    err =  mailfolder_status(myFolder, &junk, &junk, (uint32_t *)unseenCount);
+    uint32_t unseenCount32 = 0;
+    err =  mailfolder_status(myFolder, &junk, &junk, &unseenCount32);
     if (err != MAIL_NO_ERROR) {
         self.lastError = MailCoreCreateErrorFromIMAPCode(err);
         return NO;
     }
+    *unseenCount = (NSUInteger)unseenCount32;
     return YES;
 }
 
