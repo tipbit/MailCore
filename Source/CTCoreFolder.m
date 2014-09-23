@@ -1102,4 +1102,12 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
 }
 
 
+-(void)refreshFolder {
+    mailsession_select_folder(self.folderSession, NULL);
+    char path[MAX_PATH_SIZE];
+    [self getUTF7String:path fromString:myPath];
+    mailsession_select_folder(self.folderSession, path);
+}
+
+
 @end

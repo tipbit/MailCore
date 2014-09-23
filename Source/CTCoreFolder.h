@@ -307,7 +307,8 @@
 
 /**
  Pass in a pointer to a NSUInteger to get the number of messages in the folder. The count was retrieved 
- when the folder connection was established, so to refresh the count you must disconnect and reconnect.
+ when the folder connection was established, so to refresh the count you must disconnect and reconnect
+ or use refreshFolder below.
  @return Return YES on success, NO on error. Call method lastError to get error if one occurred
 */
 - (BOOL)totalMessageCount:(NSUInteger *)totalCount;
@@ -331,8 +332,14 @@
  */
 -(NSArray*)searchUidByHeader:(NSString*)header value:(NSString*)value;
 
+/**
+ * Reset the cached state for uidNext, uidValidity, and totalMessageCount, by getting that info from the server again.
+ */
+ -(void)refreshFolder;
+
 /* Intended for advanced use only */
 - (struct mailfolder *)folderStruct;
 - (mailsession *)folderSession;
 - (mailimap *)imapSession;
+
 @end
