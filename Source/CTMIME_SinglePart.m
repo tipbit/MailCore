@@ -117,7 +117,22 @@
     struct mailmime_content *content;
     int r;
 
-    if (mFilename) {
+    if (mContentId) {
+        
+        struct mailmime_mechanism * encoding = mailmime_mechanism_new(MAILMIME_MECHANISM_BASE64, NULL);
+        struct mailmime_disposition* disposition = mailmime_disposition_new_with_data(MAILMIME_DISPOSITION_TYPE_INLINE, NULL, NULL, NULL, NULL, -1);
+
+        char *charData = (char *)[mContentId cStringUsingEncoding:NSUTF8StringEncoding];
+        char *dupeData = malloc(strlen(charData) + 1);
+        strcpy(dupeData, charData);
+        mime_fields = mailmime_fields_new_with_data(encoding, dupeData, NULL, disposition, NULL);
+//        mime_fields = mailmime_fields_new_with_data(MAILMIME_DISPOSITION_TYPE_INLINE, dupeData, NULL
+//                                                    , NULL, NULL);
+//        
+//        struct mailmime_fields * encodingFields = mailmime_fields_new_encoding(MAILMIME_MECHANISM_BASE64);
+//        r = mailmime_fields_add(mime_fields, (struct mailmime_field *)encodingFields->fld_list->first);
+    }
+    else if (mFilename) {
         char *charData = (char *)[mFilename cStringUsingEncoding:NSUTF8StringEncoding];
         char *dupeData = malloc(strlen(charData) + 1);
         strcpy(dupeData, charData);

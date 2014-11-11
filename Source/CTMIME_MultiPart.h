@@ -36,5 +36,6 @@
     NSMutableArray *myContentList;
 }
 + (id)mimeMultiPart;
++ (id)mimeMultiPartRelated;
 - (void)addMIMEPart:(CTMIME *)mime;
 @end

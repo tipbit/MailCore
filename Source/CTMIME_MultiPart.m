@@ -41,6 +41,13 @@
     return [[[CTMIME_MultiPart alloc] init] autorelease];
 }
 
++ (id)mimeMultiPartRelated {
+    CTMIME_MultiPart* multi =  [[[CTMIME_MultiPart alloc] init] autorelease];
+    multi.contentType = @"multipart/related";
+    return multi;
+}
+
+
 - (id)initWithMIMEStruct:(struct mailmime *)mime forMessage:(struct mailmessage *)message {
     self = [super initWithMIMEStruct:mime forMessage:message];
     if (self) {

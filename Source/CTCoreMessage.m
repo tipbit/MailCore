@@ -42,6 +42,7 @@
 #import "CTMIME_HtmlPart.h"
 #import "MailCoreUtilities.h"
 
+
 @implementation CTCoreMessage
 @synthesize mime=myParsedMIME, lastError, parentFolder;
 
@@ -341,7 +342,12 @@
         if ([sub isKindOfClass:[CTMIME_MultiPart class]]) {
             multi = (CTMIME_MultiPart *)sub;
         } else {
-            multi = [CTMIME_MultiPart mimeMultiPart];
+            if (((CTBareAttachment*)attachment).contentId.length) {
+                multi = [CTMIME_MultiPart mimeMultiPartRelated];
+            }
+            else  {
+                multi = [CTMIME_MultiPart mimeMultiPart];
+            }
             [multi addMIMEPart:sub];
             [msg setContent:multi];
         }
@@ -350,6 +356,7 @@
         CTMIME_SinglePart *attpart = [CTMIME_SinglePart mimeSinglePartWithData:[attachment data]];
         attpart.contentType = [attachment contentType];
         attpart.filename = [attachment filename];
+        attpart.contentId = ((CTBareAttachment*)attachment).contentId;
 
         [multi addMIMEPart:attpart];
     }
