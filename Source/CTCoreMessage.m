@@ -281,12 +281,33 @@
     // it should find the existing text part (if there is one) and replace it
     if ([myParsedMIME isKindOfClass:[CTMIME_MultiPart class]]) {
         [(CTMIME_MultiPart *)myParsedMIME addMIMEPart:text];
-    } else {
+    }
+    else if ([myParsedMIME isKindOfClass:[CTMIME_MessagePart class]]) {
+        CTMIME_MessagePart *msg;
+        msg = (CTMIME_MessagePart *)myParsedMIME;
+        CTMIME *sub = [msg content];
+        
+        
+        CTMIME_MultiPart* multi;
+        // Creat new multimime part if needed
+        if ([sub isKindOfClass:[CTMIME_MultiPart class]]) {
+            multi = (CTMIME_MultiPart *)sub;
+            [multi addMIMEPart:text];
+        }
+        else if ([sub isKindOfClass:[CTMIME_HtmlPart class]])  {
+            multi = [CTMIME_MultiPart mimeMultiPartAlternative];
+            [multi addMIMEPart:sub];
+            [msg setContent:multi];
+            [multi addMIMEPart:text];
+        }
+    }
+    else {
         CTMIME_MessagePart *messagePart = [CTMIME_MessagePart mimeMessagePartWithContent:text];
         myParsedMIME = [messagePart retain];
         [oldMIME release];
     }
 }
+
 
 - (void)setHTMLBody:(NSString *)body{
     CTMIME *oldMIME = myParsedMIME;
@@ -332,6 +353,7 @@
 - (void)addAttachment:(CTCoreAttachment *)attachment {
     CTMIME_MultiPart *multi;
     CTMIME_MessagePart *msg;
+    CTMIME_MultiPart * subMulti;
 
     if ([myParsedMIME isKindOfClass:[CTMIME_MessagePart class]]) {
         msg = (CTMIME_MessagePart *)myParsedMIME;
@@ -341,6 +363,18 @@
         // Creat new multimime part if needed
         if ([sub isKindOfClass:[CTMIME_MultiPart class]]) {
             multi = (CTMIME_MultiPart *)sub;
+            if ([multi.contentType isEqualToString:@"multipart/alternative"]) {
+                if (((CTBareAttachment*)attachment).contentId.length) {
+                    subMulti = [CTMIME_MultiPart mimeMultiPartRelated];
+                }
+                else  {
+                    subMulti = [CTMIME_MultiPart mimeMultiPart];
+                }
+                
+                [subMulti addMIMEPart:sub];
+                [msg setContent:subMulti];
+            }
+            
         } else {
             if (((CTBareAttachment*)attachment).contentId.length) {
                 multi = [CTMIME_MultiPart mimeMultiPartRelated];
@@ -358,7 +392,11 @@
         attpart.filename = [attachment filename];
         attpart.contentId = ((CTBareAttachment*)attachment).contentId;
 
-        [multi addMIMEPart:attpart];
+        if (subMulti) {
+            [subMulti addMIMEPart:attpart];
+        }
+        else
+            [multi addMIMEPart:attpart];
     }
 }
 

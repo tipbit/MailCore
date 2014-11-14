@@ -37,5 +37,7 @@
 }
 + (id)mimeMultiPart;
 + (id)mimeMultiPartRelated;
++ (id)mimeMultiPartAlternative;
+
 - (void)addMIMEPart:(CTMIME *)mime;
 @end

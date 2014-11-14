@@ -41,6 +41,13 @@
     return [[[CTMIME_MultiPart alloc] init] autorelease];
 }
 
++ (id)mimeMultiPartAlternative {
+    CTMIME_MultiPart* multi =  [[[CTMIME_MultiPart alloc] init] autorelease];
+    multi.contentType = @"multipart/alternative";
+    return multi;
+}
+
+
 + (id)mimeMultiPartRelated {
     CTMIME_MultiPart* multi =  [[[CTMIME_MultiPart alloc] init] autorelease];
     multi.contentType = @"multipart/related";
