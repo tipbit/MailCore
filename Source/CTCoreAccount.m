@@ -83,15 +83,24 @@
         auth_type_to_pass = "OAUTH2";
     }
 
+    const char * sv = [server cStringUsingEncoding:NSUTF8StringEncoding];
+    const char * un = [login cStringUsingEncoding:NSUTF8StringEncoding];
+    const char * pw = [password cStringUsingEncoding:NSUTF8StringEncoding];
+
+    if (sv == NULL || strlen(sv) == 0 ||
+        un == NULL || strlen(un) == 0 ||
+        pw == NULL) {
+        self.lastError = MailCoreCreateError(MAIL_ERROR_LOGIN, @"Invalid server, username, or password");
+        return NO;
+    }
+
     err = imap_mailstorage_init_sasl(myStorage,
-                                     (char *)[server cStringUsingEncoding:NSUTF8StringEncoding],
-                                     (uint16_t)port, NULL,
+                                     sv, (uint16_t)port, NULL,
                                      conType,
                                      auth_type_to_pass,
                                      NULL,
                                      NULL, NULL,
-                                     (char *)[login cStringUsingEncoding:NSUTF8StringEncoding], (char *)[login cStringUsingEncoding:NSUTF8StringEncoding],
-                                     (char *)[password cStringUsingEncoding:NSUTF8StringEncoding], NULL,
+                                     un, un, pw, NULL,
                                      imap_cached, NULL);
 
     if (err != MAILIMAP_NO_ERROR) {
