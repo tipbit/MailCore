@@ -92,6 +92,7 @@
 - (void)dealloc {
     [mMIMEPart release];
     [mFilename release];
+    [mContentId release];
     [mContentType release];
     [super dealloc];
 }
