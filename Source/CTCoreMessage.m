@@ -311,10 +311,36 @@
 
 - (void)setHTMLBody:(NSString *)body{
     CTMIME *oldMIME = myParsedMIME;
+    
     CTMIME_HtmlPart *text = [CTMIME_HtmlPart mimeTextPartWithString:body];
-    CTMIME_MessagePart *messagePart = [CTMIME_MessagePart mimeMessagePartWithContent:text];
-    myParsedMIME = [messagePart retain];
-    [oldMIME release];	
+    
+    if ([myParsedMIME isKindOfClass:[CTMIME_MultiPart class]]) {
+        [(CTMIME_MultiPart *)myParsedMIME addMIMEPart:text];
+    }
+    else if ([myParsedMIME isKindOfClass:[CTMIME_MessagePart class]]) {
+        
+        CTMIME_MessagePart *msg;
+        msg = (CTMIME_MessagePart *)myParsedMIME;
+        CTMIME *sub = [msg content];
+        
+        CTMIME_MultiPart* multi;
+        // Creat new multimime part if needed
+        if ([sub isKindOfClass:[CTMIME_MultiPart class]]) {
+            multi = (CTMIME_MultiPart *)sub;
+            [multi addMIMEPart:text];
+        }
+        else if ([sub isKindOfClass:[CTMIME_TextPart class]])  {
+            multi = [CTMIME_MultiPart mimeMultiPartAlternative];
+            [multi addMIMEPart:sub];
+            [msg setContent:multi];
+            [multi addMIMEPart:text];
+        }
+    }
+    else {
+        CTMIME_MessagePart *messagePart = [CTMIME_MessagePart mimeMessagePartWithContent:text];
+        myParsedMIME = [messagePart retain];
+        [oldMIME release];
+    }
 }
 
 - (NSArray *)attachments {
