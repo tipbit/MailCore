@@ -29,19 +29,28 @@
  * SUCH DAMAGE.
  */
 
-#import "CTCoreAddressTests.h"
+#import <XCTest/XCTest.h>
+
+#import "CTCoreAddress.h"
+
+
+@interface CTCoreAddressTests : XCTestCase
+
+@end
 
 
 @implementation CTCoreAddressTests
+
 - (void)testEquals {
 	CTCoreAddress *addr1 = [CTCoreAddress addressWithName:@"Matt" email:@"test@test.com"];
 	CTCoreAddress *addr2 = [CTCoreAddress addressWithName:@"Matt" email:@"test@test.com"];
-	STAssertTrue([addr1 isEqual:addr2], @"CTCoreAddress should have been equal!");
+	XCTAssertEqualObjects(addr1, addr2);
 }
 
 - (void)testNotEqual {
 	CTCoreAddress *addr1 = [CTCoreAddress addressWithName:@"" email:@"something@some.com"];
 	CTCoreAddress *addr2 = [CTCoreAddress addressWithName:@"Something" email:@"something@some.com"];
-	STAssertFalse([addr1 isEqual:addr2], @"CTCoreAddress should not have been equal!");
+    XCTAssertNotEqualObjects(addr1, addr2);
 }
+
 @end
