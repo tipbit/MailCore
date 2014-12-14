@@ -60,7 +60,12 @@ typedef void (^CTProgressBlock)(size_t curr, size_t max);
 - (id)initWithMIMEStruct:(struct mailmime *)mime
         forMessage:(struct mailmessage *)message;
 - (struct mailmime *)buildMIMEStruct;
-- (NSString *)render;
+
+/**
+ * You must call mmap_string_unref((char *)data.bytes) when you are done with the returned NSData.
+ */
+-(NSData *)render;
+
 - (CTMIME_Enumerator *)mimeEnumerator;
 
 - (BOOL)fetchPart;

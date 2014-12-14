@@ -55,6 +55,6 @@
 - (BOOL)setFrom:(NSString *)fromAddress;
 - (BOOL)setRecipients:(id)recipients;
 - (BOOL)setRecipientAddress:(NSString *)recAddress;
-- (BOOL)setData:(NSString *)data;
+- (BOOL)setData:(NSData *)data;
 - (mailsmtp *)resource;
 @end

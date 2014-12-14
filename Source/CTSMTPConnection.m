@@ -101,7 +101,9 @@
     message.bcc = nil;
     
     /* data */
-    success = [smtpObj setData:[message render]];
+    NSData * data = [message render];
+    success = [smtpObj setData:data];
+    mmap_string_unref((char *)data.bytes);
     
     message.bcc = tmpBcc;
     

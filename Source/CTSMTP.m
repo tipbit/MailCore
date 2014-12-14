@@ -121,14 +121,13 @@
     return YES;
 }
 
-- (BOOL)setData:(NSString *)data {
-    NSData *dataObj = [data dataUsingEncoding:NSUTF8StringEncoding];
+- (BOOL)setData:(NSData *)data {
     int ret = mailsmtp_data([self resource]);
     if (ret != MAIL_NO_ERROR) {
         self.lastError = MailCoreCreateErrorFromSMTPCode(ret);
         return NO;
     }
-    ret = mailsmtp_data_message([self resource], [dataObj bytes], [dataObj length]);
+    ret = mailsmtp_data_message([self resource], data.bytes, data.length);
     if (ret != MAIL_NO_ERROR) {
         self.lastError = MailCoreCreateErrorFromSMTPCode(ret);
         return NO;

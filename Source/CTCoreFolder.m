@@ -322,18 +322,19 @@ static const int MAX_PATH_SIZE = 1024;
 
 - (BOOL) appendMessage: (CTCoreMessage *) msg
 {
-    int err = MAILIMAP_NO_ERROR;
-    NSString *msgStr = [msg render];
     if (![self connect])
         return NO;
     
+    int err = MAILIMAP_NO_ERROR;
+    NSData * msgData = [msg render];
+
     struct mail_flags *flags = mail_flags_new(MAIL_FLAG_SEEN, clist_new());
     
     err = mailsession_append_message_flags([self folderSession],
-                                      [msgStr cStringUsingEncoding: NSUTF8StringEncoding],
-                                      [msgStr lengthOfBytesUsingEncoding: NSUTF8StringEncoding],
-                                      flags);
-    
+                                           msgData.bytes, msgData.length,
+                                           flags);
+
+    mmap_string_unref((char *)msgData.bytes);
     mail_flags_free(flags);
     if (MAILIMAP_NO_ERROR != err)
         self.lastError = MailCoreCreateErrorFromIMAPCode (err);

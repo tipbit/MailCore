@@ -330,8 +330,10 @@ typedef enum {
  Returns the message rendered as the appropriate MIME and IMF content.
  
  Use this only if you want the raw encoding of the message.
+
+ You must call mmap_string_unref((char *)data.bytes) when you are done with the returned NSData.
 */
-- (NSString *)render;
+- (NSData *)render;
 
 /**
  Returns the message in the format Mail.app uses, Emlx. 

@@ -710,7 +710,7 @@
 }
 
 
-- (NSString *)render {
+- (NSData *)render {
     CTMIME *msgPart = myParsedMIME;
 
     if ([myParsedMIME isKindOfClass:[CTMIME_MessagePart class]]) {
