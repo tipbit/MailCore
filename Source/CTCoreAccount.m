@@ -110,6 +110,9 @@
 
     err = mailstorage_connect(myStorage);
     if (err == MAIL_ERROR_LOGIN) {
+#if DEBUG
+        NSLog(@"Invalid username or password signing in with %s %s %s", sv, un, pw);
+#endif
         self.lastError = MailCoreCreateError(err, @"Invalid username or password");
         return NO;
     } else if (err != MAILIMAP_NO_ERROR) {
