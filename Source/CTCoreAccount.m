@@ -31,6 +31,7 @@
 
 #import "CTCoreAccount.h"
 #import "CTCoreFolder.h"
+#import "CTNamespaces.h"
 #import "CTXlistResult.h"
 #import "MailCoreTypes.h"
 #import "MailCoreUtilities.h"
@@ -159,6 +160,30 @@
     
     return capabilitiesSet;
 }
+
+
+-(CTNamespaces *)namespaces {
+    assert(![NSThread isMainThread]);
+
+    mailimap * session = self.session;
+    if (!mailimap_has_namespace(session)) {
+        return [[CTNamespaces alloc] init];
+    }
+
+    struct mailimap_namespace_data * namespace_data;
+    int rc = mailimap_namespace(session, &namespace_data);
+    if (rc != MAILIMAP_NO_ERROR) {
+        self.lastError = MailCoreCreateErrorFromIMAPCode(rc);
+        return nil;
+    }
+
+    CTNamespaces * result = [[CTNamespaces alloc] initWithNamespaceData:namespace_data];
+
+    mailimap_namespace_data_free(namespace_data);
+
+    return result;
+}
+
 
 - (void)disconnect {
     if (connected) {

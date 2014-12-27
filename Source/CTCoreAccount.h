@@ -40,6 +40,7 @@
 */
 
 @class CTCoreFolder;
+@class CTNamespaces;
 
 @interface CTCoreAccount : NSObject {
     struct mailstorage *myStorage;
@@ -107,6 +108,11 @@
 - (void)disconnect;
 
 - (NSSet *)capabilities;
+
+/**
+ * @return nil if an error occurred (in which case self.lastError is set). A blank CTNamespaces instance if this server does not support namespaces.
+ */
+-(CTNamespaces *)namespaces;
 
 /* Intended for advanced use only */
 - (mailimap *)session;

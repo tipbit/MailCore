@@ -33,6 +33,7 @@
 #import "CTCoreAddress.h"
 #import "CTCoreFolder.h"
 #import "CTCoreMessage.h"
+#import "CTNamespaces.h"
 #import "CTSMTPConnection.h"
 #import "CTBareAttachment.h"
 #import "CTCoreAttachment.h"

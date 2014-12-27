@@ -23,6 +23,10 @@
 		404F58B31A3D2B720081DA18 /* TestData in Resources */ = {isa = PBXBuildFile; fileRef = F9FC3A721683FC07004B2D1E /* TestData */; };
 		404F58B41A3D322C0081DA18 /* CTCoreAddressTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F8EA76120C1141C1004F85D8 /* CTCoreAddressTests.m */; };
 		404F58D71A3D84240081DA18 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F8886342158103460088CF38 /* libcrypto.a */; };
+		40DDA4EA1A4F30680079D4FC /* CTNamespaces.h in Headers */ = {isa = PBXBuildFile; fileRef = 40DDA4E81A4F30680079D4FC /* CTNamespaces.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		40DDA4EB1A4F30680079D4FC /* CTNamespaces.m in Sources */ = {isa = PBXBuildFile; fileRef = 40DDA4E91A4F30680079D4FC /* CTNamespaces.m */; };
+		40DDA4F31A4F33AD0079D4FC /* CTNamespaces.m in Sources */ = {isa = PBXBuildFile; fileRef = 40DDA4E91A4F30680079D4FC /* CTNamespaces.m */; };
+		40DDA4F41A4F36B60079D4FC /* CTNamespaces.h in Headers */ = {isa = PBXBuildFile; fileRef = 40DDA4E81A4F30680079D4FC /* CTNamespaces.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
 		F81A8ADC0C03FC3B002F780A /* CTMIME_MessagePart.h in Headers */ = {isa = PBXBuildFile; fileRef = F81A8AD20C03FC3B002F780A /* CTMIME_MessagePart.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F81A8ADD0C03FC3B002F780A /* CTMIME_MessagePart.m in Sources */ = {isa = PBXBuildFile; fileRef = F81A8AD30C03FC3B002F780A /* CTMIME_MessagePart.m */; };
@@ -195,6 +199,8 @@
 		404F589B1A3D28860081DA18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		404F58AE1A3D2B110081DA18 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.1.sdk/usr/lib/libz.dylib; sourceTree = DEVELOPER_DIR; };
 		404F58B01A3D2B1A0081DA18 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.1.sdk/usr/lib/libiconv.dylib; sourceTree = DEVELOPER_DIR; };
+		40DDA4E81A4F30680079D4FC /* CTNamespaces.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CTNamespaces.h; path = Source/CTNamespaces.h; sourceTree = "<group>"; };
+		40DDA4E91A4F30680079D4FC /* CTNamespaces.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CTNamespaces.m; path = Source/CTNamespaces.m; sourceTree = "<group>"; };
 		8DC2EF5B0486A6940098B216 /* MailCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MailCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2F7E79907B2D74100F64583 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 		F81A8AD20C03FC3B002F780A /* CTMIME_MessagePart.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = CTMIME_MessagePart.h; path = Source/CTMIME_MessagePart.h; sourceTree = "<group>"; };
@@ -354,6 +360,8 @@
 				F81B88570A74AA7100143DF6 /* CTCoreMessage.m */,
 				F81E26680C6ED35C00B3FBAC /* CTBareAttachment.h */,
 				F81E26690C6ED35C00B3FBAC /* CTBareAttachment.m */,
+				40DDA4E81A4F30680079D4FC /* CTNamespaces.h */,
+				40DDA4E91A4F30680079D4FC /* CTNamespaces.m */,
 				0F369D01162DF5030043A3ED /* CTXlistResult.h */,
 				0F369D02162DF5030043A3ED /* CTXlistResult.m */,
 				F88804D50B4243C000D400E7 /* MailCoreUtilities.h */,
@@ -501,6 +509,7 @@
 				F81B885E0A74AA7100143DF6 /* CTCoreAccount.h in Headers */,
 				F81B88600A74AA7100143DF6 /* CTCoreAddress.h in Headers */,
 				F81B88620A74AA7100143DF6 /* CTCoreFolder.h in Headers */,
+				40DDA4EA1A4F30680079D4FC /* CTNamespaces.h in Headers */,
 				F81B88640A74AA7100143DF6 /* CTCoreMessage.h in Headers */,
 				F81B88680A74AA7100143DF6 /* CTSMTPConnection.h in Headers */,
 				F81B886A0A74AA7100143DF6 /* MailCore.h in Headers */,
@@ -540,6 +549,7 @@
 				F86B542E14F476330080FB8F /* CTMIME_Enumerator.h in Headers */,
 				F86B542D14F476320080FB8F /* CTMIME.h in Headers */,
 				F86B542C14F4762F0080FB8F /* CTMIME_TextPart.h in Headers */,
+				40DDA4F41A4F36B60079D4FC /* CTNamespaces.h in Headers */,
 				F86B542B14F4762E0080FB8F /* CTMIME_SinglePart.h in Headers */,
 				F86B542A14F4762C0080FB8F /* CTMIME_MultiPart.h in Headers */,
 				F86B542914F4762A0080FB8F /* CTMIME_MessagePart.h in Headers */,
@@ -788,6 +798,7 @@
 				F8430BB20C72B16000753941 /* CTMIME_Enumerator.m in Sources */,
 				2D538B46119803A6000AB4A2 /* CTSMTPAsyncConnection.m in Sources */,
 				F8EC5B0414C37F60006AF4D3 /* CTMIME_HtmlPart.m in Sources */,
+				40DDA4EB1A4F30680079D4FC /* CTNamespaces.m in Sources */,
 				0F369D04162DF5030043A3ED /* CTXlistResult.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -815,6 +826,7 @@
 				F8618D1D10DAE1E600C41188 /* CTBareAttachment.m in Sources */,
 				F8618D1E10DAE1E600C41188 /* MailCoreUtilities.m in Sources */,
 				2D538B48119803E2000AB4A2 /* CTSMTPAsyncConnection.m in Sources */,
+				40DDA4F31A4F33AD0079D4FC /* CTNamespaces.m in Sources */,
 				F8EC5B0514C37F60006AF4D3 /* CTMIME_HtmlPart.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
