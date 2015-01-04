@@ -309,28 +309,47 @@
     return allFolders;
 }
 
+-(NSSet *)allFoldersAndFlags {
+    clist * allList = NULL;
+    int err = mailimap_list(self.session, "", "*", &allList);
+    if (err != MAILIMAP_NO_ERROR) {
+        self.lastError = MailCoreCreateErrorFromIMAPCode(err);
+        return nil;
+    }
+
+    NSSet * result = [self parseFoldersAndFlags:allList];
+    mailimap_list_result_free(allList);
+    return result;
+}
+
 - (NSSet *)allFoldersExtended {
+    //Now, fill the all folders array
+    //TODO Fix this so it doesn't use *
+    clist * allList = NULL;
+    int err = mailimap_xlist(self.session, "", "*", &allList);
+    if (err != MAILIMAP_NO_ERROR) {
+        self.lastError = MailCoreCreateErrorFromIMAPCode(err);
+        return nil;
+    }
+
+    NSSet * result = [self parseFoldersAndFlags:allList];
+    mailimap_list_result_free(allList);
+    return result;
+}
+
+-(NSSet *)parseFoldersAndFlags:(clist *)allList {
     struct mailimap_mailbox_list * mailboxStruct;
     struct mailimap_mbx_list_oflag * oflagStruct;
-    clist *allList;
     clistiter *cur, *flagIter;
     
     NSString *mailboxNameObject;
     char *mailboxName;
     NSString *flagNameObject;
     char *flagName;
-    int err;
-    
+
     NSMutableSet *allFolders = [NSMutableSet set];
     CTXlistResult *listResult;
     
-    //Now, fill the all folders array
-    //TODO Fix this so it doesn't use *
-    err = mailimap_xlist([self session], "", "*", &allList);
-    if (err != MAILIMAP_NO_ERROR) {
-        self.lastError = MailCoreCreateErrorFromIMAPCode(err);
-        return nil;
-    }
     for(cur = clist_begin(allList); cur != NULL; cur = cur->next)
     {
         mailboxStruct = cur->data;
@@ -371,7 +390,6 @@
             [listResult release];
         }
     }
-    mailimap_list_result_free(allList);
     return allFolders;
 }
 @end
