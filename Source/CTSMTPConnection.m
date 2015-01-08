@@ -42,7 +42,7 @@
 @implementation CTSMTPConnection
 + (BOOL)sendMessage:(CTCoreMessage *)message server:(NSString *)server username:(NSString *)username
            password:(NSString *)password port:(unsigned int)port connectionType:(CTSMTPConnectionType)connectionType
-            useAuth:(BOOL)auth error:(NSError **)error {
+            useAuth:(BOOL)auth useOAuth2:(BOOL)useOAuth2 error:(NSError **)error {
     BOOL success;
     mailsmtp *smtp = NULL;
     smtp = mailsmtp_new(0, NULL);
@@ -73,11 +73,10 @@
             goto error;
         }
     }
-    if (auth) {
-        success = [smtpObj authenticateWithUsername:username password:password server:server];
-        if (!success) {
-            goto error;
-        }
+
+    success = [CTSMTPConnection authenticate:smtpObj useAuth:auth useOAuth2:useOAuth2 username:username password:password server:server];
+    if (!success) {
+        goto error;
     }
 
     success = [smtpObj setFrom:[[[message from] anyObject] email]];
@@ -126,7 +125,7 @@ error:
 
 + (BOOL)canConnectToServer:(NSString *)server username:(NSString *)username password:(NSString *)password
                       port:(unsigned int)port connectionType:(CTSMTPConnectionType)connectionType
-                   useAuth:(BOOL)auth error:(NSError **)error {
+                   useAuth:(BOOL)auth useOAuth2:(BOOL)useOAuth2 error:(NSError **)error {
   BOOL success;
   mailsmtp *smtp = NULL;
   smtp = mailsmtp_new(0, NULL);
@@ -157,11 +156,9 @@ error:
       goto error;
     }
   }
-  if (auth) {
-    success = [smtpObj authenticateWithUsername:username password:password server:server];
-    if (!success) {
+  success = [CTSMTPConnection authenticate:smtpObj useAuth:auth useOAuth2:useOAuth2 username:username password:password server:server];
+  if (!success) {
       goto error;
-    }
   }
 
   mailsmtp_quit(smtp);
@@ -176,4 +173,19 @@ error:
   mailsmtp_free(smtp);
   return NO;
 }
+
+
++(BOOL)authenticate:(CTSMTP *)smtpObj useAuth:(BOOL)auth useOAuth2:(BOOL)useOAuth2 username:(NSString *)username password:(NSString *)password server:(NSString *)server {
+  if (useOAuth2) {
+    return [smtpObj authenticateWithOAuth2:username token:password];
+  }
+  else if (auth) {
+    return [smtpObj authenticateWithUsername:username password:password server:server];
+  }
+  else {
+    return YES;
+  }
+}
+
+
 @end

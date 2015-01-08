@@ -36,6 +36,8 @@
 #import "MailCoreTypes.h"
 #import "MailCoreUtilities.h"
 
+#import <libetpan/libetpan.h>
+
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
@@ -155,6 +157,23 @@ static int fill_local_ip_port(mailstream * stream, char * local_ip_port, size_t 
     
     ret = mailesmtp_auth_sasl(session, authType, cServer, local_ip_port, remote_ip_port,
                             cUsername, cUsername, cPassword, cServer);
+    if (ret != MAIL_NO_ERROR) {
+        self.lastError = MailCoreCreateErrorFromSMTPCode(ret);
+        return NO;
+    }
+    return YES;
+}
+
+- (BOOL)authenticateWithOAuth2:(NSString *)username token:(NSString *)token {
+    char *cUsername = (char *)[username cStringUsingEncoding:NSUTF8StringEncoding];
+    char *cToken = (char *)[token cStringUsingEncoding:NSUTF8StringEncoding];
+
+    if (cUsername == NULL || cToken == NULL) {
+        self.lastError = MailCoreCreateErrorFromSMTPCode(MAILSMTP_ERROR_AUTH_LOGIN);
+        return NO;
+    }
+
+    int ret = mailsmtp_oauth2_authenticate(self.resource, cUsername, cToken);
     if (ret != MAIL_NO_ERROR) {
         self.lastError = MailCoreCreateErrorFromSMTPCode(ret);
         return NO;

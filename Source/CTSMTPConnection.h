@@ -52,6 +52,7 @@
  @param port The port to use, the standard port is 25
  @param connectionType What kind of connection, either: CTSMTPConnectionTypePlain, CTSMTPConnectionTypeStartTLS, CTSMTPConnectionTypeTLS
  @param auth Pass in YES if you would like to use SASL authentication
+ @param useOAuth2 Pass in YES if you would like to use XOAUTH2 for authentication. The access token should be passed as the password parameter.
  @param error Will contain an error when the method returns NO
  @return Returns YES on success, NO on error
 */
@@ -62,6 +63,7 @@
                port:(unsigned int)port
      connectionType:(CTSMTPConnectionType)connectionType
             useAuth:(BOOL)auth
+          useOAuth2:(BOOL)useOAuth2
               error:(NSError **)error;
 
 /**
@@ -74,6 +76,7 @@
  @param port The port to use, the standard port is 25
  @param connectionType What kind of connection, either: CTSMTPConnectionTypePlain, CTSMTPConnectionTypeStartTLS, CTSMTPConnectionTypeTLS
  @param auth Pass in YES if you would like to use SASL authentication
+ @param useOAuth2 Pass in YES if you would like to use XOAUTH2 for authentication. The access token should be passed as the password parameter.
  @param error Will contain an error when the method returns NO
  @return Returns YES on success, NO on error
  */
@@ -83,6 +86,7 @@
                       port:(unsigned int)port
             connectionType:(CTSMTPConnectionType)connectionType
                    useAuth:(BOOL)auth
+                 useOAuth2:(BOOL)useOAuth2
                      error:(NSError **)error;
 
 @end

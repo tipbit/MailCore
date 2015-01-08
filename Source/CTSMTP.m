@@ -89,6 +89,11 @@
     return YES;
 }
 
+- (BOOL)authenticateWithOAuth2:(NSString *)username token:(NSString *)token {
+    self.lastError = MailCoreCreateErrorFromSMTPCode(MAILSMTP_ERROR_AUTH_LOGIN);
+    return NO;
+}
+
 - (BOOL)setFrom:(NSString *)fromAddress {
     int ret = mailsmtp_mail([self resource], [fromAddress cStringUsingEncoding:NSUTF8StringEncoding]);
     if (ret != MAIL_NO_ERROR) {
