@@ -167,7 +167,7 @@
 
     mailimap * session = self.session;
     if (!mailimap_has_namespace(session)) {
-        return [[CTNamespaces alloc] init];
+        return [[[CTNamespaces alloc] init] autorelease];
     }
 
     struct mailimap_namespace_data * namespace_data;
@@ -177,7 +177,7 @@
         return nil;
     }
 
-    CTNamespaces * result = [[CTNamespaces alloc] initWithNamespaceData:namespace_data];
+    CTNamespaces * result = [[[CTNamespaces alloc] initWithNamespaceData:namespace_data] autorelease];
 
     mailimap_namespace_data_free(namespace_data);
 
