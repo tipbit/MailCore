@@ -25,7 +25,7 @@
 		404F58D71A3D84240081DA18 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F8886342158103460088CF38 /* libcrypto.a */; };
 		40DDA4EA1A4F30680079D4FC /* CTNamespaces.h in Headers */ = {isa = PBXBuildFile; fileRef = 40DDA4E81A4F30680079D4FC /* CTNamespaces.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		40DDA4EB1A4F30680079D4FC /* CTNamespaces.m in Sources */ = {isa = PBXBuildFile; fileRef = 40DDA4E91A4F30680079D4FC /* CTNamespaces.m */; };
-		40DDA4F31A4F33AD0079D4FC /* CTNamespaces.m in Sources */ = {isa = PBXBuildFile; fileRef = 40DDA4E91A4F30680079D4FC /* CTNamespaces.m */; };
+		40DDA4F31A4F33AD0079D4FC /* CTNamespaces.m in Sources */ = {isa = PBXBuildFile; fileRef = 40DDA4E91A4F30680079D4FC /* CTNamespaces.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		40DDA4F41A4F36B60079D4FC /* CTNamespaces.h in Headers */ = {isa = PBXBuildFile; fileRef = 40DDA4E81A4F30680079D4FC /* CTNamespaces.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
 		F81A8ADC0C03FC3B002F780A /* CTMIME_MessagePart.h in Headers */ = {isa = PBXBuildFile; fileRef = F81A8AD20C03FC3B002F780A /* CTMIME_MessagePart.h */; settings = {ATTRIBUTES = (Public, ); }; };
