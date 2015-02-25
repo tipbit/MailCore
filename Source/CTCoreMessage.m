@@ -377,9 +377,9 @@
 }
 
 - (void)addAttachment:(CTCoreAttachment *)attachment {
-    CTMIME_MultiPart *multi;
-    CTMIME_MessagePart *msg;
-    CTMIME_MultiPart * subMulti;
+    CTMIME_MultiPart *multi=nil;
+    CTMIME_MessagePart *msg=nil;
+    CTMIME_MultiPart * subMulti=nil;
 
     if ([myParsedMIME isKindOfClass:[CTMIME_MessagePart class]]) {
         msg = (CTMIME_MessagePart *)myParsedMIME;
@@ -418,7 +418,7 @@
         attpart.filename = [attachment filename];
         attpart.contentId = ((CTBareAttachment*)attachment).contentId;
 
-        if (subMulti) {
+        if (subMulti!=nil) {
             [subMulti addMIMEPart:attpart];
         }
         else
