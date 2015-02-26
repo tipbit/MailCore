@@ -172,6 +172,11 @@ typedef enum {
 - (NSDate *)senderDate; 
 
 /**
+ Returns the date as given in the email was received by teh mail server.
+ */
+- (NSDate *)receivedDate;
+
+/**
  Returns YES if the message is deleted.
  */
 - (BOOL)isDeleted;

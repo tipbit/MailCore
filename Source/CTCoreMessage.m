@@ -491,6 +491,35 @@
     }
 }
 
+- (NSDate *)receivedDate {
+    if ( myFields->fld_orig_date == NULL) {
+        return nil;
+    } else {
+        struct mailimf_date_time *d;
+        
+        if ((d = [self libetpanDateTime]) == NULL)
+            return nil;
+        
+        NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+        calendar.timeZone = [self senderTimeZone];
+        NSDateComponents *comps = [[NSDateComponents alloc] init];
+        
+        [comps setYear:d->dt_year];
+        [comps setMonth:d->dt_month];
+        [comps setDay:d->dt_day];
+        [comps setHour:d->dt_hour];
+        [comps setMinute:d->dt_min];
+        [comps setSecond:d->dt_sec];
+        
+        NSDate *messageDate = [calendar dateFromComponents:comps];
+        
+        [comps release];
+        [calendar release];
+        
+        return messageDate;
+    }
+}
+
 - (BOOL)isUnread {
     return ![self isFlagSet:MAIL_FLAG_SEEN withDefault:YES];
 }
@@ -725,8 +754,9 @@
         clist *inReplyTo = (myFields->fld_in_reply_to != NULL) ? (myFields->fld_in_reply_to->mid_list) : NULL;
         clist *references = (myFields->fld_references != NULL) ? (myFields->fld_references->mid_list) : NULL;
         char *subject = (myFields->fld_subject != NULL) ? (myFields->fld_subject->sbj_value) : NULL;
+        char *received = (myFields->fld_received != NULL) ? (myFields->fld_received->rcd_value) : NULL;
 
-        fields = mailimf_fields_new_with_data(from, sender, replyTo, to, cc, bcc, inReplyTo, references, subject);
+        fields = mailimf_fields_new_with_data(from, sender, replyTo, to, cc, bcc, inReplyTo, references, subject, received);
         
         if (self->mailPriority != 0) {
             char * xPriorityValue;
@@ -757,13 +787,13 @@
             struct mailimf_field * priorityField = mailimf_field_new(MAILIMF_FIELD_OPTIONAL_FIELD, NULL, NULL, NULL,
                                                                      NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
                                                                      NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
-                                                                     NULL, NULL, priority);
+                                                                     NULL, NULL, NULL, priority);
             mailimf_fields_add(fields, priorityField);
             
             priority = mailimf_optional_field_new("Priority", rfcPriorityValue);
             priorityField = mailimf_field_new(MAILIMF_FIELD_OPTIONAL_FIELD, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
                                               NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
-                                              NULL, NULL, priority);
+                                              NULL, NULL, NULL, priority);
             
             mailimf_fields_add(fields, priorityField);
         }
