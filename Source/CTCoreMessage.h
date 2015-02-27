@@ -65,7 +65,7 @@ typedef enum {
 
 @property (nonatomic, retain) CTCoreFolder *parentFolder;
 
-@property (nonatomic, retain) NSDate *receivedDate;
+@property (nonatomic, retain) NSString *header;
 
 /**
  If the body structure has been fetched, this will contain the MIME structure
