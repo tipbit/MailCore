@@ -195,6 +195,12 @@
             NSString *trimmedDateStr = [[dateStr substringToIndex:range.location] retain];
             NSString *zone = [[dateStr substringFromIndex:range.location+1] retain];
             range = [zone rangeOfString:@")"];
+            if (range.location == NSNotFound) {
+                [trimmedDateStr release];
+                [zone release];
+                NSLog(@"error parsing: %@", dateStr);
+                break;  //we did not find the closing parenthesis but found the opening parenthesis.
+            }
             zone = [zone substringToIndex:range.location];
             NSTimeZone *tz = [NSTimeZone timeZoneWithAbbreviation:zone];
             [dateFormatter setTimeZone:tz];
