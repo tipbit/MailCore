@@ -42,7 +42,6 @@
 #import "CTMIME_HtmlPart.h"
 #import "MailCoreUtilities.h"
 
-
 @implementation CTCoreMessage
 @synthesize mime=myParsedMIME, lastError, parentFolder;
 
@@ -95,6 +94,8 @@
     }
     self.lastError = nil;
     self.parentFolder = nil;
+    [self.receivedDate release];
+    self.receivedDate = nil;
     [myParsedMIME release];
     [super dealloc];
 }
@@ -114,6 +115,8 @@
     if (myMessage == NULL) {
         return NO;
     }
+    //we also fetch the header, because we want the receivedDate from it.
+    [self fetchHeaderStructure];
 
     int err;
     struct mailmime *dummyMime;
@@ -130,6 +133,103 @@
     [oldMIME release];
 
     return YES;
+}
+
+
+- (BOOL)fetchHeaderStructure{
+    if (myMessage == NULL) {
+        return NO;
+    }
+    
+    int err;
+    char *result;
+    size_t result_len;
+    //Retrieve message mime and message field
+    err = mailmessage_fetch_header(myMessage, &result, &result_len);
+    if (err != MAIL_NO_ERROR) {
+        self.lastError = MailCoreCreateErrorFromIMAPCode(err);
+        return NO;
+    }
+    
+    NSString *header = [[NSString stringWithCString:result  encoding:NSASCIIStringEncoding] retain];
+    NSRange r = NSMakeRange(0, header.length);
+    
+    self.receivedDate = nil;
+    NSString *tag = @"received:";
+    for (;;) {
+        //extract a received: header entry (there may be more than one).
+        r = [header rangeOfString:tag options:NSCaseInsensitiveSearch range:r];
+        if (r.location == NSNotFound) {
+            break;
+        }
+        r.location += tag.length;
+        r.length = header.length - r.location;
+        NSRange dateFrom = [header rangeOfString:@";" options:NSCaseInsensitiveSearch range:r];
+        if (dateFrom.location == NSNotFound) {
+            break;
+        }
+        dateFrom.location++;
+        dateFrom.length = header.length - dateFrom.location;
+        NSRange dateTo = [header rangeOfString:@"\r\n" options:NSCaseInsensitiveSearch range:dateFrom];
+        if (dateTo.location == NSNotFound) {
+            break;
+        }
+        dateFrom.length = dateTo.location - dateFrom.location;
+        if (dateFrom.length == 0) {
+            break;
+        }
+        NSString *dateStr = [[header substringWithRange:dateFrom] retain];
+        
+        //Make a date out of the string. Here are two samples of what we may get.
+        //the format is defined in RFC0822 section 5.1
+        //Thu, 26 Feb 2015 22:37:58 +0000
+        //Thu, 26 Feb 2015 14:37:58 -0800 (PST)
+        NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] retain];
+        NSLocale *locale = [[[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"] retain];
+        [dateFormatter setLocale:locale];
+        [dateFormatter setDateFormat:@"EEE, dd MMM yyyy HH:mm:ss zzz"];
+        
+        NSRange range = [dateStr rangeOfString:@"("];
+        if (range.location != NSNotFound) {
+            //handle the case where the date arrives in the form: "Thu, 26 Feb 2015 14:37:58 -0800 (PST)"
+            NSString *trimmedDateStr = [[dateStr substringToIndex:range.location] retain];
+            NSString *zone = [[dateStr substringFromIndex:range.location+1] retain];
+            range = [zone rangeOfString:@")"];
+            zone = [zone substringToIndex:range.location];
+            NSTimeZone *tz = [NSTimeZone timeZoneWithAbbreviation:zone];
+            [dateFormatter setTimeZone:tz];
+            dateStr = trimmedDateStr;
+            
+            [trimmedDateStr release];
+            [zone release];
+            [tz release];
+            
+        }
+        else{
+            //handle the case where the date arrives in the form: "Thu, 26 Feb 2015 22:37:58 +0000"
+        }
+        NSDate *date = [[dateFormatter dateFromString:dateStr] retain];
+        
+        //If we have a previous date object, check which is more recent and use that.
+        if (self.receivedDate == nil) {
+            self.receivedDate = date;
+        }
+        else{
+            NSTimeInterval delta = [self.receivedDate timeIntervalSinceDate:date];
+            if (delta >= 1) {
+                self.receivedDate = date;
+            }
+        }
+        [locale release];
+        [dateFormatter release];
+        [dateStr release];
+        [date release];
+    }
+    
+    [header release];
+    [tag release];
+    
+    return self.receivedDate != nil;
 }
 
 - (void)setBodyStructure:(struct mailmime *)mime {

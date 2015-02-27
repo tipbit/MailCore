@@ -65,6 +65,8 @@ typedef enum {
 
 @property (nonatomic, retain) CTCoreFolder *parentFolder;
 
+@property (nonatomic, retain) NSDate *receivedDate;
+
 /**
  If the body structure has been fetched, this will contain the MIME structure
 */
@@ -111,7 +113,7 @@ typedef enum {
  @return Return YES on success, NO on error. Call method lastError to get error if one occurred
 */
 - (BOOL)fetchBodyStructure;
-
+- (BOOL)fetchHeaderStructure;
 /**
  This method returns the parsed plain text message body as an NSString.
 
