@@ -227,6 +227,13 @@
     XCTAssert([emlBodyParts[1] isKindOfClass:[CTMIME_TextPart class]]);
     CTMIME_SinglePart * imgPart = emlParts[1];
     XCTAssertEqualObjects(imgPart.filename, @"Katakana_u_and_small_i_serif_1.svg");
+
+    __unused NSString * body = msg.body;
+    __unused NSString * html = msg.htmlBody;
+    NSString * expectedBody = @"This is the outer test email.\r\n\r\nIt has Test inner email.eml as an attachment.\r\n\r\nIt tests like nothing has tested before.\r\n\r\n";
+    NSString * expectedHtml = @"<html>\r\n<head>\r\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=us-ascii\">\r\n</head>\r\n<body style=\"word-wrap: break-word; -webkit-nbsp-mode: space; -webkit-line-break: after-white-space; color: rgb(0, 0, 0); font-size: 14px; font-family: Calibri, sans-serif;\">\r\n<div>This is the outer test email.</div>\r\n<div><br>\r\n</div>\r\n<div>It has Test inner email.eml as an attachment.</div>\r\n<div><br>\r\n</div>\r\n<div>It tests like nothing has tested before.</div>\r\n<div><br>\r\n</div>\r\n</body>\r\n</html>\r\n";
+    XCTAssertEqualObjects(body, expectedBody);
+    XCTAssertEqualObjects(html, expectedHtml);
 }
 
 

@@ -174,7 +174,7 @@
         [self fetchBodyStructure];
     }
     NSMutableString *result = [NSMutableString string];
-    BOOL success = [self _buildUpBodyText:myParsedMIME result:result];
+    BOOL success = [self _buildUpBodyText:myParsedMIME haveSeenOuterMessage:NO result:result];
     if (!success) {
         return nil;
     }
@@ -186,7 +186,7 @@
         [self fetchBodyStructure];
     }
     NSMutableString *result = [NSMutableString string];
-    BOOL success = [self _buildUpHtmlBodyText:myParsedMIME result:result];
+    BOOL success = [self _buildUpHtmlBodyText:myParsedMIME haveSeenOuterMessage:NO result:result];
     if (!success) {
         return nil;
     }
@@ -204,12 +204,12 @@
 }
 
 
-- (BOOL)_buildUpBodyText:(CTMIME *)mime result:(NSMutableString *)result {
+- (BOOL)_buildUpBodyText:(CTMIME *)mime haveSeenOuterMessage:(BOOL)haveSeenOuterMessage result:(NSMutableString *)result {
     if (mime == nil)
         return NO;
 
     if ([mime isKindOfClass:[CTMIME_MessagePart class]]) {
-        return [self _buildUpBodyText:[mime content] result:result];
+        return haveSeenOuterMessage ? YES : [self _buildUpBodyText:[mime content] haveSeenOuterMessage:YES result:result];
     }
     else if ([mime isKindOfClass:[CTMIME_TextPart class]]) {
         if ([[mime.contentType lowercaseString] rangeOfString:@"text/plain"].location != NSNotFound) {
@@ -229,7 +229,7 @@
         NSEnumerator *enumer = [[mime content] objectEnumerator];
         CTMIME *subpart;
         while ((subpart = [enumer nextObject])) {
-            BOOL success = [self _buildUpBodyText:subpart result:result];
+            BOOL success = [self _buildUpBodyText:subpart haveSeenOuterMessage:YES result:result];
             if (!success) {
                 return NO;
             }
@@ -238,12 +238,12 @@
     return YES;
 }
 
-- (BOOL)_buildUpHtmlBodyText:(CTMIME *)mime result:(NSMutableString *)result {
+- (BOOL)_buildUpHtmlBodyText:(CTMIME *)mime haveSeenOuterMessage:(BOOL)haveSeenOuterMessage result:(NSMutableString *)result {
     if (mime == nil)
         return NO;
 
     if ([mime isKindOfClass:[CTMIME_MessagePart class]]) {
-        return [self _buildUpHtmlBodyText:[mime content] result:result];
+        return haveSeenOuterMessage ? YES : [self _buildUpHtmlBodyText:[mime content] haveSeenOuterMessage:YES result:result];
     }
     else if ([mime isKindOfClass:[CTMIME_TextPart class]]) {
         if ([[mime.contentType lowercaseString] rangeOfString:@"text/html"].location != NSNotFound) {
@@ -264,7 +264,7 @@
         NSEnumerator *enumer = [[mime content] objectEnumerator];
         CTMIME *subpart;
         while ((subpart = [enumer nextObject])) {
-            BOOL success = [self _buildUpHtmlBodyText:subpart result:result];
+            BOOL success = [self _buildUpHtmlBodyText:subpart haveSeenOuterMessage:YES result:result];
             if (!success) {
                 return NO;
             }
