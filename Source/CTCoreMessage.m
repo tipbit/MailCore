@@ -181,27 +181,6 @@
     return result;
 }
 
-- (BOOL)hasHtmlBody:(CTMIME *)mime {
-    if ([mime isKindOfClass:[CTMIME_MessagePart class]]) {
-        return [self hasHtmlBody:[mime content]];
-    }
-    else if ([mime isKindOfClass:[CTMIME_TextPart class]]) {
-        if ([[mime.contentType lowercaseString] rangeOfString:@"text/html"].location != NSNotFound) {
-            return YES;
-        }
-    }
-    else if ([mime isKindOfClass:[CTMIME_MultiPart class]]) {
-        return YES;
-    }
-
-    return NO;
-}
-
-- (BOOL)hasHtmlBody {
-    CTMIME* mime = myParsedMIME;
-    return [self hasHtmlBody:mime];
-}
-
 - (NSString *)htmlBody {
     if (myFields == NULL || myParsedMIME == nil) {
         [self fetchBodyStructure];
