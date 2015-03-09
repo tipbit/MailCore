@@ -33,13 +33,11 @@
 
 #import <libetpan/libetpan.h>
 
-@class CTMIME, CTMIME_SinglePart;
+@class CTMIME;
 
-@interface CTMIMEFactory : NSObject {
+@interface CTMIMEFactory : NSObject
 
-}
 + (CTMIME *)createMIMEWithMIMEStruct:(struct mailmime *)mime 
                 forMessage:(struct mailmessage *)message;
-+ (CTMIME_SinglePart *)createMIMESinglePartWithMIMEStruct:(struct mailmime *)mime
-                        forMessage:(struct mailmessage *)message;
+
 @end
