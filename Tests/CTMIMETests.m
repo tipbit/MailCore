@@ -49,6 +49,10 @@
 
 @implementation CTMIMETests
 
+-(void)setUp {
+    self.continueAfterFailure = NO;
+}
+
 - (void)testMIMETextPart {
     NSString *filePath = [[NSBundle bundleForClass:[self class]] pathForResource:@"TestData/kiwi-dev/1167196014.6158_0.theronge.com:2,Sab" ofType:@""];
     CTCoreMessage *msg = [[CTCoreMessage alloc] initWithFileAtPath:filePath];
@@ -193,5 +197,37 @@
     }
     XCTAssertEqualObjects(objects, fullAllObjects, @"nextObject isn't iterating over the same objects ast allObjects");
 }
+
+
+- (void)testAttachedEML {
+    NSString * filePath = [[NSBundle bundleForClass:[self class]] pathForResource:@"TestData/mime-tests/attached-eml" ofType:@""];
+    CTCoreMessage * msg = [[CTCoreMessage alloc] initWithFileAtPath:filePath];
+    struct mailmessage * messageStruct = msg.messageStruct;
+    CTMIME * mime = [CTMIMEFactory createMIMEWithMIMEStruct:messageStruct->msg_mime forMessage:messageStruct];
+    XCTAssert([mime isKindOfClass:[CTMIME_MessagePart class]]);
+    XCTAssert([mime.content isKindOfClass:[CTMIME_MultiPart class]]);
+    CTMIME_MultiPart * multiPart = mime.content;
+    NSArray * multiPartContent = multiPart.content;
+    XCTAssertEqual(multiPartContent.count, 2);
+    XCTAssert([multiPartContent[0] isKindOfClass:[CTMIME_MultiPart class]]);
+    XCTAssert([multiPartContent[1] isKindOfClass:[CTMIME_MessagePart class]]);
+    NSArray * bodyParts = ((CTMIME_MultiPart *)multiPartContent[0]).content;
+    XCTAssertEqual(bodyParts.count, 2);
+    XCTAssert([bodyParts[0] isKindOfClass:[CTMIME_TextPart class]]);
+    XCTAssert([bodyParts[1] isKindOfClass:[CTMIME_TextPart class]]);
+    CTMIME * emlPart = ((CTMIME_MessagePart *)multiPartContent[1]).content;
+    XCTAssert([emlPart isKindOfClass:[CTMIME_MultiPart class]]);
+    NSArray * emlParts = emlPart.content;
+    XCTAssertEqual(emlParts.count, 2);
+    XCTAssert([emlParts[0] isKindOfClass:[CTMIME_MultiPart class]]);
+    XCTAssert([emlParts[1] isKindOfClass:[CTMIME_SinglePart class]]);
+    NSArray * emlBodyParts = ((CTMIME_MultiPart *)multiPartContent[0]).content;
+    XCTAssertEqual(emlBodyParts.count, 2);
+    XCTAssert([emlBodyParts[0] isKindOfClass:[CTMIME_TextPart class]]);
+    XCTAssert([emlBodyParts[1] isKindOfClass:[CTMIME_TextPart class]]);
+    CTMIME_SinglePart * imgPart = emlParts[1];
+    XCTAssertEqualObjects(imgPart.filename, @"Katakana_u_and_small_i_serif_1.svg");
+}
+
 
 @end
