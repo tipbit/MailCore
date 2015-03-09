@@ -23,6 +23,7 @@
 		404F58B31A3D2B720081DA18 /* TestData in Resources */ = {isa = PBXBuildFile; fileRef = F9FC3A721683FC07004B2D1E /* TestData */; };
 		404F58B41A3D322C0081DA18 /* CTCoreAddressTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F8EA76120C1141C1004F85D8 /* CTCoreAddressTests.m */; };
 		404F58D71A3D84240081DA18 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F8886342158103460088CF38 /* libcrypto.a */; };
+		407A115D1AAE3AF000F219E4 /* CTMIMETests.m in Sources */ = {isa = PBXBuildFile; fileRef = F81A8AEC0C03FC58002F780A /* CTMIMETests.m */; };
 		40DDA4EA1A4F30680079D4FC /* CTNamespaces.h in Headers */ = {isa = PBXBuildFile; fileRef = 40DDA4E81A4F30680079D4FC /* CTNamespaces.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		40DDA4EB1A4F30680079D4FC /* CTNamespaces.m in Sources */ = {isa = PBXBuildFile; fileRef = 40DDA4E91A4F30680079D4FC /* CTNamespaces.m */; };
 		40DDA4F31A4F33AD0079D4FC /* CTNamespaces.m in Sources */ = {isa = PBXBuildFile; fileRef = 40DDA4E91A4F30680079D4FC /* CTNamespaces.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
@@ -770,6 +771,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				407A115D1AAE3AF000F219E4 /* CTMIMETests.m in Sources */,
 				404F58B41A3D322C0081DA18 /* CTCoreAddressTests.m in Sources */,
 				404F58AB1A3D28E70081DA18 /* CTCoreMessageTests.m in Sources */,
 			);
