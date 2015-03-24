@@ -59,4 +59,7 @@
  Used to save the attachment locally
 */
 - (BOOL)writeToFile:(NSString *)path;
+
++ (BOOL) isInlineContentType:(NSString *)contentType;
+
 @end

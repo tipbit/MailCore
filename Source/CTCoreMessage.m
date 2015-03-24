@@ -31,6 +31,7 @@
 
 #import <libetpan/libetpan.h>
 #import "CTCoreMessage.h"
+#import "CTCoreAttachment.h"
 #import "MailCoreTypes.h"
 #import "CTCoreAddress.h"
 #import "CTMIMEFactory.h"
@@ -354,7 +355,7 @@
     while ((mime = [enumerator nextObject])) {
         if ([mime isKindOfClass:[CTMIME_SinglePart class]]) {
             CTMIME_SinglePart *singlePart = (CTMIME_SinglePart *)mime;
-            if (singlePart.attached) {
+            if (singlePart.attached || (singlePart.contentId != nil && [CTCoreAttachment isInlineContentType:singlePart.contentType])) {
                 CTBareAttachment *attach = [[CTBareAttachment alloc]
                                                 initWithMIMESinglePart:singlePart];
                 [attachments addObject:attach];

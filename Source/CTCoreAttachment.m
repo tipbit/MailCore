@@ -84,4 +84,16 @@
     [mData release];
     [super dealloc];
 }
+
++ (BOOL) isInlineContentType:(NSString *)contentType {
+    if (contentType != nil &&
+        ([contentType isEqualToString:@"image/png"] ||
+         [contentType isEqualToString:@"image/jpeg"] ||
+         [contentType isEqualToString:@"image/gif"])) {
+            return YES;
+        }
+    
+    return NO;
+}
+
 @end
