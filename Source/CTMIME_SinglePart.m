@@ -119,8 +119,15 @@
 
     if (mContentId) {
         
+        char *fileNameData = NULL;
+        if (mFilename != nil) {
+            char *fileNameChar = (char *)[mFilename cStringUsingEncoding:NSUTF8StringEncoding];
+            fileNameData = malloc(strlen(fileNameChar) + 1);
+            strcpy(fileNameData, fileNameChar);
+        }
+        
         struct mailmime_mechanism * encoding = mailmime_mechanism_new(MAILMIME_MECHANISM_BASE64, NULL);
-        struct mailmime_disposition* disposition = mailmime_disposition_new_with_data(MAILMIME_DISPOSITION_TYPE_INLINE, NULL, NULL, NULL, NULL, -1);
+        struct mailmime_disposition* disposition = mailmime_disposition_new_with_data(MAILMIME_DISPOSITION_TYPE_INLINE, fileNameData, NULL, NULL, NULL, -1);
 
         char *charData = (char *)[mContentId cStringUsingEncoding:NSUTF8StringEncoding];
         char *dupeData = malloc(strlen(charData) + 1);
