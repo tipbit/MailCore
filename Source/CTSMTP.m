@@ -134,7 +134,7 @@
     }
     ret = mailsmtp_data_message([self resource], data.bytes, data.length);
     if (ret != MAIL_NO_ERROR) {
-        self.lastError = MailCoreCreateErrorFromSMTPCode(ret);
+        self.lastError = MailCoreCreateErrorFromSMTPCodeAndSession(ret, [self resource]);       
         return NO;
     }
     return YES;

@@ -51,6 +51,7 @@ NSError* MailCoreCreateErrorFromIMAPCode(int errcode);
     Translates a LibEtPan SMTP specific error code into an NSError with a description
 */
 NSError* MailCoreCreateErrorFromSMTPCode(int errcode);
+NSError* MailCoreCreateErrorFromSMTPCodeAndSession(int errcode, mailsmtp *session);
 
 NSString *MailCoreDecodeMIMEPhrase(char *data);
 
