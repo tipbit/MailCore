@@ -625,14 +625,12 @@
 
 
 - (void)setInReplyTo:(NSArray *)messageIds {
-	struct mailimf_in_reply_to *imf = mailimf_in_reply_to_new(MailCoreClistFromStringArray(messageIds));
+	struct mailimf_in_reply_to *imf = (messageIds.count == 0 ? NULL : mailimf_in_reply_to_new(MailCoreClistFromStringArray(messageIds)));
 
     if (myFields->fld_in_reply_to != NULL) {
         mailimf_in_reply_to_free(myFields->fld_in_reply_to);
-        myFields->fld_in_reply_to = imf;
     }
-    else
-		myFields->fld_in_reply_to = imf;
+    myFields->fld_in_reply_to = imf;
 }
 
 
@@ -645,14 +643,12 @@
 
 
 - (void)setReferences:(NSArray *)messageIds {
-    struct mailimf_references *imf = mailimf_references_new(MailCoreClistFromStringArray(messageIds));
+    struct mailimf_references *imf = (messageIds.count == 0 ? NULL : mailimf_references_new(MailCoreClistFromStringArray(messageIds)));
 
     if (myFields->fld_references != NULL) {
         mailimf_references_free(myFields->fld_references);
-        myFields->fld_references = imf;
     }
-    else
-		myFields->fld_references = imf;
+    myFields->fld_references = imf;
 }
 
 
