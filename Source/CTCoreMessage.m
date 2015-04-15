@@ -95,7 +95,6 @@
     }
     self.lastError = nil;
     self.parentFolder = nil;
-    [self.header release];
     self.header = nil;
     [myParsedMIME release];
     [super dealloc];
@@ -152,7 +151,7 @@
         return NO;
     }
     
-    self.header = [[NSString stringWithCString:result  encoding:NSASCIIStringEncoding] retain];
+    self.header = [NSString stringWithCString:result encoding:NSASCIIStringEncoding];
     return YES;
 }
 
