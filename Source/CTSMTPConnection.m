@@ -100,7 +100,7 @@
     message.bcc = nil;
     
     /* data */
-    NSData * data = [message render];
+    NSData * data = [message renderData];
     success = [smtpObj setData:data];
     mmap_string_unref((char *)data.bytes);
     

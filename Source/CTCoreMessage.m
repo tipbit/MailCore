@@ -708,7 +708,7 @@
 }
 
 
-- (NSData *)render {
+- (void)_render {
     CTMIME *msgPart = myParsedMIME;
 
     if ([myParsedMIME isKindOfClass:[CTMIME_MessagePart class]]) {
@@ -769,7 +769,17 @@
         //TODO Need to make sure that fields gets freed somewhere
         [(CTMIME_MessagePart *)msgPart setIMFFields:fields];
     }
-    return [myParsedMIME render];
+}
+
+- (NSData *)renderData {
+    [self _render];
+    return [myParsedMIME renderData];
+}
+
+-(NSString *)renderString
+{
+    [self _render];
+    return [myParsedMIME renderString];
 }
 
 - (NSData *)messageAsEmlx {

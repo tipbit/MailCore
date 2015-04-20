@@ -241,7 +241,7 @@ static const int MAX_PATH_SIZE = 1024;
         return NO;
     
     int err = MAILIMAP_NO_ERROR;
-    NSData * msgData = [msg render];
+    NSData * msgData = [msg renderData];
 
     struct mail_flags *flags = mail_flags_new(MAIL_FLAG_SEEN, clist_new());
     
@@ -250,6 +250,73 @@ static const int MAX_PATH_SIZE = 1024;
                                            flags);
 
     mmap_string_unref((char *)msgData.bytes);
+    mail_flags_free(flags);
+    if (MAILIMAP_NO_ERROR != err)
+        self.lastError = MailCoreCreateErrorFromIMAPCode (err);
+    return MAILIMAP_NO_ERROR == err;
+}
+
+- (BOOL)appendMessage:(CTCoreMessage *)msg flags:(NSUInteger)mailFlags extensionFlags:(NSArray *)extensionFlags
+{
+    int err = MAILIMAP_NO_ERROR;
+    NSString * msgStr = [msg renderString];
+    if (![self connect])
+        return NO;
+    
+    struct mail_flags *flags = mail_flags_new((uint32_t)(mailFlags | MAIL_FLAG_SEEN), MailCoreClistFromStringArray(extensionFlags));
+    char mbPath[MAX_PATH_SIZE];
+    [self getUTF7String:mbPath fromString:[self path]];
+    err = mailsession_append_message_flags([self folderSession],
+                                           mbPath,
+                                           [msgStr lengthOfBytesUsingEncoding: NSUTF8StringEncoding],
+                                           flags);
+    
+    mail_flags_free(flags);
+    if (MAILIMAP_NO_ERROR != err)
+        self.lastError = MailCoreCreateErrorFromIMAPCode (err);
+    return MAILIMAP_NO_ERROR == err;
+}
+
+- (BOOL)appendMessage:(CTCoreMessage *)msg appendedUID:(NSUInteger *)appendMessageUID {
+    return [self appendMessage:msg appendedUID:appendMessageUID flags:0 extensionFlags:nil];
+}
+
+- (BOOL)appendMessage:(CTCoreMessage *)msg
+          appendedUID:(NSUInteger *)appendMessageUID
+                flags:(NSUInteger)mailFlags
+       extensionFlags:(NSArray *)extensionFlags {
+    if (![self connect] || ![[[self parentAccount] capabilities] containsObject:@"UIDPLUS"])
+        return NO;
+    
+    int err = MAILIMAP_NO_ERROR;
+    NSString *msgStr = [msg renderString];
+    
+    struct mail_flags *flags = mail_flags_new((uint32_t)(mailFlags | MAIL_FLAG_SEEN), MailCoreClistFromStringArray(extensionFlags));
+    
+    struct mailimap_flag_list * flag_list;
+    
+    err = imap_flags_to_imap_flags(flags, &flag_list);
+    if (err == MAIL_NO_ERROR) {
+        uint32_t uidvalidity = 0;
+        uint32_t messageUID = 0;
+        char mbPath[MAX_PATH_SIZE];
+        [self getUTF7String:mbPath fromString:[self path]];
+        err =  mailimap_uidplus_append([self imapSession],
+                                       mbPath,
+                                       flag_list,
+                                       NULL,
+                                       [msgStr cStringUsingEncoding: NSUTF8StringEncoding],
+                                       [msgStr lengthOfBytesUsingEncoding: NSUTF8StringEncoding],
+                                       &uidvalidity,
+                                       &messageUID);
+        
+        if (appendMessageUID) {
+            *appendMessageUID = messageUID;
+        }
+        
+        mailimap_flag_list_free(flag_list);
+    }
+    
     mail_flags_free(flags);
     if (MAILIMAP_NO_ERROR != err)
         self.lastError = MailCoreCreateErrorFromIMAPCode (err);
