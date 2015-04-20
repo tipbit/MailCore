@@ -72,7 +72,7 @@
     [multi addMIMEPart:text1];
     [multi addMIMEPart:text2];
     CTMIME_MessagePart *messagePart = [CTMIME_MessagePart mimeMessagePartWithContent:multi];
-    NSData * data = [messagePart render];
+    NSData * data = [messagePart renderData];
     [data writeToFile:@"/tmp/mailcore_test_output" atomically:NO];
 
     CTCoreMessage *msg = [[CTCoreMessage alloc] initWithFileAtPath:@"/tmp/mailcore_test_output"];

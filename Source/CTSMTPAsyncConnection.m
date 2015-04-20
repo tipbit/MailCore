@@ -231,7 +231,7 @@ smtpProgress(size_t aCurrent, size_t aTotal) {
     theMessage.bcc = nil;
 
     //send
-    NSData * data = [theMessage render];
+    NSData * data = [theMessage renderData];
     success = [mSMTPObj setData:data];
     mmap_string_unref((char *)data.bytes);
     

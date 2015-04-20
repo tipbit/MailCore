@@ -64,7 +64,9 @@ typedef void (^CTProgressBlock)(size_t curr, size_t max);
 /**
  * You must call mmap_string_unref((char *)data.bytes) when you are done with the returned NSData.
  */
--(NSData *)render;
+-(NSData *)renderData;
+
+-(NSString *)renderString;
 
 - (CTMIME_Enumerator *)mimeEnumerator;
 
