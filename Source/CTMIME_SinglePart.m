@@ -143,9 +143,17 @@
         char *charData = (char *)[mFilename cStringUsingEncoding:NSUTF8StringEncoding];
         char *dupeData = malloc(strlen(charData) + 1);
         strcpy(dupeData, charData);
+
+        // RFC 2046 5.2.1. RFC822 Subtype
+        // No encoding other than "7bit", "8bit", or "binary" is permitted for
+        // the body of a "message/rfc822" entity.
+        int encoding_type = ([self.contentType isEqualToString:@"message/rfc822"] ?
+                             MAILMIME_MECHANISM_8BIT :
+                             MAILMIME_MECHANISM_BASE64);
+
         mime_fields = mailmime_fields_new_filename( MAILMIME_DISPOSITION_TYPE_ATTACHMENT, 
                                                     dupeData,
-                                                    MAILMIME_MECHANISM_BASE64 ); 
+                                                    encoding_type );
     } else {
         mime_fields = mailmime_fields_new_encoding(MAILMIME_MECHANISM_BASE64);
     }
