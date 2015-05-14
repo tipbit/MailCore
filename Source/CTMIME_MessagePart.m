@@ -76,7 +76,13 @@
 }
 
 - (struct mailmime *)buildMIMEStruct {
-    struct mailmime *mime = mailmime_new_message_data([myMessageContent buildMIMEStruct]);
+    struct mailmime *submime = [myMessageContent buildMIMEStruct];
+    if (submime == NULL) {
+        self.lastError = myMessageContent.lastError;
+        return NULL;
+    }
+
+    struct mailmime *mime = mailmime_new_message_data(submime);
     if (myFields != NULL) {
         mailmime_set_imf_fields(mime, myFields);
     }

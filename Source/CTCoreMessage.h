@@ -330,6 +330,7 @@ typedef enum {
 
 /**
  Returns the message rendered as the appropriate MIME and IMF content.
+ Returns nil on failure, in which case check self.lastError.
  
  Use this only if you want the raw encoding of the message.
 

@@ -192,6 +192,9 @@ static void download_progress_callback(size_t current, size_t maximum, void * co
 
 -(NSData *)renderData {
     struct mailmime * mime = [self buildMIMEStruct];
+    if (mime == NULL) {
+        return nil;
+    }
 
     MMAPString * str = mmap_string_new("");
     int col = 0;
@@ -201,7 +204,13 @@ static void download_progress_callback(size_t current, size_t maximum, void * co
     mime->mm_data.mm_message.mm_fields = NULL;
     mailmime_free(mime);
 
-    return err == 0 ? [NSData dataWithBytesNoCopy:str->str length:str->len freeWhenDone:NO] : nil;
+    if (err == 0) {
+        return [NSData dataWithBytesNoCopy:str->str length:str->len freeWhenDone:NO];
+    }
+    else {
+        self.lastError = [NSError errorWithDomain:MailCoreErrorDomain code:MAIL_ERROR_MEMORY userInfo:nil];
+        return nil;
+    }
 }
 
 - (CTMIME_Enumerator *)mimeEnumerator {

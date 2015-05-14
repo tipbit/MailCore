@@ -773,7 +773,11 @@
 
 - (NSData *)renderData {
     [self _render];
-    return [myParsedMIME renderData];
+    NSData * result = [myParsedMIME renderData];
+    if (result == nil) {
+        self.lastError = myParsedMIME.lastError;
+    }
+    return result;
 }
 
 - (NSData *)messageAsEmlx {

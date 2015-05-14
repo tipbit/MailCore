@@ -101,6 +101,9 @@
     
     /* data */
     NSData * data = [message renderData];
+    if (data == nil) {
+        goto error;
+    }
     success = [smtpObj setData:data];
     mmap_string_unref((char *)data.bytes);
     

@@ -242,6 +242,9 @@ static const int MAX_PATH_SIZE = 1024;
     
     int err = MAILIMAP_NO_ERROR;
     NSData * msgData = [msg renderData];
+    if (msgData == nil) {
+        return NO;
+    }
 
     struct mail_flags *flags = mail_flags_new(MAIL_FLAG_SEEN, clist_new());
     
@@ -262,6 +265,9 @@ static const int MAX_PATH_SIZE = 1024;
         return NO;
     
     NSData *msgData = [msg renderData];
+    if (msgData == nil) {
+        return NO;
+    }
 
     struct mail_flags *flags = mail_flags_new((uint32_t)(mailFlags | MAIL_FLAG_SEEN), MailCoreClistFromStringArray(extensionFlags));
     int err = mailsession_append_message_flags(self.folderSession,
@@ -290,7 +296,10 @@ static const int MAX_PATH_SIZE = 1024;
     
     int err = MAILIMAP_NO_ERROR;
     NSData *msgData = [msg renderData];
-    
+    if (msgData == nil) {
+        return NO;
+    }
+
     struct mail_flags *flags = mail_flags_new((uint32_t)(mailFlags | MAIL_FLAG_SEEN), MailCoreClistFromStringArray(extensionFlags));
     
     struct mailimap_flag_list * flag_list;

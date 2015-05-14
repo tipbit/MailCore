@@ -99,7 +99,14 @@
 
     CTMIME *part;
     while ((part = [enumer nextObject])) {
-        mailmime_smart_add_part(mime, [part buildMIMEStruct]);
+        struct mailmime * submime = [part buildMIMEStruct];
+        if (submime == NULL) {
+            self.lastError = part.lastError;
+            mailmime_free(mime);
+            return NULL;
+        }
+
+        mailmime_smart_add_part(mime, submime);
     }
     return mime;
 }

@@ -59,10 +59,16 @@ typedef void (^CTProgressBlock)(size_t curr, size_t max);
 - (id)initWithData:(NSData *)data;
 - (id)initWithMIMEStruct:(struct mailmime *)mime
         forMessage:(struct mailmessage *)message;
+
+/**
+ * @return A mailmime struct, yours to free with mailmime_free, or NULL on failure.
+ * See self.lastError if there's a failure.
+ */
 - (struct mailmime *)buildMIMEStruct;
 
 /**
  * You must call mmap_string_unref((char *)data.bytes) when you are done with the returned NSData.
+ * See self.lastError if there's a failure.
  */
 -(NSData *)renderData;
 

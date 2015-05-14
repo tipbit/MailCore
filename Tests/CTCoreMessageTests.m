@@ -107,6 +107,7 @@
 	CTCoreMessage *msg = [[CTCoreMessage alloc] init];
 	[msg setBody:@"test"];
 	NSData * data = [msg renderData];
+    XCTAssertNotNil(data);
     NSString * str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     mmap_string_unref((char *)data.bytes);
 	/* Do a few sanity checks on the str */
@@ -124,6 +125,7 @@
 	[msg setBody:@"This is some kind of message."];
     [msg setTo:[NSSet setWithObjects:[CTCoreAddress addressWithName:@"Matt" email:@"test@test.com"],nil]];
     NSData * data = [msg renderData];
+    XCTAssertNotNil(data);
     NSString * str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     mmap_string_unref((char *)data.bytes);
 	/* Do a few sanity checks on the str */
