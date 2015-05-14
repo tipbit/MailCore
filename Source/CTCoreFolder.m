@@ -264,10 +264,8 @@ static const int MAX_PATH_SIZE = 1024;
         return NO;
     
     struct mail_flags *flags = mail_flags_new((uint32_t)(mailFlags | MAIL_FLAG_SEEN), MailCoreClistFromStringArray(extensionFlags));
-    char mbPath[MAX_PATH_SIZE];
-    [self getUTF7String:mbPath fromString:[self path]];
     err = mailsession_append_message_flags([self folderSession],
-                                           mbPath,
+                                           [msgStr cStringUsingEncoding: NSUTF8StringEncoding],
                                            [msgStr lengthOfBytesUsingEncoding: NSUTF8StringEncoding],
                                            flags);
     
