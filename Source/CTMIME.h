@@ -66,8 +66,6 @@ typedef void (^CTProgressBlock)(size_t curr, size_t max);
  */
 -(NSData *)renderData;
 
--(NSString *)renderString;
-
 - (CTMIME_Enumerator *)mimeEnumerator;
 
 - (BOOL)fetchPart;

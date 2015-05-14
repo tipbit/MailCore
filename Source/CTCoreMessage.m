@@ -776,12 +776,6 @@
     return [myParsedMIME renderData];
 }
 
--(NSString *)renderString
-{
-    [self _render];
-    return [myParsedMIME renderString];
-}
-
 - (NSData *)messageAsEmlx {
     NSString *msgContent = [[self rfc822] stringByReplacingOccurrencesOfString:@"\r\n" withString:@"\n"];
     NSData *msgContentAsData = [msgContent dataUsingEncoding:NSUTF8StringEncoding];

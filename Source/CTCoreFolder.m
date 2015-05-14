@@ -258,18 +258,20 @@ static const int MAX_PATH_SIZE = 1024;
 
 - (BOOL)appendMessage:(CTCoreMessage *)msg flags:(NSUInteger)mailFlags extensionFlags:(NSArray *)extensionFlags
 {
-    int err = MAILIMAP_NO_ERROR;
-    NSString * msgStr = [msg renderString];
     if (![self connect])
         return NO;
     
+    NSData *msgData = [msg renderData];
+
     struct mail_flags *flags = mail_flags_new((uint32_t)(mailFlags | MAIL_FLAG_SEEN), MailCoreClistFromStringArray(extensionFlags));
-    err = mailsession_append_message_flags([self folderSession],
-                                           [msgStr cStringUsingEncoding: NSUTF8StringEncoding],
-                                           [msgStr lengthOfBytesUsingEncoding: NSUTF8StringEncoding],
-                                           flags);
-    
+    int err = mailsession_append_message_flags(self.folderSession,
+                                               msgData.bytes,
+                                               msgData.length,
+                                               flags);
+
     mail_flags_free(flags);
+    mmap_string_unref((char *)msgData.bytes);
+
     if (MAILIMAP_NO_ERROR != err)
         self.lastError = MailCoreCreateErrorFromIMAPCode (err);
     return MAILIMAP_NO_ERROR == err;
@@ -287,7 +289,7 @@ static const int MAX_PATH_SIZE = 1024;
         return NO;
     
     int err = MAILIMAP_NO_ERROR;
-    NSString *msgStr = [msg renderString];
+    NSData *msgData = [msg renderData];
     
     struct mail_flags *flags = mail_flags_new((uint32_t)(mailFlags | MAIL_FLAG_SEEN), MailCoreClistFromStringArray(extensionFlags));
     
@@ -303,8 +305,8 @@ static const int MAX_PATH_SIZE = 1024;
                                        mbPath,
                                        flag_list,
                                        NULL,
-                                       [msgStr cStringUsingEncoding: NSUTF8StringEncoding],
-                                       [msgStr lengthOfBytesUsingEncoding: NSUTF8StringEncoding],
+                                       msgData.bytes,
+                                       msgData.length,
                                        &uidvalidity,
                                        &messageUID);
         
@@ -316,6 +318,8 @@ static const int MAX_PATH_SIZE = 1024;
     }
     
     mail_flags_free(flags);
+    mmap_string_unref((char *)msgData.bytes);
+
     if (MAILIMAP_NO_ERROR != err)
         self.lastError = MailCoreCreateErrorFromIMAPCode (err);
     return MAILIMAP_NO_ERROR == err;

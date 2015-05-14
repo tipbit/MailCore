@@ -204,23 +204,6 @@ static void download_progress_callback(size_t current, size_t maximum, void * co
     return err == 0 ? [NSData dataWithBytesNoCopy:str->str length:str->len freeWhenDone:NO] : nil;
 }
 
--(NSString *)renderString{
-    struct mailmime *mime = [self buildMIMEStruct];
-
-    MMAPString * str = mmap_string_new("");
-    int col = 0;
-    mailmime_write_mem(str, &col, mime);
-
-    __unused int err = mmap_string_ref(str);
-    mime->mm_data.mm_message.mm_fields = NULL;
-    mailmime_free(mime);
-
-    NSString *resultStr = [[NSString alloc] initWithBytes:str->str length:str->len
-                                       encoding:NSUTF8StringEncoding];
-    mmap_string_free(str);
-    return [resultStr autorelease];
-}
-
 - (CTMIME_Enumerator *)mimeEnumerator {
     CTMIME_Enumerator *enumerator;
     enumerator = [[CTMIME_Enumerator alloc] initWithMIME:self];
