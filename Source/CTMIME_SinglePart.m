@@ -152,6 +152,20 @@
     content = mailmime_content_new_with_str([self.contentType cStringUsingEncoding:NSUTF8StringEncoding]);
     mime_sub = mailmime_new_empty(content, mime_fields);
 
+    // mailmime_new_empty checks ct_subtype for rfc822, and will set mm_type = MAILMIME_MESSAGE
+    // in that case.  This is wrong for us, because we are attaching the message as an attachment
+    // (implicit in the fact that this instance is CTMIME_SinglePart and not CTMIME_MessagePart).
+    //
+    // In particular, we can't call mailmime_set_body_text if mm_type == MAILMIME_MESSAGE, because
+    // that call sets mime_sub->mm_data.mm_single to hold the attachment body, and that's only
+    // valid if mm_type == MAILMIME_SINGLE.  mm_data is a union, so we crashed when later accessing
+    // that same data through mime_sub->mm_data.mm_message and erroneously re-interpreting it.
+    //
+    // Change it to mm_type = MAILMIME_SINGLE before proceeding.
+    if (strcasecmp(content->ct_subtype, "rfc822") == 0) {
+        mime_sub->mm_type = MAILMIME_SINGLE;
+    }
+
     // Add Data
     r = mailmime_set_body_text(mime_sub, (char *)[self.data bytes], [self.data length]);
     return mime_sub;
