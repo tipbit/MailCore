@@ -65,6 +65,9 @@
             if (content != nil) {
                 [myContentList addObject:content];
             }
+            else {
+                NSLog(@"[TB-6229] CTMime content is nil");
+            }
         }
     }
     return self;

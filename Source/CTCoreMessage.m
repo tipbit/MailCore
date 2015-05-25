@@ -123,6 +123,7 @@
     //Retrieve message mime and message field
     err = mailmessage_get_bodystructure(myMessage, &dummyMime);
     if (err != MAIL_NO_ERROR) {
+        NSLog(@"[TB-6229] Error in mailmessage_get_bodystructure. error num: %ld", (long)err);
         self.lastError = MailCoreCreateErrorFromIMAPCode(err);
         return NO;
     }
@@ -352,6 +353,9 @@
     CTMIME_Enumerator *enumerator = [myParsedMIME mimeEnumerator];
     CTMIME *mime;
     while ((mime = [enumerator nextObject])) {
+
+        NSLog(@"MIME type: %@", [mime class]);
+
         if ([mime isKindOfClass:[CTMIME_SinglePart class]]) {
             CTMIME_SinglePart *singlePart = (CTMIME_SinglePart *)mime;
             if (singlePart.attached || (singlePart.contentId != nil && [CTCoreAttachment isInlineContentType:singlePart.contentType])) {
@@ -373,6 +377,10 @@
                 // enumerator is recursing across all attachments, so there's no need for us to recurse here.
                 haveSeenOuterMessage = YES;
             }
+        }
+
+        else {
+            NSLog(@"Attachment was neither single or message part. Unhandled class was: %@", [mime class]);
         }
     }
     return attachments;

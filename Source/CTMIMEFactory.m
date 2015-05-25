@@ -69,6 +69,7 @@
     struct mailmime_type *aType = mime->mm_content_type->ct_type;
     if (aType->tp_type != MAILMIME_TYPE_DISCRETE_TYPE) {
         /* What do you do with a composite single part? */
+        NSLog(@"[TB-6229] Don't know what to do with a composite single part. Returning nil.");
         return nil;
     }
     CTMIME_SinglePart *content = nil;

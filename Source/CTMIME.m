@@ -86,8 +86,7 @@ static void download_progress_callback(size_t current, size_t maximum, void * co
                             encoding:NSUTF8StringEncoding];
                 subType = [subType lowercaseString];
                 struct mailmime_type *type = content->ct_type;
-                if (type->tp_type == MAILMIME_TYPE_DISCRETE_TYPE &&
-                    type->tp_data.tp_discrete_type != NULL) {
+                if (type->tp_type == MAILMIME_TYPE_DISCRETE_TYPE && type->tp_data.tp_discrete_type != NULL) {
                     switch (type->tp_data.tp_discrete_type->dt_type) {
                         case MAILMIME_DISCRETE_TYPE_TEXT:
                             mainType = @"text";
@@ -106,8 +105,7 @@ static void download_progress_callback(size_t current, size_t maximum, void * co
                         break;
                     }
                 }
-                else if (type->tp_type == MAILMIME_TYPE_COMPOSITE_TYPE &&
-                            type->tp_data.tp_composite_type != NULL) {
+                else if (type->tp_type == MAILMIME_TYPE_COMPOSITE_TYPE && type->tp_data.tp_composite_type != NULL) {
                     switch (type->tp_data.tp_discrete_type->dt_type) {
                         case MAILMIME_COMPOSITE_TYPE_MESSAGE:
                             mainType = @"message";
@@ -117,6 +115,28 @@ static void download_progress_callback(size_t current, size_t maximum, void * co
                         break;
                     }
                 }
+                else if (type->tp_type == MAILMIME_TYPE_ERROR) {
+                    NSLog(@"[TB-6229] type->tp_type is MAILMIME_TYPE_ERROR");
+                }
+                else {
+                    if (type->tp_type == MAILMIME_TYPE_DISCRETE_TYPE) {
+                        NSLog(@"[TB-6229] tp_data.tp_discrete_type is NULL");
+                    }
+                    if (type->tp_type == MAILMIME_TYPE_COMPOSITE_TYPE) {
+                        NSLog(@"[TB-6229] tp_data.tp_composite_type is NULL");
+                    }
+                }
+            }
+            else {
+                NSLog(@"[TB-6229] ct_type is NULL");
+            }
+        }
+        else {
+            if (mime == NULL) {
+                NSLog(@"[TB-6229] mime is NULL");
+            }
+            if (mime->mm_content_type == NULL) {
+                NSLog(@"[TB-6229] mm_content_type is NULL");
             }
         }
         mContentType = [[NSString alloc] initWithFormat:@"%@/%@", mainType, subType];
