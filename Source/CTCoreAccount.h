@@ -112,6 +112,14 @@
 */
 - (void)disconnect;
 
+/**
+ * @return NSString set.  The set of capabilities advertised by the server.
+ * This is cached, so this will be a network call the first time it is called, and
+ * will return the cached value for any subsequent call.  (Technically this means
+ * that this value could be stale if the server changed the capabilities that it
+ * advertised, but it would be an odd server that did that after the user has
+ * logged in).
+ */
 - (NSSet *)capabilities;
 
 /**
