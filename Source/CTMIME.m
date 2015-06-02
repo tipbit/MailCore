@@ -135,7 +135,7 @@ static void download_progress_callback(size_t current, size_t maximum, void * co
             if (mime == NULL) {
                 NSLog(@"[TB-6229] mime is NULL");
             }
-            if (mime->mm_content_type == NULL) {
+            else if (mime->mm_content_type == NULL) {
                 NSLog(@"[TB-6229] mm_content_type is NULL");
             }
         }
