@@ -727,7 +727,7 @@
 		404F58A11A3D28860081DA18 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -759,6 +759,7 @@
 				HEADER_SEARCH_PATHS = (
 					"libetpan/build-mac/include/**",
 					"$(SRCROOT)/Source",
+					"$(SRCROOT)/../tidbits/**",
 				);
 				INFOPLIST_FILE = MailCoreTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
@@ -772,7 +773,7 @@
 		404F58A21A3D28860081DA18 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -802,6 +803,7 @@
 				HEADER_SEARCH_PATHS = (
 					"libetpan/build-mac/include/**",
 					"$(SRCROOT)/Source",
+					"$(SRCROOT)/../tidbits/**",
 				);
 				INFOPLIST_FILE = MailCoreTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
