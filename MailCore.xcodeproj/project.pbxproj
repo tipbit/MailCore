@@ -157,6 +157,27 @@
 			remoteGlobalIDString = A0511C51127770FD00DE46C4;
 			remoteInfo = crypto;
 		};
+		A17A7E441B1D409600B9BBEB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A17A7E3F1B1D409600B9BBEB /* Lumberjack.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DC58E48814DC70CF006B16E2;
+			remoteInfo = Lumberjack;
+		};
+		A17A7E461B1D409600B9BBEB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A17A7E3F1B1D409600B9BBEB /* Lumberjack.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DC58E4C114DC8BE2006B16E2;
+			remoteInfo = LibTest;
+		};
+		A17A7E481B1D40C800B9BBEB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A17A7E3F1B1D409600B9BBEB /* Lumberjack.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = DC58E48714DC70CF006B16E2;
+			remoteInfo = Lumberjack;
+		};
 		F8886332158102F50088CF38 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F888632D158102F50088CF38 /* Cyrus SASL.xcodeproj */;
@@ -203,6 +224,11 @@
 		40DDA4E81A4F30680079D4FC /* CTNamespaces.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CTNamespaces.h; path = Source/CTNamespaces.h; sourceTree = "<group>"; };
 		40DDA4E91A4F30680079D4FC /* CTNamespaces.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CTNamespaces.m; path = Source/CTNamespaces.m; sourceTree = "<group>"; };
 		8DC2EF5B0486A6940098B216 /* MailCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MailCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A144A3311B1D4667001A680F /* Lumberjack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Lumberjack.framework; path = ../CocoaLumberjack/Xcode/LumberjackFramework/Desktop/build/Debug/Lumberjack.framework; sourceTree = "<group>"; };
+		A17A7E311B1D211600B9BBEB /* Lumberjack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Lumberjack.framework; path = ../CocoaLumberjack/Xcode/LumberjackFramework/Desktop/build/Debug/Lumberjack.framework; sourceTree = "<group>"; };
+		A17A7E3A1B1D237F00B9BBEB /* libLumberjack.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libLumberjack.a; path = "../../../Library/Developer/Xcode/DerivedData/Tipbit-bdwgnkyhxznzpybtdzhefavvektm/Build/Products/Debug-iphoneos/libLumberjack.a"; sourceTree = "<group>"; };
+		A17A7E3D1B1D3AB000B9BBEB /* Lumberjack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Lumberjack.framework; path = ../CocoaLumberjack/Xcode/LumberjackFramework/Desktop/build/Debug/Lumberjack.framework; sourceTree = "<group>"; };
+		A17A7E3F1B1D409600B9BBEB /* Lumberjack.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = Lumberjack.xcodeproj; sourceTree = "<group>"; };
 		D2F7E79907B2D74100F64583 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 		F81A8AD20C03FC3B002F780A /* CTMIME_MessagePart.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = CTMIME_MessagePart.h; path = Source/CTMIME_MessagePart.h; sourceTree = "<group>"; };
 		F81A8AD30C03FC3B002F780A /* CTMIME_MessagePart.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = CTMIME_MessagePart.m; path = Source/CTMIME_MessagePart.m; sourceTree = "<group>"; };
@@ -311,6 +337,7 @@
 		0867D691FE84028FC02AAC07 /* MailCore */ = {
 			isa = PBXGroup;
 			children = (
+				A17A7E3F1B1D409600B9BBEB /* Lumberjack.xcodeproj */,
 				F8886339158103460088CF38 /* openssl.xcodeproj */,
 				F888632D158102F50088CF38 /* Cyrus SASL.xcodeproj */,
 				F890D38D10CEECD50039817C /* libetpan.xcodeproj */,
@@ -426,6 +453,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		A17A7E401B1D409600B9BBEB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A17A7E451B1D409600B9BBEB /* libLumberjack.a */,
+				A17A7E471B1D409600B9BBEB /* LibTest.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		F81E26720C6ED56000B3FBAC /* MIME */ = {
 			isa = PBXGroup;
 			children = (
@@ -494,6 +530,10 @@
 		F8DFCF4A15801A5000C01975 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A144A3311B1D4667001A680F /* Lumberjack.framework */,
+				A17A7E3D1B1D3AB000B9BBEB /* Lumberjack.framework */,
+				A17A7E3A1B1D237F00B9BBEB /* libLumberjack.a */,
+				A17A7E311B1D211600B9BBEB /* Lumberjack.framework */,
 				404F58B01A3D2B1A0081DA18 /* libiconv.dylib */,
 				404F58AE1A3D2B110081DA18 /* libz.dylib */,
 			);
@@ -599,6 +639,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				A17A7E491B1D40C800B9BBEB /* PBXTargetDependency */,
 			);
 			name = MailCore;
 			productInstallPath = "$(HOME)/Library/Frameworks";
@@ -660,6 +701,10 @@
 					ProjectRef = F890D38D10CEECD50039817C /* libetpan.xcodeproj */;
 				},
 				{
+					ProductGroup = A17A7E401B1D409600B9BBEB /* Products */;
+					ProjectRef = A17A7E3F1B1D409600B9BBEB /* Lumberjack.xcodeproj */;
+				},
+				{
 					ProductGroup = F888633A158103460088CF38 /* Products */;
 					ProjectRef = F8886339158103460088CF38 /* openssl.xcodeproj */;
 				},
@@ -686,6 +731,20 @@
 			fileType = archive.ar;
 			path = "libetpan-ios.a";
 			remoteRef = 4094E0CB17E629570050EEBF /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A17A7E451B1D409600B9BBEB /* libLumberjack.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libLumberjack.a;
+			remoteRef = A17A7E441B1D409600B9BBEB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A17A7E471B1D409600B9BBEB /* LibTest.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = LibTest.app;
+			remoteRef = A17A7E461B1D409600B9BBEB /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		F8886333158102F50088CF38 /* libsasl2.a */ = {
@@ -856,6 +915,11 @@
 			name = crypto;
 			targetProxy = 40F338B817ECF72600900347 /* PBXContainerItemProxy */;
 		};
+		A17A7E491B1D40C800B9BBEB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Lumberjack;
+			targetProxy = A17A7E481B1D40C800B9BBEB /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
@@ -870,6 +934,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					/Users/andy/Documents/Tipbit/CocoaLumberjack/Xcode/LumberjackFramework/Desktop/build/Debug,
 				);
 				FRAMEWORK_VERSION = A;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -883,6 +948,7 @@
 					"$(LIBRARY_SEARCH_PATHS)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_1)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_2)",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Tipbit-bdwgnkyhxznzpybtdzhefavvektm/Build/Products/Debug-iphoneos",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
@@ -906,6 +972,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					/Users/andy/Documents/Tipbit/CocoaLumberjack/Xcode/LumberjackFramework/Desktop/build/Debug,
 				);
 				FRAMEWORK_VERSION = A;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
@@ -918,6 +985,7 @@
 					"$(LIBRARY_SEARCH_PATHS)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_1)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_2)",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Tipbit-bdwgnkyhxznzpybtdzhefavvektm/Build/Products/Debug-iphoneos",
 				);
 				OTHER_LDFLAGS = (
 					"-seg1addr",
