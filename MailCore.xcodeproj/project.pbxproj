@@ -7,12 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0F134A871656D718000D1E83 /* types.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0F134A861656D718000D1E83 /* types.plist */; };
-		0F369D03162DF5030043A3ED /* CTXlistResult.h in Headers */ = {isa = PBXBuildFile; fileRef = 0F369D01162DF5030043A3ED /* CTXlistResult.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		0F369D04162DF5030043A3ED /* CTXlistResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F369D02162DF5030043A3ED /* CTXlistResult.m */; };
 		0FFA954C16559D4F00A89EA0 /* CTXlistResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F369D02162DF5030043A3ED /* CTXlistResult.m */; };
-		2D538B45119803A6000AB4A2 /* CTSMTPAsyncConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D538B42119803A6000AB4A2 /* CTSMTPAsyncConnection.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2D538B46119803A6000AB4A2 /* CTSMTPAsyncConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D538B43119803A6000AB4A2 /* CTSMTPAsyncConnection.m */; };
 		2D538B48119803E2000AB4A2 /* CTSMTPAsyncConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D538B43119803A6000AB4A2 /* CTSMTPAsyncConnection.m */; };
 		404F589E1A3D28860081DA18 /* libmailcore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F8618B5710DADB5C00C41188 /* libmailcore.a */; };
 		404F58AB1A3D28E70081DA18 /* CTCoreMessageTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F8EADFB40B3BB178000C8371 /* CTCoreMessageTests.m */; };
@@ -24,46 +19,9 @@
 		404F58B41A3D322C0081DA18 /* CTCoreAddressTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F8EA76120C1141C1004F85D8 /* CTCoreAddressTests.m */; };
 		404F58D71A3D84240081DA18 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F8886342158103460088CF38 /* libcrypto.a */; };
 		407A115D1AAE3AF000F219E4 /* CTMIMETests.m in Sources */ = {isa = PBXBuildFile; fileRef = F81A8AEC0C03FC58002F780A /* CTMIMETests.m */; };
-		40DDA4EA1A4F30680079D4FC /* CTNamespaces.h in Headers */ = {isa = PBXBuildFile; fileRef = 40DDA4E81A4F30680079D4FC /* CTNamespaces.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		40DDA4EB1A4F30680079D4FC /* CTNamespaces.m in Sources */ = {isa = PBXBuildFile; fileRef = 40DDA4E91A4F30680079D4FC /* CTNamespaces.m */; };
 		40DDA4F31A4F33AD0079D4FC /* CTNamespaces.m in Sources */ = {isa = PBXBuildFile; fileRef = 40DDA4E91A4F30680079D4FC /* CTNamespaces.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		40DDA4F41A4F36B60079D4FC /* CTNamespaces.h in Headers */ = {isa = PBXBuildFile; fileRef = 40DDA4E81A4F30680079D4FC /* CTNamespaces.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
-		F81A8ADC0C03FC3B002F780A /* CTMIME_MessagePart.h in Headers */ = {isa = PBXBuildFile; fileRef = F81A8AD20C03FC3B002F780A /* CTMIME_MessagePart.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F81A8ADD0C03FC3B002F780A /* CTMIME_MessagePart.m in Sources */ = {isa = PBXBuildFile; fileRef = F81A8AD30C03FC3B002F780A /* CTMIME_MessagePart.m */; };
-		F81A8ADE0C03FC3B002F780A /* CTMIME_MultiPart.h in Headers */ = {isa = PBXBuildFile; fileRef = F81A8AD40C03FC3B002F780A /* CTMIME_MultiPart.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F81A8ADF0C03FC3B002F780A /* CTMIME_MultiPart.m in Sources */ = {isa = PBXBuildFile; fileRef = F81A8AD50C03FC3B002F780A /* CTMIME_MultiPart.m */; };
-		F81A8AE00C03FC3B002F780A /* CTMIME_SinglePart.h in Headers */ = {isa = PBXBuildFile; fileRef = F81A8AD60C03FC3B002F780A /* CTMIME_SinglePart.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F81A8AE10C03FC3B002F780A /* CTMIME_SinglePart.m in Sources */ = {isa = PBXBuildFile; fileRef = F81A8AD70C03FC3B002F780A /* CTMIME_SinglePart.m */; };
-		F81A8AE20C03FC3B002F780A /* CTMIME_TextPart.h in Headers */ = {isa = PBXBuildFile; fileRef = F81A8AD80C03FC3B002F780A /* CTMIME_TextPart.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F81A8AE30C03FC3B002F780A /* CTMIME_TextPart.m in Sources */ = {isa = PBXBuildFile; fileRef = F81A8AD90C03FC3B002F780A /* CTMIME_TextPart.m */; };
-		F81A8AE40C03FC3B002F780A /* CTMIME.h in Headers */ = {isa = PBXBuildFile; fileRef = F81A8ADA0C03FC3B002F780A /* CTMIME.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F81A8AE50C03FC3B002F780A /* CTMIME.m in Sources */ = {isa = PBXBuildFile; fileRef = F81A8ADB0C03FC3B002F780A /* CTMIME.m */; };
-		F81B885E0A74AA7100143DF6 /* CTCoreAccount.h in Headers */ = {isa = PBXBuildFile; fileRef = F81B88500A74AA7100143DF6 /* CTCoreAccount.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F81B885F0A74AA7100143DF6 /* CTCoreAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = F81B88510A74AA7100143DF6 /* CTCoreAccount.m */; };
-		F81B88600A74AA7100143DF6 /* CTCoreAddress.h in Headers */ = {isa = PBXBuildFile; fileRef = F81B88520A74AA7100143DF6 /* CTCoreAddress.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F81B88610A74AA7100143DF6 /* CTCoreAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = F81B88530A74AA7100143DF6 /* CTCoreAddress.m */; };
-		F81B88620A74AA7100143DF6 /* CTCoreFolder.h in Headers */ = {isa = PBXBuildFile; fileRef = F81B88540A74AA7100143DF6 /* CTCoreFolder.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F81B88630A74AA7100143DF6 /* CTCoreFolder.m in Sources */ = {isa = PBXBuildFile; fileRef = F81B88550A74AA7100143DF6 /* CTCoreFolder.m */; };
-		F81B88640A74AA7100143DF6 /* CTCoreMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = F81B88560A74AA7100143DF6 /* CTCoreMessage.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F81B88650A74AA7100143DF6 /* CTCoreMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = F81B88570A74AA7100143DF6 /* CTCoreMessage.m */; };
-		F81B88680A74AA7100143DF6 /* CTSMTPConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = F81B885A0A74AA7100143DF6 /* CTSMTPConnection.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F81B88690A74AA7100143DF6 /* CTSMTPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = F81B885B0A74AA7100143DF6 /* CTSMTPConnection.m */; };
-		F81B886A0A74AA7100143DF6 /* MailCore.h in Headers */ = {isa = PBXBuildFile; fileRef = F81B885C0A74AA7100143DF6 /* MailCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F81B886B0A74AA7100143DF6 /* MailCoreTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = F81B885D0A74AA7100143DF6 /* MailCoreTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F81B88730A74AAD800143DF6 /* MailCore_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = F81B88710A74AAD800143DF6 /* MailCore_Prefix.pch */; settings = {ATTRIBUTES = (Public, ); }; };
-		F81E266A0C6ED35C00B3FBAC /* CTBareAttachment.h in Headers */ = {isa = PBXBuildFile; fileRef = F81E26680C6ED35C00B3FBAC /* CTBareAttachment.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F81E266B0C6ED35C00B3FBAC /* CTBareAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = F81E26690C6ED35C00B3FBAC /* CTBareAttachment.m */; };
-		F81E266E0C6ED4E100B3FBAC /* CTCoreAttachment.h in Headers */ = {isa = PBXBuildFile; fileRef = F81E266C0C6ED4E100B3FBAC /* CTCoreAttachment.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F81E266F0C6ED4E100B3FBAC /* CTCoreAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = F81E266D0C6ED4E100B3FBAC /* CTCoreAttachment.m */; };
-		F8245A6D0C041C8C005E08A8 /* CTMIMEFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = F8245A2F0C04089D005E08A8 /* CTMIMEFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F8245A700C041C91005E08A8 /* CTMIMEFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = F8245A300C04089D005E08A8 /* CTMIMEFactory.m */; };
 		F82AA54116F26F2300BF76A8 /* CTXlistResult.h in Headers */ = {isa = PBXBuildFile; fileRef = 0F369D01162DF5030043A3ED /* CTXlistResult.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F8430BB10C72B16000753941 /* CTMIME_Enumerator.h in Headers */ = {isa = PBXBuildFile; fileRef = F8430BAF0C72B16000753941 /* CTMIME_Enumerator.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F8430BB20C72B16000753941 /* CTMIME_Enumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = F8430BB00C72B16000753941 /* CTMIME_Enumerator.m */; };
-		F8483E4109CE7B9000B80440 /* libssl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F8483E4009CE7B9000B80440 /* libssl.dylib */; };
-		F8483E4309CE7B9C00B80440 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F8483E4209CE7B9C00B80440 /* libiconv.dylib */; };
-		F8483E4C09CE7C2800B80440 /* libcrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F8483E4B09CE7C2800B80440 /* libcrypto.dylib */; };
 		F8618D0D10DAE1E600C41188 /* CTSMTPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = F81B885B0A74AA7100143DF6 /* CTSMTPConnection.m */; };
 		F8618D0E10DAE1E600C41188 /* CTSMTP.m in Sources */ = {isa = PBXBuildFile; fileRef = F88CA0CD0BF7A7B00055AC29 /* CTSMTP.m */; };
 		F8618D0F10DAE1E600C41188 /* CTESMTP.m in Sources */ = {isa = PBXBuildFile; fileRef = F88CA0D30BF7AC0B0055AC29 /* CTESMTP.m */; };
@@ -102,15 +60,6 @@
 		F86B543614F476500080FB8F /* MailCoreUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = F88804D50B4243C000D400E7 /* MailCoreUtilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F86B543714F476530080FB8F /* MailCore.h in Headers */ = {isa = PBXBuildFile; fileRef = F81B885C0A74AA7100143DF6 /* MailCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F86B543814F476540080FB8F /* MailCoreTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = F81B885D0A74AA7100143DF6 /* MailCoreTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F88804620B42018500D400E7 /* libsasl2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F88804610B42018500D400E7 /* libsasl2.dylib */; };
-		F88804D70B4243C000D400E7 /* MailCoreUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = F88804D50B4243C000D400E7 /* MailCoreUtilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F88804D80B4243C000D400E7 /* MailCoreUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = F88804D60B4243C000D400E7 /* MailCoreUtilities.m */; };
-		F88CA0CE0BF7A7B00055AC29 /* CTSMTP.h in Headers */ = {isa = PBXBuildFile; fileRef = F88CA0CC0BF7A7B00055AC29 /* CTSMTP.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F88CA0CF0BF7A7B00055AC29 /* CTSMTP.m in Sources */ = {isa = PBXBuildFile; fileRef = F88CA0CD0BF7A7B00055AC29 /* CTSMTP.m */; };
-		F88CA0D40BF7AC0B0055AC29 /* CTESMTP.h in Headers */ = {isa = PBXBuildFile; fileRef = F88CA0D20BF7AC0B0055AC29 /* CTESMTP.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F88CA0D50BF7AC0B0055AC29 /* CTESMTP.m in Sources */ = {isa = PBXBuildFile; fileRef = F88CA0D30BF7AC0B0055AC29 /* CTESMTP.m */; };
-		F8EC5B0314C37F60006AF4D3 /* CTMIME_HtmlPart.h in Headers */ = {isa = PBXBuildFile; fileRef = F8EC5B0114C37F60006AF4D3 /* CTMIME_HtmlPart.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F8EC5B0414C37F60006AF4D3 /* CTMIME_HtmlPart.m in Sources */ = {isa = PBXBuildFile; fileRef = F8EC5B0214C37F60006AF4D3 /* CTMIME_HtmlPart.m */; };
 		F8EC5B0514C37F60006AF4D3 /* CTMIME_HtmlPart.m in Sources */ = {isa = PBXBuildFile; fileRef = F8EC5B0214C37F60006AF4D3 /* CTMIME_HtmlPart.m */; };
 /* End PBXBuildFile section */
 
@@ -157,27 +106,6 @@
 			remoteGlobalIDString = A0511C51127770FD00DE46C4;
 			remoteInfo = crypto;
 		};
-		A144A3431B1D4D7A001A680F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A144A33E1B1D4D7A001A680F /* Lumberjack.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = DC58E48814DC70CF006B16E2;
-			remoteInfo = Lumberjack;
-		};
-		A144A3451B1D4D7A001A680F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A144A33E1B1D4D7A001A680F /* Lumberjack.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = DC58E4C114DC8BE2006B16E2;
-			remoteInfo = LibTest;
-		};
-		A144A3471B1D4EB4001A680F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A144A33E1B1D4D7A001A680F /* Lumberjack.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = DC58E48714DC70CF006B16E2;
-			remoteInfo = Lumberjack;
-		};
 		F8886332158102F50088CF38 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F888632D158102F50088CF38 /* Cyrus SASL.xcodeproj */;
@@ -223,12 +151,11 @@
 		404F58B01A3D2B1A0081DA18 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.1.sdk/usr/lib/libiconv.dylib; sourceTree = DEVELOPER_DIR; };
 		40DDA4E81A4F30680079D4FC /* CTNamespaces.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CTNamespaces.h; path = Source/CTNamespaces.h; sourceTree = "<group>"; };
 		40DDA4E91A4F30680079D4FC /* CTNamespaces.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CTNamespaces.m; path = Source/CTNamespaces.m; sourceTree = "<group>"; };
-		8DC2EF5B0486A6940098B216 /* MailCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MailCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A144A3311B1D4667001A680F /* Lumberjack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Lumberjack.framework; path = ../CocoaLumberjack/Xcode/LumberjackFramework/Desktop/build/Debug/Lumberjack.framework; sourceTree = "<group>"; };
-		A144A33E1B1D4D7A001A680F /* Lumberjack.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Lumberjack.xcodeproj; path = /Users/andy/Documents/Tipbit/tidbits/../CocoaLumberjack/Xcode/LumberjackFramework/Mobile/Lumberjack.xcodeproj; sourceTree = "<absolute>"; };
 		A17A7E311B1D211600B9BBEB /* Lumberjack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Lumberjack.framework; path = ../CocoaLumberjack/Xcode/LumberjackFramework/Desktop/build/Debug/Lumberjack.framework; sourceTree = "<group>"; };
 		A17A7E3A1B1D237F00B9BBEB /* libLumberjack.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libLumberjack.a; path = "../../../Library/Developer/Xcode/DerivedData/Tipbit-bdwgnkyhxznzpybtdzhefavvektm/Build/Products/Debug-iphoneos/libLumberjack.a"; sourceTree = "<group>"; };
 		A17A7E3D1B1D3AB000B9BBEB /* Lumberjack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Lumberjack.framework; path = ../CocoaLumberjack/Xcode/LumberjackFramework/Desktop/build/Debug/Lumberjack.framework; sourceTree = "<group>"; };
+		A1E112041B1E242F005134A0 /* Tidbits.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Tidbits.xcodeproj; path = ../tidbits/Tidbits.xcodeproj; sourceTree = SOURCE_ROOT; };
 		D2F7E79907B2D74100F64583 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 		F81A8AD20C03FC3B002F780A /* CTMIME_MessagePart.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = CTMIME_MessagePart.h; path = Source/CTMIME_MessagePart.h; sourceTree = "<group>"; };
 		F81A8AD30C03FC3B002F780A /* CTMIME_MessagePart.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = CTMIME_MessagePart.m; path = Source/CTMIME_MessagePart.m; sourceTree = "<group>"; };
@@ -302,18 +229,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8DC2EF560486A6940098B216 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */,
-				F8483E4109CE7B9000B80440 /* libssl.dylib in Frameworks */,
-				F8483E4309CE7B9C00B80440 /* libiconv.dylib in Frameworks */,
-				F8483E4C09CE7C2800B80440 /* libcrypto.dylib in Frameworks */,
-				F88804620B42018500D400E7 /* libsasl2.dylib in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		F8618B5510DADB5C00C41188 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -327,7 +242,6 @@
 		034768DFFF38A50411DB9C8B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8DC2EF5B0486A6940098B216 /* MailCore.framework */,
 				F8618B5710DADB5C00C41188 /* libmailcore.a */,
 				404F58981A3D28860081DA18 /* MailCoreTests.xctest */,
 			);
@@ -337,7 +251,7 @@
 		0867D691FE84028FC02AAC07 /* MailCore */ = {
 			isa = PBXGroup;
 			children = (
-				A144A33E1B1D4D7A001A680F /* Lumberjack.xcodeproj */,
+				A1E112041B1E242F005134A0 /* Tidbits.xcodeproj */,
 				F8886339158103460088CF38 /* openssl.xcodeproj */,
 				F888632D158102F50088CF38 /* Cyrus SASL.xcodeproj */,
 				F890D38D10CEECD50039817C /* libetpan.xcodeproj */,
@@ -453,15 +367,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		A144A33F1B1D4D7A001A680F /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				A144A3441B1D4D7A001A680F /* libLumberjack.a */,
-				A144A3461B1D4D7A001A680F /* LibTest.app */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		F81E26720C6ED56000B3FBAC /* MIME */ = {
 			isa = PBXGroup;
 			children = (
@@ -543,37 +448,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		8DC2EF500486A6940098B216 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F81B885E0A74AA7100143DF6 /* CTCoreAccount.h in Headers */,
-				F81B88600A74AA7100143DF6 /* CTCoreAddress.h in Headers */,
-				F81B88620A74AA7100143DF6 /* CTCoreFolder.h in Headers */,
-				40DDA4EA1A4F30680079D4FC /* CTNamespaces.h in Headers */,
-				F81B88640A74AA7100143DF6 /* CTCoreMessage.h in Headers */,
-				F81B88680A74AA7100143DF6 /* CTSMTPConnection.h in Headers */,
-				F81B886A0A74AA7100143DF6 /* MailCore.h in Headers */,
-				F81B886B0A74AA7100143DF6 /* MailCoreTypes.h in Headers */,
-				F81B88730A74AAD800143DF6 /* MailCore_Prefix.pch in Headers */,
-				F88804D70B4243C000D400E7 /* MailCoreUtilities.h in Headers */,
-				F88CA0CE0BF7A7B00055AC29 /* CTSMTP.h in Headers */,
-				F88CA0D40BF7AC0B0055AC29 /* CTESMTP.h in Headers */,
-				F81A8ADC0C03FC3B002F780A /* CTMIME_MessagePart.h in Headers */,
-				F81A8ADE0C03FC3B002F780A /* CTMIME_MultiPart.h in Headers */,
-				F81A8AE00C03FC3B002F780A /* CTMIME_SinglePart.h in Headers */,
-				F81A8AE20C03FC3B002F780A /* CTMIME_TextPart.h in Headers */,
-				F81A8AE40C03FC3B002F780A /* CTMIME.h in Headers */,
-				F8245A6D0C041C8C005E08A8 /* CTMIMEFactory.h in Headers */,
-				F81E266A0C6ED35C00B3FBAC /* CTBareAttachment.h in Headers */,
-				F81E266E0C6ED4E100B3FBAC /* CTCoreAttachment.h in Headers */,
-				F8430BB10C72B16000753941 /* CTMIME_Enumerator.h in Headers */,
-				2D538B45119803A6000AB4A2 /* CTSMTPAsyncConnection.h in Headers */,
-				F8EC5B0314C37F60006AF4D3 /* CTMIME_HtmlPart.h in Headers */,
-				0F369D03162DF5030043A3ED /* CTXlistResult.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		F831808C15AE74CE00448FC5 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -624,28 +498,6 @@
 			productName = MailCoreTests;
 			productReference = 404F58981A3D28860081DA18 /* MailCoreTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		8DC2EF4F0486A6940098B216 /* MailCore */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 1DEB91AD08733DA50010E9CD /* Build configuration list for PBXNativeTarget "MailCore" */;
-			buildPhases = (
-				F89618D30A7D77CF00F93E26 /* ShellScript */,
-				8DC2EF500486A6940098B216 /* Headers */,
-				8DC2EF520486A6940098B216 /* Resources */,
-				8DC2EF540486A6940098B216 /* Sources */,
-				8DC2EF560486A6940098B216 /* Frameworks */,
-				F848422D09CFACA000B80440 /* ShellScript */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				A144A3481B1D4EB4001A680F /* PBXTargetDependency */,
-			);
-			name = MailCore;
-			productInstallPath = "$(HOME)/Library/Frameworks";
-			productName = MailCore;
-			productReference = 8DC2EF5B0486A6940098B216 /* MailCore.framework */;
-			productType = "com.apple.product-type.framework";
 		};
 		F8618B5610DADB5C00C41188 /* MailCore iOS */ = {
 			isa = PBXNativeTarget;
@@ -701,17 +553,12 @@
 					ProjectRef = F890D38D10CEECD50039817C /* libetpan.xcodeproj */;
 				},
 				{
-					ProductGroup = A144A33F1B1D4D7A001A680F /* Products */;
-					ProjectRef = A144A33E1B1D4D7A001A680F /* Lumberjack.xcodeproj */;
-				},
-				{
 					ProductGroup = F888633A158103460088CF38 /* Products */;
 					ProjectRef = F8886339158103460088CF38 /* openssl.xcodeproj */;
 				},
 			);
 			projectRoot = ..;
 			targets = (
-				8DC2EF4F0486A6940098B216 /* MailCore */,
 				F8618B5610DADB5C00C41188 /* MailCore iOS */,
 				404F58971A3D28860081DA18 /* MailCoreTests */,
 			);
@@ -731,20 +578,6 @@
 			fileType = archive.ar;
 			path = "libetpan-ios.a";
 			remoteRef = 4094E0CB17E629570050EEBF /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A144A3441B1D4D7A001A680F /* libLumberjack.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libLumberjack.a;
-			remoteRef = A144A3431B1D4D7A001A680F /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A144A3461B1D4D7A001A680F /* LibTest.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = LibTest.app;
-			remoteRef = A144A3451B1D4D7A001A680F /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		F8886333158102F50088CF38 /* libsasl2.a */ = {
@@ -786,44 +619,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8DC2EF520486A6940098B216 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				0F134A871656D718000D1E83 /* types.plist in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		F848422D09CFACA000B80440 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "#sh Scripts/DocScripts/doxygen.sh";
-		};
-		F89618D30A7D77CF00F93E26 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "#python Scripts/BuildScripts/buildopensource.py";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		404F58941A3D28860081DA18 /* Sources */ = {
@@ -833,34 +629,6 @@
 				407A115D1AAE3AF000F219E4 /* CTMIMETests.m in Sources */,
 				404F58B41A3D322C0081DA18 /* CTCoreAddressTests.m in Sources */,
 				404F58AB1A3D28E70081DA18 /* CTCoreMessageTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8DC2EF540486A6940098B216 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F81B885F0A74AA7100143DF6 /* CTCoreAccount.m in Sources */,
-				F81B88610A74AA7100143DF6 /* CTCoreAddress.m in Sources */,
-				F81B88630A74AA7100143DF6 /* CTCoreFolder.m in Sources */,
-				F81B88650A74AA7100143DF6 /* CTCoreMessage.m in Sources */,
-				F81B88690A74AA7100143DF6 /* CTSMTPConnection.m in Sources */,
-				F88804D80B4243C000D400E7 /* MailCoreUtilities.m in Sources */,
-				F88CA0CF0BF7A7B00055AC29 /* CTSMTP.m in Sources */,
-				F88CA0D50BF7AC0B0055AC29 /* CTESMTP.m in Sources */,
-				F81A8ADD0C03FC3B002F780A /* CTMIME_MessagePart.m in Sources */,
-				F81A8ADF0C03FC3B002F780A /* CTMIME_MultiPart.m in Sources */,
-				F81A8AE10C03FC3B002F780A /* CTMIME_SinglePart.m in Sources */,
-				F81A8AE30C03FC3B002F780A /* CTMIME_TextPart.m in Sources */,
-				F81A8AE50C03FC3B002F780A /* CTMIME.m in Sources */,
-				F8245A700C041C91005E08A8 /* CTMIMEFactory.m in Sources */,
-				F81E266B0C6ED35C00B3FBAC /* CTBareAttachment.m in Sources */,
-				F81E266F0C6ED4E100B3FBAC /* CTCoreAttachment.m in Sources */,
-				F8430BB20C72B16000753941 /* CTMIME_Enumerator.m in Sources */,
-				2D538B46119803A6000AB4A2 /* CTSMTPAsyncConnection.m in Sources */,
-				F8EC5B0414C37F60006AF4D3 /* CTMIME_HtmlPart.m in Sources */,
-				40DDA4EB1A4F30680079D4FC /* CTNamespaces.m in Sources */,
-				0F369D04162DF5030043A3ED /* CTXlistResult.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -915,89 +683,9 @@
 			name = crypto;
 			targetProxy = 40F338B817ECF72600900347 /* PBXContainerItemProxy */;
 		};
-		A144A3481B1D4EB4001A680F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Lumberjack;
-			targetProxy = A144A3471B1D4EB4001A680F /* PBXContainerItemProxy */;
-		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		1DEB91AE08733DA50010E9CD /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
-					/Users/andy/Documents/Tipbit/CocoaLumberjack/Xcode/LumberjackFramework/Desktop/build/Debug,
-				);
-				FRAMEWORK_VERSION = A;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_MODEL_TUNING = "";
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = MailCore_Prefix.pch;
-				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "@loader_path/../Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(LIBRARY_SEARCH_PATHS)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_1)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_2)",
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Tipbit-bdwgnkyhxznzpybtdzhefavvektm/Build/Products/Debug-iphoneos",
-				);
-				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = (
-					"-seg1addr",
-					0xb0000000,
-				);
-				PRODUCT_NAME = MailCore;
-				SKIP_INSTALL = YES;
-				WRAPPER_EXTENSION = framework;
-				ZERO_LINK = YES;
-			};
-			name = Debug;
-		};
-		1DEB91AF08733DA50010E9CD /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
-					/Users/andy/Documents/Tipbit/CocoaLumberjack/Xcode/LumberjackFramework/Desktop/build/Debug,
-				);
-				FRAMEWORK_VERSION = A;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_MODEL_TUNING = G5;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = MailCore_Prefix.pch;
-				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "@loader_path/../Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(LIBRARY_SEARCH_PATHS)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_1)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_2)",
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Tipbit-bdwgnkyhxznzpybtdzhefavvektm/Build/Products/Debug-iphoneos",
-				);
-				OTHER_LDFLAGS = (
-					"-seg1addr",
-					0xb0000000,
-				);
-				PRODUCT_NAME = MailCore;
-				SKIP_INSTALL = YES;
-				STRIP_INSTALLED_PRODUCT = YES;
-				WRAPPER_EXTENSION = framework;
-			};
-			name = Release;
-		};
 		1DEB91B208733DA50010E9CD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1132,6 +820,12 @@
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = MailCore_Prefix.pch;
+				HEADER_SEARCH_PATHS = (
+					"libetpan/build-mac/include/**",
+					"$(SRCROOT)/../tidbits/**",
+				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRIVATE_HEADERS_FOLDER_PATH = ../../include/MailCore/Private;
 				PRODUCT_NAME = mailcore;
@@ -1147,6 +841,12 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = MailCore_Prefix.pch;
+				HEADER_SEARCH_PATHS = (
+					"libetpan/build-mac/include/**",
+					"$(SRCROOT)/../tidbits/**",
+				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRIVATE_HEADERS_FOLDER_PATH = ../../include/MailCore/Private;
 				PRODUCT_NAME = mailcore;
@@ -1160,15 +860,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1DEB91AD08733DA50010E9CD /* Build configuration list for PBXNativeTarget "MailCore" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				1DEB91AE08733DA50010E9CD /* Debug */,
-				1DEB91AF08733DA50010E9CD /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		1DEB91B108733DA50010E9CD /* Build configuration list for PBXProject "MailCore" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
