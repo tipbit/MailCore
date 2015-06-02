@@ -37,6 +37,9 @@
 #import "MailCoreUtilities.h"
 
 @interface CTCoreAccount ()
+
+@property (nonatomic, copy) NSSet* cachedCapabilities;
+
 @end
 
 
@@ -125,6 +128,11 @@
 }
 
 - (NSSet *)capabilities {
+    return self.cachedCapabilities ?: [self fetchCapabilities];
+}
+
+
+- (NSSet *)fetchCapabilities {
     assert(![NSThread isMainThread]);
 
     NSMutableSet *capabilitiesSet = [NSMutableSet set];
@@ -157,8 +165,10 @@
         }
     }
     mailimap_capability_data_free(capabilities);
-    
-    return capabilitiesSet;
+
+    self.cachedCapabilities = capabilitiesSet;
+
+    return self.cachedCapabilities;
 }
 
 
