@@ -140,6 +140,7 @@ static void download_progress_callback(size_t current, size_t maximum, void * co
             }
         }
         mContentType = [[NSString alloc] initWithFormat:@"%@/%@", mainType, subType];
+        NSLog(@"[TB-6229] mainType: %@, subType: %@", mainType, subType);
     }
     return self;
 }

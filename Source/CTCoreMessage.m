@@ -354,7 +354,7 @@
     CTMIME *mime;
     while ((mime = [enumerator nextObject])) {
 
-        NSLog(@"MIME type: %@", [mime class]);
+        NSLog(@"[TB-6229] MIME type: %@", [mime class]);
 
         if ([mime isKindOfClass:[CTMIME_SinglePart class]]) {
             CTMIME_SinglePart *singlePart = (CTMIME_SinglePart *)mime;
@@ -380,9 +380,11 @@
         }
 
         else {
-            NSLog(@"Attachment was neither single or message part. Unhandled class was: %@", [mime class]);
+            NSLog(@"[TB-6229] Attachment was neither single or message part. Unhandled class was: %@", [mime class]);
         }
     }
+
+    NSLog(@"[TB-6229] %li attachments", (long)[attachments count]);
     return attachments;
 }
 
