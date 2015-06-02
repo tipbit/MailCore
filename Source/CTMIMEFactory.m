@@ -75,12 +75,10 @@
     CTMIME_SinglePart *content = nil;
     switch (aType->tp_data.tp_discrete_type->dt_type) {
         case MAILMIME_DISCRETE_TYPE_TEXT:
-            content = [[CTMIME_TextPart alloc] initWithMIMEStruct:mime
-                                                       forMessage:message];
+            content = [[CTMIME_TextPart alloc] initWithMIMEStruct:mime forMessage:message];
             break;
         default:
-            content = [[CTMIME_SinglePart alloc] initWithMIMEStruct:mime
-                                                         forMessage:message];
+            content = [[CTMIME_SinglePart alloc] initWithMIMEStruct:mime forMessage:message];
             break;
     }
     return [content autorelease];
