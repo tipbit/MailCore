@@ -78,8 +78,13 @@
                 }
             }
 
-            if (mMimeFields->fld_disposition_filename != NULL) {
-                self.filename = [NSString stringWithCString:mMimeFields->fld_disposition_filename encoding:NSUTF8StringEncoding];
+            if ((mMimeFields->fld_disposition_filename != NULL) || (mMimeFields->fld_content_name != NULL)) {
+
+
+                self.filename = (mMimeFields->fld_disposition_filename != NULL) ?
+                            [NSString stringWithCString:mMimeFields->fld_disposition_filename encoding:NSUTF8StringEncoding]
+                :
+                            [NSString stringWithCString:mMimeFields->fld_content_name encoding:NSUTF8StringEncoding];
 
                 NSString* lowercaseName = [self.filename lowercaseString];
                 if([lowercaseName hasSuffix:@".xls"] ||

@@ -359,8 +359,7 @@
         if ([mime isKindOfClass:[CTMIME_SinglePart class]]) {
             CTMIME_SinglePart *singlePart = (CTMIME_SinglePart *)mime;
             if (singlePart.attached || (singlePart.contentId != nil && [CTCoreAttachment isInlineContentType:singlePart.contentType])) {
-                CTBareAttachment *attach = [[CTBareAttachment alloc]
-                                                initWithMIMESinglePart:singlePart];
+                CTBareAttachment *attach = [[CTBareAttachment alloc] initWithMIMESinglePart:singlePart];
                 [attachments addObject:attach];
                 [attach release];
             }
