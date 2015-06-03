@@ -75,6 +75,7 @@
     NSData * data = [messagePart renderData];
     XCTAssertNotNil(data);
     [data writeToFile:@"/tmp/mailcore_test_output" atomically:NO];
+    mmap_string_unref((char *)data.bytes);
 
     CTCoreMessage *msg = [[CTCoreMessage alloc] initWithFileAtPath:@"/tmp/mailcore_test_output"];
     CTMIME *mime = [CTMIMEFactory createMIMEWithMIMEStruct:[msg messageStruct]->msg_mime forMessage:[msg messageStruct]];
