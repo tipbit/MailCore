@@ -35,6 +35,12 @@
 #import "MailCoreTypes.h"
 #import "CTMIMEFactory.h"
 
+@interface CTMIME_MessagePart () {
+    struct mailimf_fields *myFields;
+}
+
+@end
+
 @implementation CTMIME_MessagePart
 + (id)mimeMessagePartWithContent:(CTMIME *)mime {
     return [[[CTMIME_MessagePart alloc] initWithContent:mime] autorelease];
@@ -47,7 +53,6 @@
         struct mailmime *content = mime->mm_data.mm_message.mm_msg_mime;
         myMessageContent = [[CTMIMEFactory createMIMEWithMIMEStruct:content
                                                          forMessage:message] retain];
-        myFields = mime->mm_data.mm_message.mm_fields;
     }
     return self;
 }
@@ -61,6 +66,9 @@
 }
 
 - (void)dealloc {
+    if (myFields != NULL) {
+        mailimf_fields_free(myFields);
+    }
     [myMessageContent release];
     [super dealloc];
 }
@@ -83,8 +91,19 @@
     }
 
     struct mailmime *mime = mailmime_new_message_data(submime);
-    if (myFields != NULL) {
+    if (mime->mm_data.mm_message.mm_fields != NULL) {
         mailmime_set_imf_fields(mime, myFields);
+        // mMime currently owns myFields, but we're transferring that
+        // to mime, so we have to clear the appropriate part of mMime
+        // so that myFields only gets freed once.
+        mMime->mm_data.mm_message.mm_fields = NULL;
+    }
+    else if (myFields != NULL) {
+        mailmime_set_imf_fields(mime, myFields);
+        // We currently own myFields, but we're transferring that
+        // to mime, so we have to clear that field so that we don't
+        // free it ourselves in dealloc.
+        myFields = NULL;
     }
     return mime;
 }
@@ -94,6 +113,9 @@
 }
 
 - (void)setIMFFields:(struct mailimf_fields *)imfFields {
+    if (myFields != NULL) {
+        mailimf_fields_free(myFields);
+    }
     myFields = imfFields;
 }
 

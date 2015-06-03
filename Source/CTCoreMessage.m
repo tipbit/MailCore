@@ -771,8 +771,8 @@
             
             mailimf_fields_add(fields, priorityField);
         }
-        //TODO uh oh, when this get freed it frees stuff in the CTCoreMessage
-        //TODO Need to make sure that fields gets freed somewhere
+
+        // This transfers ownership of fields to CTMIME_MessagePart.
         [(CTMIME_MessagePart *)msgPart setIMFFields:fields];
     }
 }

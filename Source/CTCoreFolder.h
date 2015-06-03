@@ -223,24 +223,36 @@
 
 /**
  Exposes the IMAP APPEND command, see the IMAP RFC 4549.
+
+ Note that this *mutates* the given msg -- some data is used during rendering to avoid a copy.
+
  @return Return YES on success, NO on error. Call method lastError to get error if one occurred
 */
 - (BOOL) appendMessage: (CTCoreMessage *) msg;
 
 /**
  Exposes the IMAP APPEND command with the specified flags for the appended message, see the IMAP RFC 4549.
+
+ Note that this *mutates* the given msg -- some data is used during rendering to avoid a copy.
+
  @return Return YES on success, NO on error. Call method lastError to get error if one occurred
  */
 - (BOOL)appendMessage:(CTCoreMessage *)msg flags:(NSUInteger)flags extensionFlags:(NSArray *)extensionFlags;
 
 /**
  Exposes the IMAP APPENDUID command and return the appended message's uid on success, see the IMAP RFC 4315.
+
+ Note that this *mutates* the given msg -- some data is used during rendering to avoid a copy.
+
  @return Return YES on success, NO on error. Call method lastError to get error if one occurred
  */
 - (BOOL)appendMessage:(CTCoreMessage *)msg
           appendedUID:(NSUInteger *)appendMessageUID;
 /**
  Exposes the IMAP APPENDUID command with the specified flags for the appended message and return the appended message's uid on success, see the IMAP RFC 4315
+
+ Note that this *mutates* the given msg -- some data is used during rendering to avoid a copy.
+
  @return Return YES on success, NO on error. Call method lastError to get error if one occurred
  */
 - (BOOL)appendMessage:(CTCoreMessage *)msg

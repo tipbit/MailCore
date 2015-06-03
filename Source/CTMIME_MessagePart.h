@@ -35,13 +35,16 @@
 
 @interface CTMIME_MessagePart : CTMIME {
     CTMIME *myMessageContent;
-    struct mailimf_fields *myFields;
 }
 + (id)mimeMessagePartWithContent:(CTMIME *)mime;
 - (id)initWithContent:(CTMIME *)messageContent;
 - (void)setContent:(CTMIME *)aContent;
 - (CTMIME *)content;
 
+/**
+ * If you set this field, you are giving ownership of that value to this instance
+ * (i.e. the struct mailimf_fields will be freed when this instance is dealloced).
+ */
 @property (nonatomic) struct mailimf_fields * IMFFields;
 
 @end

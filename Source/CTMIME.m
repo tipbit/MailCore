@@ -213,7 +213,6 @@ static void download_progress_callback(size_t current, size_t maximum, void * co
     mailmime_write_mem(str, &col, mime);
     int err = mmap_string_ref(str);
 
-    mime->mm_data.mm_message.mm_fields = NULL;
     mailmime_free(mime);
 
     if (err == 0) {

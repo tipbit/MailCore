@@ -334,6 +334,10 @@ typedef enum {
  
  Use this only if you want the raw encoding of the message.
 
+ Note that this *mutates* the underlying data -- some data is used during rendering
+ to avoid a copy.  This means that you can't call renderData more than once on the same
+ instance and expect the same answer.
+
  You must call mmap_string_unref((char *)data.bytes) when you are done with the returned NSData.
 */
 - (NSData *)renderData;
