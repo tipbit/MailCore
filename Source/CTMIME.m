@@ -116,31 +116,22 @@ static void download_progress_callback(size_t current, size_t maximum, void * co
                     }
                 }
                 else if (type->tp_type == MAILMIME_TYPE_ERROR) {
-                    NSLog(@"[TB-6229] type->tp_type is MAILMIME_TYPE_ERROR");
-                }
-                else {
-                    if (type->tp_type == MAILMIME_TYPE_DISCRETE_TYPE) {
-                        NSLog(@"[TB-6229] tp_data.tp_discrete_type is NULL");
-                    }
-                    if (type->tp_type == MAILMIME_TYPE_COMPOSITE_TYPE) {
-                        NSLog(@"[TB-6229] tp_data.tp_composite_type is NULL");
-                    }
+                    NSLog(@"type->tp_type is MAILMIME_TYPE_ERROR");
                 }
             }
             else {
-                NSLog(@"[TB-6229] ct_type is NULL");
+                NSLog(@"ct_type is NULL");
             }
         }
         else {
             if (mime == NULL) {
-                NSLog(@"[TB-6229] mime is NULL");
+                NSLog(@"mime is NULL");
             }
             else if (mime->mm_content_type == NULL) {
-                NSLog(@"[TB-6229] mm_content_type is NULL");
+                NSLog(@"mm_content_type is NULL");
             }
         }
         mContentType = [[NSString alloc] initWithFormat:@"%@/%@", mainType, subType];
-        NSLog(@"[TB-6229] mainType: %@, subType: %@", mainType, subType);
     }
     return self;
 }
