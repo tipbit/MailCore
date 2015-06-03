@@ -19,6 +19,8 @@
 		404F58B41A3D322C0081DA18 /* CTCoreAddressTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F8EA76120C1141C1004F85D8 /* CTCoreAddressTests.m */; };
 		404F58D71A3D84240081DA18 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F8886342158103460088CF38 /* libcrypto.a */; };
 		407A115D1AAE3AF000F219E4 /* CTMIMETests.m in Sources */ = {isa = PBXBuildFile; fileRef = F81A8AEC0C03FC58002F780A /* CTMIMETests.m */; };
+		409122F21B1F8D7C00EC9302 /* libLumberjack.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 409122F11B1F8D7C00EC9302 /* libLumberjack.a */; };
+		409123081B1F8E9200EC9302 /* libTidbits.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 409122851B1F80E900EC9302 /* libTidbits.a */; };
 		40DDA4F31A4F33AD0079D4FC /* CTNamespaces.m in Sources */ = {isa = PBXBuildFile; fileRef = 40DDA4E91A4F30680079D4FC /* CTNamespaces.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		40DDA4F41A4F36B60079D4FC /* CTNamespaces.h in Headers */ = {isa = PBXBuildFile; fileRef = 40DDA4E81A4F30680079D4FC /* CTNamespaces.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F82AA54116F26F2300BF76A8 /* CTXlistResult.h in Headers */ = {isa = PBXBuildFile; fileRef = 0F369D01162DF5030043A3ED /* CTXlistResult.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -70,6 +72,48 @@
 			proxyType = 1;
 			remoteGlobalIDString = F8618B5610DADB5C00C41188;
 			remoteInfo = "MailCore iOS";
+		};
+		409122841B1F80E900EC9302 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A1E112041B1E242F005134A0 /* Tidbits.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 408E88581768DEF6001B61E6;
+			remoteInfo = Tidbits;
+		};
+		409122861B1F80E900EC9302 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A1E112041B1E242F005134A0 /* Tidbits.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4047B4A31805B42C0032BBA5;
+			remoteInfo = TidbitsTestBase;
+		};
+		409122881B1F80E900EC9302 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A1E112041B1E242F005134A0 /* Tidbits.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 408E88691768DEF6001B61E6;
+			remoteInfo = TidbitsTests;
+		};
+		4091228A1B1F80E900EC9302 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A1E112041B1E242F005134A0 /* Tidbits.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 40E48B13198B25F30015C54E;
+			remoteInfo = Tidbits.framework;
+		};
+		4091228C1B1F80E900EC9302 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A1E112041B1E242F005134A0 /* Tidbits.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 40A5D51D1A4B5892004A4EE3;
+			remoteInfo = TidbitsTestBase.framework;
+		};
+		409122EF1B1F8D6D00EC9302 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A1E112041B1E242F005134A0 /* Tidbits.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 408E88571768DEF6001B61E6;
+			remoteInfo = Tidbits;
 		};
 		4094E0C117E629570050EEBF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -149,12 +193,9 @@
 		404F589B1A3D28860081DA18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		404F58AE1A3D2B110081DA18 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.1.sdk/usr/lib/libz.dylib; sourceTree = DEVELOPER_DIR; };
 		404F58B01A3D2B1A0081DA18 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.1.sdk/usr/lib/libiconv.dylib; sourceTree = DEVELOPER_DIR; };
+		409122F11B1F8D7C00EC9302 /* libLumberjack.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libLumberjack.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		40DDA4E81A4F30680079D4FC /* CTNamespaces.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CTNamespaces.h; path = Source/CTNamespaces.h; sourceTree = "<group>"; };
 		40DDA4E91A4F30680079D4FC /* CTNamespaces.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CTNamespaces.m; path = Source/CTNamespaces.m; sourceTree = "<group>"; };
-		A144A3311B1D4667001A680F /* Lumberjack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Lumberjack.framework; path = ../CocoaLumberjack/Xcode/LumberjackFramework/Desktop/build/Debug/Lumberjack.framework; sourceTree = "<group>"; };
-		A17A7E311B1D211600B9BBEB /* Lumberjack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Lumberjack.framework; path = ../CocoaLumberjack/Xcode/LumberjackFramework/Desktop/build/Debug/Lumberjack.framework; sourceTree = "<group>"; };
-		A17A7E3A1B1D237F00B9BBEB /* libLumberjack.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libLumberjack.a; path = "../../../Library/Developer/Xcode/DerivedData/Tipbit-bdwgnkyhxznzpybtdzhefavvektm/Build/Products/Debug-iphoneos/libLumberjack.a"; sourceTree = "<group>"; };
-		A17A7E3D1B1D3AB000B9BBEB /* Lumberjack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Lumberjack.framework; path = ../CocoaLumberjack/Xcode/LumberjackFramework/Desktop/build/Debug/Lumberjack.framework; sourceTree = "<group>"; };
 		A1E112041B1E242F005134A0 /* Tidbits.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Tidbits.xcodeproj; path = ../tidbits/Tidbits.xcodeproj; sourceTree = SOURCE_ROOT; };
 		D2F7E79907B2D74100F64583 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 		F81A8AD20C03FC3B002F780A /* CTMIME_MessagePart.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = CTMIME_MessagePart.h; path = Source/CTMIME_MessagePart.h; sourceTree = "<group>"; };
@@ -222,8 +263,10 @@
 			files = (
 				404F58D71A3D84240081DA18 /* libcrypto.a in Frameworks */,
 				404F58AD1A3D2B060081DA18 /* libetpan-ios.a in Frameworks */,
+				409122F21B1F8D7C00EC9302 /* libLumberjack.a in Frameworks */,
 				404F589E1A3D28860081DA18 /* libmailcore.a in Frameworks */,
 				404F58B21A3D2B220081DA18 /* libsasl2.a in Frameworks */,
+				409123081B1F8E9200EC9302 /* libTidbits.a in Frameworks */,
 				404F58B11A3D2B1A0081DA18 /* libiconv.dylib in Frameworks */,
 				404F58AF1A3D2B110081DA18 /* libz.dylib in Frameworks */,
 			);
@@ -367,6 +410,18 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		409122751B1F80E900EC9302 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				409122851B1F80E900EC9302 /* libTidbits.a */,
+				409122871B1F80E900EC9302 /* libTidbitsTestBase.a */,
+				409122891B1F80E900EC9302 /* TidbitsTests.xctest */,
+				4091228B1B1F80E900EC9302 /* Tidbits.framework */,
+				4091228D1B1F80E900EC9302 /* TidbitsTestBase.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		F81E26720C6ED56000B3FBAC /* MIME */ = {
 			isa = PBXGroup;
 			children = (
@@ -435,10 +490,7 @@
 		F8DFCF4A15801A5000C01975 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				A144A3311B1D4667001A680F /* Lumberjack.framework */,
-				A17A7E3D1B1D3AB000B9BBEB /* Lumberjack.framework */,
-				A17A7E3A1B1D237F00B9BBEB /* libLumberjack.a */,
-				A17A7E311B1D211600B9BBEB /* Lumberjack.framework */,
+				409122F11B1F8D7C00EC9302 /* libLumberjack.a */,
 				404F58B01A3D2B1A0081DA18 /* libiconv.dylib */,
 				404F58AE1A3D2B110081DA18 /* libz.dylib */,
 			);
@@ -513,6 +565,7 @@
 				40F338B917ECF72600900347 /* PBXTargetDependency */,
 				4094E0C217E629570050EEBF /* PBXTargetDependency */,
 				40F338B717ECF72600900347 /* PBXTargetDependency */,
+				409122F01B1F8D6D00EC9302 /* PBXTargetDependency */,
 			);
 			name = "MailCore iOS";
 			productName = "MailCore iPhone";
@@ -556,6 +609,10 @@
 					ProductGroup = F888633A158103460088CF38 /* Products */;
 					ProjectRef = F8886339158103460088CF38 /* openssl.xcodeproj */;
 				},
+				{
+					ProductGroup = 409122751B1F80E900EC9302 /* Products */;
+					ProjectRef = A1E112041B1E242F005134A0 /* Tidbits.xcodeproj */;
+				},
 			);
 			projectRoot = ..;
 			targets = (
@@ -566,6 +623,41 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		409122851B1F80E900EC9302 /* libTidbits.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libTidbits.a;
+			remoteRef = 409122841B1F80E900EC9302 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		409122871B1F80E900EC9302 /* libTidbitsTestBase.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libTidbitsTestBase.a;
+			remoteRef = 409122861B1F80E900EC9302 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		409122891B1F80E900EC9302 /* TidbitsTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = TidbitsTests.xctest;
+			remoteRef = 409122881B1F80E900EC9302 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		4091228B1B1F80E900EC9302 /* Tidbits.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Tidbits.framework;
+			remoteRef = 4091228A1B1F80E900EC9302 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		4091228D1B1F80E900EC9302 /* TidbitsTestBase.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = TidbitsTestBase.framework;
+			remoteRef = 4091228C1B1F80E900EC9302 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		4094E0CA17E629570050EEBF /* libetpan.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -668,6 +760,11 @@
 			target = F8618B5610DADB5C00C41188 /* MailCore iOS */;
 			targetProxy = 404F589F1A3D28860081DA18 /* PBXContainerItemProxy */;
 		};
+		409122F01B1F8D6D00EC9302 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Tidbits;
+			targetProxy = 409122EF1B1F8D6D00EC9302 /* PBXContainerItemProxy */;
+		};
 		4094E0C217E629570050EEBF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "libetpan ios";
@@ -689,9 +786,11 @@
 		1DEB91B208733DA50010E9CD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -701,7 +800,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
 					"libetpan/build-mac/include/**",
-					"$(SRCROOT)/../tidbits/**",
+					../CocoaLumberjack,
+					"../tidbits/**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = "";
@@ -713,16 +813,19 @@
 		1DEB91B308733DA50010E9CD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
 					"libetpan/build-mac/include/**",
-					"$(SRCROOT)/../tidbits/**",
+					../CocoaLumberjack,
+					"../tidbits/**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = "";
@@ -733,7 +836,6 @@
 		404F58A11A3D28860081DA18 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -756,7 +858,6 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = MailCore_Prefix.pch;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -764,24 +865,19 @@
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
-				HEADER_SEARCH_PATHS = (
-					"libetpan/build-mac/include/**",
-					"$(SRCROOT)/Source",
-					"$(SRCROOT)/../tidbits/**",
-				);
 				INFOPLIST_FILE = MailCoreTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				USER_HEADER_SEARCH_PATHS = "Source $(inherited)";
 			};
 			name = Debug;
 		};
 		404F58A21A3D28860081DA18 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -803,24 +899,19 @@
 					"$(inherited)",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = MailCore_Prefix.pch;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
-				HEADER_SEARCH_PATHS = (
-					"libetpan/build-mac/include/**",
-					"$(SRCROOT)/Source",
-					"$(SRCROOT)/../tidbits/**",
-				);
 				INFOPLIST_FILE = MailCoreTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				USER_HEADER_SEARCH_PATHS = "Source $(inherited)";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -828,16 +919,11 @@
 		F8618B5810DADB5C00C41188 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = MailCore_Prefix.pch;
-				HEADER_SEARCH_PATHS = (
-					"libetpan/build-mac/include/**",
-					"$(SRCROOT)/../tidbits/**",
-				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRIVATE_HEADERS_FOLDER_PATH = ../../include/MailCore/Private;
 				PRODUCT_NAME = mailcore;
@@ -850,15 +936,10 @@
 		F8618B5910DADB5C00C41188 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = MailCore_Prefix.pch;
-				HEADER_SEARCH_PATHS = (
-					"libetpan/build-mac/include/**",
-					"$(SRCROOT)/../tidbits/**",
-				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRIVATE_HEADERS_FOLDER_PATH = ../../include/MailCore/Private;
 				PRODUCT_NAME = mailcore;
