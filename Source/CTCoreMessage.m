@@ -43,15 +43,28 @@
 #import "CTMIME_HtmlPart.h"
 #import "MailCoreUtilities.h"
 
+
+@interface CTCoreMessage () {
+    /**
+     * YES if this instance owns the content of myFields.  If that's the case,
+     * then this class will free the fields in dealloc or renderData as appropriate.
+     * If NO, then the content of myFields is assumed to be owned by myMessage, and
+     * won't be freed.  (Also in that case the caller cannot use the field setters
+     * to modify this instance.)
+     */
+    BOOL myFieldsIsOwnedByUs;
+}
+
+@end
+
 @implementation CTCoreMessage
 @synthesize mime=myParsedMIME, lastError, parentFolder;
 
 - (id)init {
     self = [super init];
     if (self) {
-        struct mailimf_fields *fields = mailimf_fields_new_empty();
-        myFields = mailimf_single_fields_new(fields);
-        mailimf_fields_free(fields);
+        myFields = mailimf_single_fields_new(NULL);
+        myFieldsIsOwnedByUs = YES;
     }
     return self;
 }
@@ -91,6 +104,9 @@
         mailmessage_free(myMessage);
     }
     if (myFields != NULL) {
+        if (myFieldsIsOwnedByUs) {
+            mailimf_single_fields_free_fields(myFields);
+        }
         mailimf_single_fields_free(myFields);
     }
     self.lastError = nil;
@@ -774,6 +790,26 @@
 
         // This transfers ownership of fields to CTMIME_MessagePart.
         [(CTMIME_MessagePart *)msgPart setIMFFields:fields];
+        if (myFieldsIsOwnedByUs) {
+            // We own myFields, but we have transferred all the important
+            // bits of that structure to CTMIME_MessagePart via the
+            // mailimf_fields_new_with_data call.  We therefore need to
+            // free the holding structures that remain (without freeing
+            // any of the real data, because CTMIME_MessagePart will do that).
+#define FREE_AND_NULL(__f) \
+    free(myFields->__f); \
+    myFields->__f = NULL;
+            FREE_AND_NULL(fld_sender);
+            FREE_AND_NULL(fld_from);
+            FREE_AND_NULL(fld_reply_to);
+            FREE_AND_NULL(fld_to);
+            FREE_AND_NULL(fld_cc);
+            FREE_AND_NULL(fld_bcc);
+            FREE_AND_NULL(fld_in_reply_to);
+            FREE_AND_NULL(fld_references);
+            FREE_AND_NULL(fld_subject);
+#undef FREE_AND_NULL
+        }
     }
 }
 
