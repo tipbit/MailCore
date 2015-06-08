@@ -67,6 +67,8 @@ typedef enum {
 
 @property (nonatomic, retain) NSString *header;
 
+@property (nonatomic, retain) NSString * threadTopic;
+
 /**
  If the body structure has been fetched, this will contain the MIME structure
 */

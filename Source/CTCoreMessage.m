@@ -788,6 +788,10 @@
             mailimf_fields_add(fields, priorityField);
         }
 
+        if (self.threadTopic != nil) {
+            mailimf_fields_add(fields, mailimf_field_new_custom(strdup("Thread-Topic"), strdup(self.threadTopic.UTF8String)));
+        }
+
         // This transfers ownership of fields to CTMIME_MessagePart.
         [(CTMIME_MessagePart *)msgPart setIMFFields:fields];
         if (myFieldsIsOwnedByUs) {
