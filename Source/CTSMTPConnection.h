@@ -87,6 +87,7 @@
             connectionType:(CTSMTPConnectionType)connectionType
                    useAuth:(BOOL)auth
                  useOAuth2:(BOOL)useOAuth2
+                   timeout:(time_t)timeout
                      error:(NSError **)error;
 
 @end

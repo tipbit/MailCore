@@ -128,10 +128,12 @@ error:
 
 + (BOOL)canConnectToServer:(NSString *)server username:(NSString *)username password:(NSString *)password
                       port:(unsigned int)port connectionType:(CTSMTPConnectionType)connectionType
-                   useAuth:(BOOL)auth useOAuth2:(BOOL)useOAuth2 error:(NSError **)error {
+                   useAuth:(BOOL)auth useOAuth2:(BOOL)useOAuth2 timeout:(time_t)timeout error:(NSError **)error {
   BOOL success;
   mailsmtp *smtp = NULL;
   smtp = mailsmtp_new(0, NULL);
+  mailsmtp_set_timeout(smtp, timeout);
+
     
   CTSMTP *smtpObj = [[CTESMTP alloc] initWithResource:smtp];
   if (connectionType == CTSMTPConnectionTypeStartTLS || connectionType == CTSMTPConnectionTypePlain) {
