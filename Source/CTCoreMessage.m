@@ -391,10 +391,6 @@
                 haveSeenOuterMessage = YES;
             }
         }
-
-        else {
-            NSLog(@"Attachment was neither single or message part. Unhandled class was: %@", [mime class]);
-        }
     }
 
     return attachments;
