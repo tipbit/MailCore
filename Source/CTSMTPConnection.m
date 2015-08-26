@@ -34,6 +34,7 @@
 #import "CTCoreAddress.h"
 #import "CTCoreMessage.h"
 #import "MailCoreTypes.h"
+#import "MailCoreUtilities.h"
 
 #import "CTSMTP.h"
 #import "CTESMTP.h"
@@ -163,6 +164,7 @@ error:
   }
   success = [CTSMTPConnection authenticate:smtpObj useAuth:auth useOAuth2:useOAuth2 username:username password:password server:server];
   if (!success) {
+      *error = MailCoreCreateErrorFromSMTPCode(MAILSMTP_ERROR_AUTH_LOGIN);
       goto error;
   }
 
