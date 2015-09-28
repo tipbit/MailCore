@@ -29,12 +29,12 @@
  * SUCH DAMAGE.
  */
 
-#import <XCTest/XCTest.h>
+#import "TBTestCaseBase.h"
 
 #import "CTCoreAddress.h"
 
 
-@interface CTCoreAddressTests : XCTestCase
+@interface CTCoreAddressTests : TBTestCaseBase
 
 @end
 

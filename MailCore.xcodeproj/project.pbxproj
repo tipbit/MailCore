@@ -18,6 +18,10 @@
 		404F58B31A3D2B720081DA18 /* TestData in Resources */ = {isa = PBXBuildFile; fileRef = F9FC3A721683FC07004B2D1E /* TestData */; };
 		404F58B41A3D322C0081DA18 /* CTCoreAddressTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F8EA76120C1141C1004F85D8 /* CTCoreAddressTests.m */; };
 		404F58D71A3D84240081DA18 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F8886342158103460088CF38 /* libcrypto.a */; };
+		4057DE4F1BB9B23A00E8112F /* libTidbitsTestBase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 409122871B1F80E900EC9302 /* libTidbitsTestBase.a */; };
+		4057DE531BB9B2C100E8112F /* libKissXML.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4057DE521BB9B2C100E8112F /* libKissXML.a */; };
+		4057DE551BB9B2DC00E8112F /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4057DE541BB9B2DC00E8112F /* libxml2.tbd */; };
+		4057DE571BB9B37200E8112F /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4057DE561BB9B37200E8112F /* libresolv.tbd */; };
 		407A115D1AAE3AF000F219E4 /* CTMIMETests.m in Sources */ = {isa = PBXBuildFile; fileRef = F81A8AEC0C03FC58002F780A /* CTMIMETests.m */; };
 		409122F21B1F8D7C00EC9302 /* libLumberjack.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 409122F11B1F8D7C00EC9302 /* libLumberjack.a */; };
 		409123081B1F8E9200EC9302 /* libTidbits.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 409122851B1F80E900EC9302 /* libTidbits.a */; };
@@ -72,6 +76,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = F8618B5610DADB5C00C41188;
 			remoteInfo = "MailCore iOS";
+		};
+		4057DE411BB9B22B00E8112F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A1E112041B1E242F005134A0 /* Tidbits.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 4047B4A21805B42C0032BBA5;
+			remoteInfo = TidbitsTestBase;
 		};
 		409122841B1F80E900EC9302 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -193,6 +204,10 @@
 		404F589B1A3D28860081DA18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		404F58AE1A3D2B110081DA18 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.1.sdk/usr/lib/libz.dylib; sourceTree = DEVELOPER_DIR; };
 		404F58B01A3D2B1A0081DA18 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.1.sdk/usr/lib/libiconv.dylib; sourceTree = DEVELOPER_DIR; };
+		4057DE501BB9B2B700E8112F /* KissXML.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KissXML.framework; path = ../KissXML/build/Debug/KissXML.framework; sourceTree = "<group>"; };
+		4057DE521BB9B2C100E8112F /* libKissXML.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libKissXML.a; path = "../Library/Developer/Xcode/DerivedData/Tipbit-fyzywpqxcjpvetabawcyqjmghqje/Build/Products/Debug-iphoneos/libKissXML.a"; sourceTree = "<group>"; };
+		4057DE541BB9B2DC00E8112F /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/usr/lib/libxml2.tbd; sourceTree = DEVELOPER_DIR; };
+		4057DE561BB9B37200E8112F /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/usr/lib/libresolv.tbd; sourceTree = DEVELOPER_DIR; };
 		409122F11B1F8D7C00EC9302 /* libLumberjack.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libLumberjack.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		40DDA4E81A4F30680079D4FC /* CTNamespaces.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CTNamespaces.h; path = Source/CTNamespaces.h; sourceTree = "<group>"; };
 		40DDA4E91A4F30680079D4FC /* CTNamespaces.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CTNamespaces.m; path = Source/CTNamespaces.m; sourceTree = "<group>"; };
@@ -263,11 +278,15 @@
 			files = (
 				404F58D71A3D84240081DA18 /* libcrypto.a in Frameworks */,
 				404F58AD1A3D2B060081DA18 /* libetpan-ios.a in Frameworks */,
+				4057DE531BB9B2C100E8112F /* libKissXML.a in Frameworks */,
 				409122F21B1F8D7C00EC9302 /* libLumberjack.a in Frameworks */,
 				404F589E1A3D28860081DA18 /* libmailcore.a in Frameworks */,
 				404F58B21A3D2B220081DA18 /* libsasl2.a in Frameworks */,
 				409123081B1F8E9200EC9302 /* libTidbits.a in Frameworks */,
+				4057DE4F1BB9B23A00E8112F /* libTidbitsTestBase.a in Frameworks */,
 				404F58B11A3D2B1A0081DA18 /* libiconv.dylib in Frameworks */,
+				4057DE571BB9B37200E8112F /* libresolv.tbd in Frameworks */,
+				4057DE551BB9B2DC00E8112F /* libxml2.tbd in Frameworks */,
 				404F58AF1A3D2B110081DA18 /* libz.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -490,6 +509,10 @@
 		F8DFCF4A15801A5000C01975 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4057DE561BB9B37200E8112F /* libresolv.tbd */,
+				4057DE541BB9B2DC00E8112F /* libxml2.tbd */,
+				4057DE521BB9B2C100E8112F /* libKissXML.a */,
+				4057DE501BB9B2B700E8112F /* KissXML.framework */,
 				409122F11B1F8D7C00EC9302 /* libLumberjack.a */,
 				404F58B01A3D2B1A0081DA18 /* libiconv.dylib */,
 				404F58AE1A3D2B110081DA18 /* libz.dylib */,
@@ -544,6 +567,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				4057DE421BB9B22B00E8112F /* PBXTargetDependency */,
 				404F58A01A3D28860081DA18 /* PBXTargetDependency */,
 			);
 			name = MailCoreTests;
@@ -760,6 +784,11 @@
 			target = F8618B5610DADB5C00C41188 /* MailCore iOS */;
 			targetProxy = 404F589F1A3D28860081DA18 /* PBXContainerItemProxy */;
 		};
+		4057DE421BB9B22B00E8112F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = TidbitsTestBase;
+			targetProxy = 4057DE411BB9B22B00E8112F /* PBXContainerItemProxy */;
+		};
 		409122F01B1F8D6D00EC9302 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Tidbits;
@@ -870,6 +899,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tipbit.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -911,6 +941,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tipbit.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;

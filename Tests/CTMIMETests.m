@@ -29,7 +29,7 @@
  * SUCH DAMAGE.
  */
 
-#import <XCTest/XCTest.h>
+#import "TBTestCaseBase.h"
 
 #import "CTCoreMessage.h"
 #import "CTMIME.h"
@@ -42,7 +42,7 @@
 #import "CTMIME_Enumerator.h"
 
 
-@interface CTMIMETests : XCTestCase
+@interface CTMIMETests : TBTestCaseBase
 
 @end
 

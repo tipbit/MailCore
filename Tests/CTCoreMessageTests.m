@@ -29,7 +29,7 @@
  * SUCH DAMAGE.
  */
 
-#import <XCTest/XCTest.h>
+#import "TBTestCaseBase.h"
 
 #import "CTCoreAddress.h"
 #import "CTCoreAttachment.h"
@@ -37,7 +37,7 @@
 #import "CTCoreMessage.h"
 
 
-@interface CTCoreMessageTests : XCTestCase {
+@interface CTCoreMessageTests : TBTestCaseBase {
     CTCoreMessage *myMsg;
     CTCoreMessage *myRealMsg;
 }
