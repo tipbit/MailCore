@@ -491,7 +491,7 @@
         if ((d = [self libetpanDateTime]) == NULL)
             return nil;
 
-        NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+        NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
         calendar.timeZone = [self senderTimeZone];
         NSDateComponents *comps = [[NSDateComponents alloc] init];
 
